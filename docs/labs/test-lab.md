@@ -130,3 +130,13 @@ mod tests {
       return 0;
     }
     ```
+
+## 使用表格（和 emoji）
+
+| Method      | Description                          |
+| ----------- | ------------------------------------ |
+| `GET`       | :material-check:     Fetch resource  |
+| `PUT`       | :material-check-all: Update resource |
+| `DELETE`    | :material-close:     Delete resource |
+
+:smile:
