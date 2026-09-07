@@ -71,6 +71,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.tasklist: 
+      custom_checkbox: true
 
 nav: 
   - 首页: index.md
