@@ -45,6 +45,8 @@ plugins:
       repository: ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
       branch: main
   - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 markdown_extensions:
   - tables
