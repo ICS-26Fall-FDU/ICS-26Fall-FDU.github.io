@@ -43,6 +43,7 @@ plugins:
   - git-committers:
       repository: ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
       branch: main
+  - glightbox
 
 markdown_extensions:
   - tables
@@ -75,6 +76,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.blocks.caption
 
 extra_javascript:
   - javascripts/katex.js

@@ -174,3 +174,10 @@ graph LR
 $$
 主=6
 $$
+
+## 图片
+
+<figure markdown="span">
+  ![Identity](../assets/identity.jpeg){ width="300" }
+  <figcaption>身份认同</figcaption>
+</figure>
