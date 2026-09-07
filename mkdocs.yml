@@ -1,0 +1,35 @@
+site_name: 复旦大学 计算机系统基础（2026年秋季学期）
+site_url: https://ics-26fall-fdu.github.io
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: 切换到暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tabs 
+    - navigation.tabs.sticky
+
+plugins:
+  - search
+#  - git-committers:
+#      repository: ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
+#      branch: main
+
+nav: 
+  - 首页: index.md
+  - 实验: 
+    - 总览: labs/index.md
+#  - 课程项目: 404.md

@@ -1,0 +1,13 @@
+[project]
+name = "ICS-26Fall-FDU.github.io"
+version = "0.1.0"
+description = "site of fdu ics 26fall"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+  "mkdocs-git-committers-plugin-2>=2.5.0",
+  "mkdocs-material>=9.7.7",
+]
+
+[tool.uv]
+package = false
