@@ -1,5 +1,7 @@
 --- 
 title: Test Lab 
+search:
+  exclude: true
 ---
 
 # 测试文件
