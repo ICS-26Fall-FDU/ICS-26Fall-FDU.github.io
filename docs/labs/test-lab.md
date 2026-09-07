@@ -75,3 +75,16 @@ title: Test Lab
 !!! example "举个例子"
 
     这是被举的例子
+
+!!! example "举个带注解的例子"
+  
+    这是带注解(1)的例子
+    {.annotate}
+    
+    1. 我是注解！
+
+```python
+print("Hello, world!") # (1)!
+```
+
+1. 这样来给代码注解

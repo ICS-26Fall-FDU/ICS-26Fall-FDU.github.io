@@ -27,6 +27,10 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
+    - content.code.annotate 
+    - content.code.copy
+  icon:
+    annotation: material/help-circle
 
 plugins:
   - meta: 
@@ -40,6 +44,8 @@ markdown_extensions:
   - admonition
   - pymdownx.details 
   - pymdownx.superfences
+  - attr_list 
+  - md_in_html
 
 nav: 
   - 首页: index.md
