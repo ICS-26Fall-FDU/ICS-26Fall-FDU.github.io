@@ -93,3 +93,5 @@ nav:
   - 实验: 
     - 总览: labs/index.md
 #    - 测试: labs/test-lab.md
+  - 杂项: misc/index.md
+  - 团队: team.md
