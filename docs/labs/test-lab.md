@@ -76,6 +76,8 @@ title: Test Lab
 
     这是被举的例子
 
+## 注解
+
 !!! example "举个带注解的例子"
   
     这是带注解(1)的例子
@@ -88,3 +90,43 @@ print("Hello, world!") # (1)!
 ```
 
 1. 这样来给代码注解
+
+```python title="test.py"
+def test():
+  return 0;
+```
+
+```cpp title="main.cc" linenums="35"
+std::optional<Data> getData();
+```
+
+```rust
+#[cfg(test)]
+mod tests {
+    use pliron::context::Context;
+    #[allow(unused)]
+    #[test]
+    fn pliron_links() {
+        let ctx = Context::new();
+    }
+}
+```
+
+## 使用标签页
+
+=== "Python"
+
+    ```python
+    print("Hello, world.")
+    ```
+
+=== "C++"
+
+    ```cpp
+    #include <iostream>
+
+    int main() {
+      std::cout << "Hello, world." << std::endl;
+      return 0;
+    }
+    ```
