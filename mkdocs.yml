@@ -5,6 +5,7 @@ repo_url: https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
 
 theme:
   name: material
+  custom_dir: overrides
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -25,6 +26,8 @@ theme:
     - navigation.tabs.sticky
 
 plugins:
+  - meta: 
+      enabled: true
   - search
   - git-committers:
       repository: ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
