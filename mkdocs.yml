@@ -36,8 +36,13 @@ plugins:
       repository: ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
       branch: main
 
+markdown_extensions:
+  - admonition
+  - pymdownx.details 
+  - pymdownx.superfences
+
 nav: 
   - 首页: index.md
   - 实验: 
     - 总览: labs/index.md
-#  - 课程项目: 404.md
+#    - 测试: labs/test-lab.md
