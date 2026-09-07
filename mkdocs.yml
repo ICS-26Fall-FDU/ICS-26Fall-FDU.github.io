@@ -24,6 +24,9 @@ theme:
     - navigation.instant.progress
     - navigation.tabs 
     - navigation.tabs.sticky
+    - search.suggest
+    - search.highlight
+    - search.share
 
 plugins:
   - meta: 
