@@ -2,6 +2,7 @@ site_name: 复旦大学 计算机系统基础（2026年秋季学期）
 site_url: https://ics-26fall-fdu.github.io
 repo_name: ICS-26Fall-FDU.github.io
 repo_url: https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
+edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -29,6 +30,8 @@ theme:
     - search.share
     - content.code.annotate 
     - content.code.copy
+    - content.action.edit 
+    - content.action.view
   icon:
     annotation: material/help-circle
 
