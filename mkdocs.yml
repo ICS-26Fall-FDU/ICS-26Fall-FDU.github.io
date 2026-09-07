@@ -39,7 +39,8 @@ theme:
 plugins:
   - meta: 
       enabled: true
-  - search
+  - search:
+      separator: '[\s\u200b\-]'
   - git-committers:
       repository: ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
       branch: main
