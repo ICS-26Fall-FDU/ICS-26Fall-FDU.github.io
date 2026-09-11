@@ -1,0 +1,11 @@
+INHERIT: mkdocs.yml
+
+# 本地预览用：去掉需要联网的 git-committers 插件
+plugins:
+  - meta:
+      enabled: true
+  - search:
+      separator: '[\s\u200b\-]'
+  - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: true
