@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ics-26fall-fdu.github.io/</loc>
-         <lastmod>2026-09-07</lastmod>
+         <lastmod>2026-09-13</lastmod>
     </url>
     <url>
          <loc>https://ics-26fall-fdu.github.io/404/</loc>
-         <lastmod>2026-09-07</lastmod>
+         <lastmod>2026-09-13</lastmod>
     </url>
     <url>
          <loc>https://ics-26fall-fdu.github.io/team/</loc>
-         <lastmod>2026-09-07</lastmod>
+         <lastmod>2026-09-13</lastmod>
     </url>
     <url>
          <loc>https://ics-26fall-fdu.github.io/labs/</loc>
-         <lastmod>2026-09-07</lastmod>
+         <lastmod>2026-09-13</lastmod>
     </url>
     <url>
          <loc>https://ics-26fall-fdu.github.io/labs/test-lab/</loc>
-         <lastmod>2026-09-07</lastmod>
+         <lastmod>2026-09-13</lastmod>
     </url>
     <url>
          <loc>https://ics-26fall-fdu.github.io/misc/</loc>
-         <lastmod>2026-09-07</lastmod>
+         <lastmod>2026-09-13</lastmod>
+    </url>
+    <url>
+         <loc>https://ics-26fall-fdu.github.io/misc/ssh/</loc>
+         <lastmod>2026-09-13</lastmod>
     </url>
 </urlset>

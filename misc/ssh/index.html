@@ -5,9 +5,13 @@
       
       
       
-        <link rel="canonical" href="https://ics-26fall-fdu.github.io/labs/test-lab/">
+        <link rel="canonical" href="https://ics-26fall-fdu.github.io/misc/ssh/">
       
       
+        <link rel="prev" href="../../labs/">
+      
+      
+        <link rel="next" href="../../team/">
       
       
         
@@ -18,7 +22,7 @@
     
     
       
-        <title>Test Lab - 复旦大学 计算机系统基础（2026年秋季学期）</title>
+        <title>使用 SSH - 复旦大学 计算机系统基础（2026年秋季学期）</title>
       
     
     
@@ -89,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#ssh" class="md-skip">
           跳转至
         </a>
       
@@ -125,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Test Lab
+              使用 SSH
             
           </span>
         </div>
@@ -258,7 +262,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../" class="md-tabs__link">
+        <a href="../../labs/" class="md-tabs__link">
           
   
   
@@ -274,11 +278,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../misc/ssh/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -444,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../labs/" class="md-nav__link">
         
   
   
@@ -476,24 +482,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked="">
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -511,7 +522,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -526,10 +537,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../misc/ssh/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 SSH
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -545,6 +583,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#openssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenSSH 简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成一对密钥
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把公钥分发到服务器
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        连接到服务器
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -611,188 +713,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#openssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenSSH 简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成一对密钥
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        标题
+        把公钥分发到服务器
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="标题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        标题
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="标题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        标题
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="标题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        标题
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="标题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        标题
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admonitions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admonitions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        注解
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用标签页
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#emoji" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用表格（和 emoji）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mermaid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用 mermaid
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用脚注
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用删除线
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#todo-list" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        TODO List
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#latex" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LaTeX
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        图片
+        连接到服务器
       
     </span>
   </a>
@@ -816,7 +773,7 @@
 
 
   
-    <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/edit/main/docs/labs/test-lab.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/edit/main/docs/misc/ssh.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
@@ -824,175 +781,152 @@
   
 
 
-<h1 id="_1">测试文件</h1>
-<h2 id="_2">标题</h2>
-<h3 id="_3">标题</h3>
-<h4 id="_4">标题</h4>
-<h5 id="_5">标题</h5>
-<h6 id="_6">标题</h6>
-<h2 id="admonitions">Admonitions</h2>
+<h1 id="ssh">使用 SSH</h1>
+<p>SSH (Secure Shell) 是一种工作在应用层的加密网络传输协议。它的应用场景相当广泛，比如访问远程终端、传输文件、端口转发等等，Git 同样可以使用 SSH 作为网络协议来传输数据。</p>
+<p>SSH 的架构设计可参见 <a href="https://datatracker.ietf.org/doc/html/rfc4251/">RFC 4251</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>，其三层协议按从低到高的顺序分别记录在 <a href="https://datatracker.ietf.org/doc/html/rfc4253">RFC 4253</a>、<a href="https://datatracker.ietf.org/doc/html/rfc4252">RFC 4252</a> 和 <a href="https://datatracker.ietf.org/doc/html/rfc4254">RFC 4254</a>。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>提醒</p>
+<p class="admonition-title">读一读</p>
+<p>请阅读 RFC 4251 的 Introduction 部分，了解 SSH 的三层协议有哪些。</p>
 </div>
-<details class="note">
-<summary>Note</summary>
-<p>可以展开的提醒</p>
-</details>
-<details class="note" open="open">
-<summary>Note</summary>
-<p>默认展开的提醒</p>
-</details>
-<div class="admonition abstract">
-<p class="admonition-title">Abstract</p>
-<p>摘要</p>
+<p>这三层协议分别是传输层协议（Transport Layer Protocol）、用户认证协议（User Authentication Protocol）和连接协议（Connection Protocol），它们分别提供如下功能：</p>
+<ul>
+<li>传输层协议：协商对称加密密钥、验证服务器身份并提供加密。</li>
+<li>用户认证协议：进行客户端身份认证。</li>
+<li>连接协议：承载实际的业务并提供多路复用功能。</li>
+</ul>
+<p>本文档将会帮助同学们在类 Unix 操作系统下学习 OpenSSH 的基本使用，对协议本身不会涉及太深。</p>
+<h3 id="openssh">OpenSSH 简介</h3>
+<p>OpenSSH 是一个广受欢迎的 SSH 协议自由软件实现。它最初是为 OpenBSD 开发的，为了在其他类 Unix 系统上运行，OpenBSD 团队还维护了一个<a href="https://github.com/openssh/openssh-portable">移植版</a>。今天的大多数 Linux 发行版和 macOS 都内置了 OpenSSH 的这一移植版。</p>
+<p>OpenSSH 提供了一系列 SSH 客户端和服务端工具：</p>
+<blockquote>
+<p>The OpenSSH suite consists of the following tools:</p>
+<ul>
+<li>Remote operations are done using <code>ssh</code>, <code>scp</code>, and <code>sftp</code>.</li>
+<li>Key management with <code>ssh-add</code>, <code>ssh-keysign</code>, <code>ssh-keyscan</code>, and <code>ssh-keygen</code>.</li>
+<li>The service side consists of <code>sshd</code>, <code>sftp-server</code>, and <code>ssh-agent</code>.</li>
+</ul>
+<p>-- <a href="https://www.openssh.org">https://www.openssh.org</a></p>
+</blockquote>
+<p>我们在本文中只介绍课程需要的 <code>ssh</code> 和 <code>ssh-keygen</code>。对于其他工具，大家可以自行了解。</p>
+<h3 id="_1">生成一对密钥</h3>
+<div class="admonition info">
+<p class="admonition-title">你知道吗？</p>
+<p>当我们发起一个 SSH 连接到其他的电脑时，我们的计算机叫作客户端，对方叫作服务器。</p>
+</div>
+<p>为了确保只有我们可以登录服务器，我们需要在 SSH 连接时向服务器证明我们的身份。其中一个证明方式是使用 <strong>公钥认证</strong>，这需要我们来生成一对密钥。</p>
+<div class="admonition info">
+<p class="admonition-title">公钥认证</p>
+<p>公钥认证的核心机制是数字签名，它是用公钥密码算法实现的。<a href="https://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html">这篇文章</a>介绍了数字签名的原理。</p>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>信息</p>
+<p class="admonition-title">你知道吗？</p>
+<p>SSH 提供了不止一种用户认证方法。</p>
+<div class="admonition note">
+<p class="admonition-title">读一读</p>
+<p>请阅读<strong>用户认证协议</strong>对应的 RFC，看看其中规定了有哪些认证方法！</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>提示 </p>
+<p>在这之后，SSH 的认证方法在 <a href="https://datatracker.ietf.org/doc/html/rfc4256">RFC 4256</a>、<a href="https://datatracker.ietf.org/doc/html/rfc4462">RFC 4462</a> 等标准中又有所扩展，但总的来说，公钥认证和密码认证是最常用的两种认证方法，我们这里介绍的是公钥认证。</p>
 </div>
-<div class="admonition success">
-<p class="admonition-title">Success</p>
-<p>成功 </p>
+<p>OpenSSH 为我们提供了 <code>ssh-keygen</code> 来便捷地生成一对密钥。<code>ssh-keygen</code> 可以生成多种算法的密钥对，我们建议大家使用基于椭圆曲线密码学的算法，比如 Ed25519，它和 RSA 相比密钥尺寸更小，性能也相对更好。</p>
+<div class="admonition note">
+<p class="admonition-title">读一读</p>
+<p>在终端中输入以下内容并按下回车：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>man<span class="w"> </span>ssh-keygen<span class="w"> </span><span class="c1"># 其中 man 是 manual 的意思</span>
+</span></code></pre></div>
+这是 <code>ssh-keygen</code> 的手册，可以按键盘上的 <code>Q</code> 来退出，或按键盘上的 <code>H</code> 来进入 <code>man</code> 的帮助页面。在帮助页面上可以找到一些常用功能的快捷键。<p></p>
+<p>很多通过终端来交互的应用都会提供对应的手册，如果不知道某样东西怎么用，可以效仿这种方式来找到它的手册读一读。</p>
+<details class="warning">
+<summary>在每次生成密钥对之前</summary>
+<p>请检查用户家目录下的对应位置是否已经有一组对应的密钥：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls<span class="w"> </span>~/.ssh
+</span></code></pre></div>
+如果已经存在文件名为 <code>id_ed25519</code> 和 <code>id_ed25519.pub</code> 的密钥，在使用 <code>ssh-keygen</code> 在同一位置生成密钥时会询问是否覆写。 如果在生成新密钥时覆写掉原来的密钥，可能给利用原来密钥进行认证的服务带来麻烦。<p></p>
+</details>
+<p>请你阅读手册，生成一对注释为自己电子邮箱地址的 Ed25519 密钥，并保存到默认位置 <code>~/.ssh</code> 目录下。</p>
+<p>你可以通过在终端中执行 <code>ls ~/.ssh</code> 来验证自己的密钥是不是正确生成，正确生成的标志是这一目录下存在文件名为 <code>id_ed25519</code> 和 <code>id_ed25519.pub</code> 的文件。</p>
+<p>其中前者叫作私钥，绝对不应该泄露，后者是公钥，可以公开，需要拷贝到需要认证我们身份的服务器上。</p>
+<details class="question">
+<summary>我应该怎么设置 passphrase？</summary>
+<p>passphrase 是一个用于加密本地 SSH 私钥文件的密码，在 SSH 连接时，ssh 会先使用 passphrase 解密本地的 SSH 私钥，再使用这一私钥来进行数字签名。当前 <code>ssh-keygen</code> 生成密钥时默认的 passphrase 为空。可以考虑设置一个足够长并且自己记得住的 passphrase，这可以提高使用 SSH 的安全性。如果觉得每次连接时输入 passphrase 太麻烦，可以使用 OpenSSH 套件中的 <code>ssh-agent</code>，具体使用方法请自行了解。</p>
+</details>
 </div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>问题</p>
+<p>我们一般把私钥存放在 <code>~/.ssh</code> 目录下。<code>ssh</code> 在连接时默认会尝试 <code>~/.ssh</code> 下的若干固定文件名的私钥。大家可以在使用 <code>ssh</code> 时带上 <code>-v</code> 这一命令行参数来查看具体尝试了哪些。</p>
+<div class="admonition info">
+<p class="admonition-title">你知道吗？</p>
+<p><code>~/.ssh</code> 是 <code>ssh</code> 的用户级密钥配置文件目录，其中 <code>~</code> 是用户家目录的简写。</p>
+<p>在这个目录当中存放着 <code>ssh</code> 运行时会读取的各类配置。</p>
+<p>除了用户级配置目录之外，还有系统级配置文件目录，位置在 <code>/etc/ssh</code>。每次运行 <code>ssh</code> 时，它都会按照命令行参数、用户配置、系统配置的优先级降序决定本次运行的配置。许多类 Unix 软件都有这样的配置文件目录结构。</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>警告 </p>
-</div>
-<div class="admonition failure">
-<p class="admonition-title">Failure</p>
-<p>失败 </p>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>危险！</p>
-</div>
-<div class="admonition bug">
-<p class="admonition-title">Bug</p>
-<p>bug </p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>示例 </p>
-</div>
-<div class="admonition quote">
-<p class="admonition-title">Quote</p>
-<p>引用</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">举个例子</p>
-<p>这是被举的例子</p>
-</div>
-<h2 id="_7">注解</h2>
-<div class="admonition example">
-<p class="admonition-title">举个带注解的例子</p>
-<p class="annotate">这是带注解(1)的例子</p>
+<p>如果发生私钥泄露、passphrase 遗忘等情况，我们需要使用 <code>ssh-keygen</code> 重新生成密钥对并重新分发公钥。在使用新公钥前，应当先在你使用 SSH 连接的所有服务器上彻底删除与泄露私钥对应的公钥。</p>
+<h3 id="_2">把公钥分发到服务器</h3>
+<p>公钥认证要求在连接之前把我们的公钥拷贝到要连接的服务器上。</p>
+<p>对于类 Unix 系统的远端设备，我们需要将自己的 <strong>公钥</strong> 拷贝到远端设备上对应用户家目录下的 <code>~/.ssh/authorized_keys</code> 文件当中。一个比较方便的办法是使用 OpenSSH 套件中的 <code>ssh-copy-id</code>，大家可以在有需求时自行了解。<code>authorized_keys</code> 是 SSH 服务端允许登录的公钥清单，具体格式记录在 <code>sshd</code> 的手册中。</p>
+<p>对于其他的云服务商，我们可能需要阅读厂商特定的文档来了解如何将自己的公钥分发到服务器。</p>
+<div class="admonition note">
+<p class="admonition-title">以 GitHub 为例</p>
 <ol>
-<li>我是注解！</li>
+<li>在 GitHub 的任意页面单击页面右上角的头像。</li>
+<li>单击下拉菜单中的 “Settings”。</li>
+<li>在页面左侧的边栏中单击 “Access” 下的 “SSH and GPG keys”。</li>
+<li>单击页面右侧的 “New SSH key”。</li>
+<li>在 “Title” 中给密钥取一个名字。</li>
+<li>确认 “Key type” 为 “Authentication Key”。</li>
+<li>使用 <code>cat ~/.ssh/id_ed25519.pub</code> 来查看刚刚生成密钥对中的 <strong>公钥</strong> 文本并将其复制粘贴到 “Key” 中。</li>
+<li>点击 “Add SSH Key”。</li>
 </ol>
+<p>GitHub 也提供了<a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">一个文档</a>来讲解这一过程。</p>
 </div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, world!"</span><span class="p">)</span> <span class="c1"># (1)!</span>
-</span></code></pre></div>
+<h3 id="_3">连接到服务器</h3>
+<p>在将公钥分发到服务器后，我们可以在终端中使用 OpenSSH 套件的 <code>ssh</code> 进行连接，基本的命令是 <code>ssh user@hostname</code>。</p>
+<p>其中 <code>hostname</code> 指的是服务器的主机名，常见的形式是一个 IP 地址或是一个域名。而 <code>user</code> 指的是服务器上你想要连接的用户。</p>
+<p>在不使用其他命令行参数的情况下，客户端会首先在服务器的 TCP 22 端口上建立 SSH 连接。首次连接时会先提示核对主机指纹（见下）。之后才进行用户认证。在认证成功后它会请求一个终端并在其中打开 Shell。</p>
+<div class="admonition note">
+<p class="admonition-title">继续以 GitHub 为例</p>
 <ol>
-<li>这样来给代码注解</li>
+<li>
+<p>在终端中执行下述命令来连接：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</span></code></pre></div>
+GitHub 的主机名叫作 <code>github.com</code>，用户名是 <code>git</code>。
+由于 GitHub 使用 SSH 主要是为了 Git 的数据传输，它并不会给我们分配一个服务器上的终端，因此我们使用 <code>-T</code> 命令行参数以不请求分配终端。<p></p>
+</li>
+<li>
+<p>在首次与一台新服务器建立 SSH 连接时会显示：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&gt;<span class="w"> </span>The<span class="w"> </span>authenticity<span class="w"> </span>of<span class="w"> </span>host<span class="w"> </span><span class="s1">'github.com (IP ADDRESS)'</span><span class="w"> </span>can<span class="err">'</span>t<span class="w"> </span>be<span class="w"> </span>established.
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>&gt;<span class="w"> </span>ED25519<span class="w"> </span>key<span class="w"> </span>fingerprint<span class="w"> </span>is<span class="w"> </span>SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>&gt;<span class="w"> </span>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span><span class="w"> </span>connecting<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span>?
+</span></code></pre></div>
+我们应当手动核对这一指纹和 SSH 服务器的主机公钥指纹是否一致<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">2</a></sup>。如果一致，输入 <code>yes</code> 并按下回车。
+成功连接后，应当显示下述信息<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">3</a></sup>：
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Hi<span class="w"> </span>ryannyui!<span class="w"> </span>You<span class="err">'</span>ve<span class="w"> </span>successfully<span class="w"> </span>authenticated,<span class="w"> </span>but<span class="w"> </span>GitHub<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>provide<span class="w"> </span>shell<span class="w"> </span>access.
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>在这之后，当我们使用 <code>git clone git@github.com:user/repo.git</code> clone 一个仓库并在其中执行 <code>git pull</code>，<code>git push</code> 等命令时，Git 也会使用 <code>ssh</code> 来连接到服务器并传输数据。</p>
+</li>
 </ol>
-<div class="language-python highlight"><span class="filename">test.py</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">():</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></code></pre></div>
-<div class="language-cpp highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">main.cc</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getData</span><span class="p">();</span>
-</span></code></pre></div></td></tr></tbody></table></div>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#[cfg(test)]</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">mod</span><span class="w"> </span><span class="nn">tests</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="n">pliron</span><span class="p">::</span><span class="n">context</span><span class="p">::</span><span class="n">Context</span><span class="p">;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="cp">#[allow(unused)]</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="cp">#[test]</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">pliron_links</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Context</span><span class="p">::</span><span class="n">new</span><span class="p">();</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="_8">使用标签页</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">C++</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, world."</span><span class="p">)</span>
-</span></code></pre></div>
+<p>如果感兴趣，可以使用 <code>git clone git@github.com:git/git.git</code> 来 clone 下 git 的源码仓库并查阅当中的 <code>connect.c</code>。</p>
 </div>
-<div class="tabbed-block">
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Hello, world."</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
-</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">主机公钥指纹</p>
+<p>主机公钥和我们刚刚为了进行公钥认证而拷贝到服务器的公钥不是一回事。主机公钥用于 SSH 传输层协议建立时客户端对服务器身份的验证，而我们刚刚拷贝的公钥用于用户认证协议中服务器对客户端的认证。</p>
+<p>在首次连接输入 yes 后，ssh 会将对应主机的公钥存入 <code>~/.ssh/known_hosts</code>，如果在此后连接中公钥发生变化，<code>ssh</code> 会拒绝连接，这是为了防范中间人攻击的风险。</p>
+<p>当然，可以造成指纹变化的原因还有很多。当 <code>ssh</code> 因为指纹不匹配而拒绝连接时，较好的安全实践是先弄清指纹变化的原因再删除 <code>known_hosts</code> 中的对应行，比较好的办法是使用 <code>ssh-keygen -R</code>，具体使用方法可以在 <code>man ssh-keygen</code> 中查询。</p>
 </div>
-</div>
-</div>
-<h2 id="emoji">使用表格（和 emoji）</h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GET</code></td>
-<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"></path></svg></span>     Fetch resource</td>
-</tr>
-<tr>
-<td><code>PUT</code></td>
-<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.41 13.41 6 19l1.41-1.42L1.83 12m20.41-6.42L11.66 16.17 7.5 12l-1.43 1.41L11.66 19l12-12M18 7l-1.41-1.42-6.35 6.35 1.42 1.41z"></path></svg></span> Update resource</td>
-</tr>
-<tr>
-<td><code>DELETE</code></td>
-<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span>     Delete resource</td>
-</tr>
-</tbody>
-</table>
-<p><img alt="😄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f604.svg" title=":smile:"></p>
-<h2 id="mermaid">使用 mermaid</h2>
-<pre class="mermaid"><code>graph LR
-  A[Start] --&gt; B{Error?};
-  B --&gt;|Yes| C[Hmm...];
-  C --&gt; D[Debug];
-  D --&gt; B;
-  B ----&gt;|No| E[Yay!];</code></pre>
-<h2 id="_9">使用脚注</h2>
-<p>上海交通大学在当地<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>的综合排名位居第一。</p>
-<h2 id="_10">使用删除线</h2>
-<p><del>这项内容</del> 应当被删除。</p>
-<h2 id="todo-list">TODO List</h2>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> 打一小会儿游戏</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 复习今天的课程</li>
-</ul>
-<h2 id="latex">LaTeX</h2>
-<p>使用 KaTeX 渲染，可能需要注意语法。</p>
-<div class="arithmatex">\[
-主=6
-\]</div>
-<h2 id="_11">图片</h2>
-<figure>
-  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/identity.jpeg" data-desc-position="bottom"><img alt="Identity" src="../../assets/identity.jpeg" width="300"></a>
-<br>
-<figcaption>身份认同</figcaption>
-</figure>
+<p>除了 <code>-T</code>， <code>man ssh</code> 中还记录了大量我们可以使用的命令行参数，大家在有需要时应当优先查阅。</p>
+<p>比如假设服务器在 33273 端口上监听 SSH 服务的话，我们可以使用 <code>-p 33273</code> 来连接服务器的 TCP 33273 端口。</p>
+<p>VS Code 的使用者或许想要参考其<a href="https://code.visualstudio.com/docs/remote/ssh">文档</a>来使用扩展市场中的 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote SSH</a> 插件。</p>
 <div class="footnote">
 <hr>
 <ol>
 <li id="fn:1">
-<p>指上海市闵行区&nbsp;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+<p>RFC 是 Request for Comments 的缩写，是由 <a href="https://www.ietf.org/">IETF</a> 发布的一系列备忘录，当中包括了许多记录互联网规范、协议、过程等的标准文件。&nbsp;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:5">
+<p>对于 GitHub，可以参见此<a href="https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints">文档</a>。&nbsp;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:6">
+<p>这里 <code>ryannyui</code> 是我的用户名，你应当会在此处看到自己的用户名。&nbsp;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 3 in the text">↩</a></p>
 </li>
 </ol>
 </div>
@@ -1018,7 +952,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月7日 15:30:44 UTC">2026年9月7日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月11日 10:52:03 UTC">2026年9月11日</span>
   </span>
 
     
@@ -1028,7 +962,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月7日 10:18:47 UTC">2026年9月7日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月11日 10:52:03 UTC">2026年9月11日</span>
   </span>
 
     
