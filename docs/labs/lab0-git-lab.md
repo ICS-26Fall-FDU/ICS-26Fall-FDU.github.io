@@ -478,8 +478,7 @@ GitHub 是一个基于 Git 的代码托管平台，你可以将你的本地 Git 
         - 思考一下，Git 为什么要设计“暂存-提交”两个步骤？
         - `git branch` 和 `git branch -a` 的区别是什么？查阅资料并回答。
 
-
-2. 使用我们的模板仓库建立个人仓库，完成 `main.c` 文件中的 `TODO` 部分并进行一次 commit。（50 分）
+2. 使用我们的[模板仓库](https://github.com/ICS-26Fall-FDU/GitLab)建立个人仓库，完成 `main.c` 文件中的 `TODO` 部分并进行一次 commit。（50 分）
 
     !!! info
 
