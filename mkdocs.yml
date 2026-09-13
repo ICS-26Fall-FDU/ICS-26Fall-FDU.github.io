@@ -94,6 +94,7 @@ nav:
   - 首页: index.md
   - 实验: 
     - 总览: labs/index.md
+    - Lab0：GitLab: labs/lab0-git-lab.md
 #    - 测试: labs/test-lab.md
   - 杂项: 
     - 使用 SSH: misc/ssh.md
