@@ -30,7 +30,7 @@ WSL 2 是 Microsoft 推出的虚拟机方案，仅支持 Windows 系统，使用
 
 一般来说，各种命令都可以通过在后面加上 `--help` 的方式输出用法，如运行 `ls --help` 可输出 `ls` 命令的用法。
 如果你需要更加详细的说明，可以通过 `man` 查询命令对应的文档，如 `man tar`，也可以在 [GNU 网站](https://www.gnu.org/software/software.html)上找到相关软件的具体说明。
-另外推荐一个命令常用用法速查的命令行工具 `tldr` ，这是 [GitHub 仓库地址](https://github.com/tldr-pages/tldr)，可以自行安装。（看不懂怎么安装的话 `pip3 install tldr` 即可）
+另外推荐一个命令常用用法速查的命令行工具 `tldr` ，这是 [GitHub 仓库地址](https://github.com/tldr-pages/tldr)，可以自行安装。
 
 下面列出一些基本命令和操作：
 
