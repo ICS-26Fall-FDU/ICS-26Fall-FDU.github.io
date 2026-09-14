@@ -1,0 +1,1745 @@
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ics-26fall-fdu.github.io/labs/lab0-git-lab/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../misc/ssh/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lab0：GitLab - 复旦大学 计算机系统基础（2026年秋季学期）</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.07%2011.25-.9.92C13.45%2012.89%2013%2013.5%2013%2015h-2v-.5c0-1.11.45-2.11%201.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2%202%200%200%200-2-2%202%202%200%200%200-2%202H8a4%204%200%200%201%204-4%204%204%200%200%201%204%204%203.2%203.2%200%200%201-.93%202.25M13%2019h-2v-2h2M12%202A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10c0-5.53-4.5-10-10-10%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab0-gitlab" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="复旦大学 计算机系统基础（2026年秋季学期）" class="md-header__button md-logo" aria-label="复旦大学 计算机系统基础（2026年秋季学期）" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            复旦大学 计算机系统基础（2026年秋季学期）
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab0：GitLab
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到暗色模式" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到浅色模式" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ICS-26Fall-FDU.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  实验
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/ssh/" class="md-tabs__link">
+          
+  
+  
+  杂项
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../team/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  团队
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="复旦大学 计算机系统基础（2026年秋季学期）" class="md-nav__button md-logo" aria-label="复旦大学 计算机系统基础（2026年秋季学期）" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    复旦大学 计算机系统基础（2026年秋季学期）
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ICS-26Fall-FDU.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    实验
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab0：GitLab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab0：GitLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验任务
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前言：浅谈版本控制（Version Control）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前言：浅谈版本控制（Version Control）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是版本控制？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        下载与安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git 操作与指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Remote 基本操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作业提交流程：使用模板仓库
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验任务
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提交
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习资源
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    杂项
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    杂项
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    团队
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验任务
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前言：浅谈版本控制（Version Control）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前言：浅谈版本控制（Version Control）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是版本控制？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        下载与安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git 操作与指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Remote 基本操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作业提交流程：使用模板仓库
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验任务
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提交
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习资源
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/edit/main/docs/labs/lab0-git-lab.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+    </a>
+  
+  
+
+
+<h1 id="lab0-gitlab">Lab0: GitLab</h1>
+<h2 id="_1">实验任务</h2>
+<ul>
+<li>下载与安装 Git</li>
+<li>学习基本的 Git &amp; GitHub 操作</li>
+</ul>
+<h2 id="version-control">前言：浅谈版本控制（Version Control）</h2>
+<p>假设你正在用 C++ 实现一个简易的学生成绩管理系统：</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>StudentGradeManagementSystem/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├──<span class="w"> </span>main.cpp
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├──<span class="w"> </span>include/
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│<span class="w">   </span>├──<span class="w"> </span>student.h
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│<span class="w">   </span>└──<span class="w"> </span>grade.h
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├──<span class="w"> </span>src/
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│<span class="w">   </span>├──<span class="w"> </span>student.cpp
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│<span class="w">   </span>└──<span class="w"> </span>grade.cpp
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├──<span class="w"> </span>tests
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│<span class="w">   </span>└──<span class="w"> </span>test.cpp
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>└──<span class="w"> </span>docs/
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span>└──<span class="w"> </span>README.md
+</span></code></pre></div>
+<p>某一天，你灵机一动：如果我用 <code>unordered_map</code> 代替 <code>vector</code> 组织学生列表，这样查找某个学生的时间复杂度就从 <span class="arithmatex">\(O(n)\)</span> 降到了 <span class="arithmatex">\(O(1)\)</span> ，于是你开心地将项目重构了一遍。过了几天，当你想要将学生按照成绩排序时，你觉得应该改回 <code>vector</code>，但之前的文件已经被覆盖了，你不得不再重写一遍。</p>
+<p>或许有同学养成了代码备份的好习惯——将重构前的文件保存为 <code>student_old.h</code>、<code>student_old.cpp</code>等等。但当类似的情景再次发生时，你的项目结构将变得相当混乱。</p>
+<p>另一种情景是，假设你和 Zecyel 同学在协作这个项目，你们同时修改了 <code>main.cpp</code>，合并的时候只能将代码逐行对比，将他的部分代码复制进来。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>你之前有过多人协同开发的经历吗？如果有，你们是使用什么方式分工协作的？在实验报告中描述一下。</p>
+</div>
+<h3 id="_2">什么是版本控制？</h3>
+<p>版本控制（Version Control）是一种用来记录文件内容的变化，并且能在以后回溯到特定版本的系统。</p>
+<p>就像“保存历史记录”一样，它能帮我们：</p>
+<ul>
+<li>保存每次修改（而不是只保留最新版本）</li>
+<li>查看每次修改了什么</li>
+<li>回退到任意一次修改</li>
+<li>多人协作时合并修改</li>
+</ul>
+<details class="example">
+<summary>版本控制的实例</summary>
+<p>你可以查看我们课程网页仓库的 <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/commits/main/">commit 历史</a>，这里记录了我们的每一次修改。</p>
+<p>我们在生活中使用软件的版本号（例如 <code>v1.98.2</code>）则是“发行版”。</p>
+<p>例如我们使用的校园助手 App，在历经界面优化、接口修复等多次修改形成一个稳定、完整的版本后，才会打上标签（tag）发行。</p>
+</details>
+<h2 id="git">Git</h2>
+<p>Git 是一种分布式版本控制软件。</p>
+<h3 id="_3">下载与安装</h3>
+<ul>
+<li><a href="https://git-scm.com/downloads/win">Windows</a></li>
+<li><a href="https://git-scm.com/downloads/mac">macOS</a></li>
+<li><a href="https://git-scm.com/downloads/linux">Linux</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本学期的大部分实验都在 Linux 系统上完成，使用 Windows 系统的同学请在 WSL 或虚拟机安装 Git，使用服务器的同学请在服务器上安装 Git。</p>
+<p>检查安装是否成功。在虚拟机 / 服务器上输入 <code>git --version</code>，如果输出 <code>git version &lt;版本号&gt;</code>，则为安装成功。</p>
+</div>
+<h3 id="_4">配置</h3>
+<p>在 Git 中，<code>git config</code> 是用来配置 Git 行为和环境的命令。</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Git 每次提交都会记录“作者是谁”，需要配置用户名和邮箱：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">"用户名"</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">"你的邮箱@example.com"</span>
+</span></code></pre></div>
+</div>
+<details class="note">
+<summary>Git 配置的层级</summary>
+<p>Git 的配置分为三个层级：</p>
+<ul>
+<li>系统级（--system）：对整个系统所有用户生效，配置写在 <code>/etc/gitconfig</code></li>
+<li>用户级（--global）：对当前用户生效，配置写在 <code>~/.gitconfig</code></li>
+<li>项目级（默认）：仅对当前仓库生效，配置写在 <code>.git/config</code></li>
+</ul>
+<p>（优先级：项目级 &gt; 用户级 &gt; 系统级）</p>
+<p>在本学期实验中，使用 <code>--global</code> 即可。</p>
+<p>其他的 Git 配置（可选）：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 默认分支名</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>init.defaultBranch<span class="w"> </span>main
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 别名</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># 用 st 代表 status，以下类似</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.st<span class="w"> </span>status
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.co<span class="w"> </span>checkout
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.br<span class="w"> </span>branch
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.cm<span class="w"> </span><span class="s2">"commit -m"</span>
+</span></code></pre></div>
+</details>
+<h3 id="git_1">Git 操作与指令</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>众多现代代码编辑器环境（VSCode、JetBrains 系列产品如 IDEA 和 PyCharm、以及 AI 原生编辑器如 Cursor）原生集成了 Git，同时提供了一系列插件，例如 Git 提交树可视化插件 Git Graph。</p>
+</div>
+<details class="example" open="open">
+<summary>在 VSCode 中使用 Git 的可视化操作</summary>
+<p>以下是在 VSCode 中使用 Git 的演示：</p>
+<ol>
+<li>创建一个空文件夹 <code>test-git</code>。</li>
+<li>
+<p>点击左侧边栏中的 <code>源代码管理</code> 图标。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-1.png" data-desc-position="bottom"><img alt="1" src="../../assets/lab0-1.png"></a></p>
+</li>
+<li>
+<p>点击 'Initialize Repository'（这一步等同于 <code>git init</code>）。</p>
+</li>
+<li>
+<p>新建 <code>main.cpp</code>，会出现 <code>U</code> 标记，意为 <code>Untracked（未跟踪的）</code>。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-2.png" data-desc-position="bottom"><img alt="2" src="../../assets/lab0-2.png"></a></p>
+</li>
+<li>
+<p>回到 <code>源代码管理</code> 界面，这里有两个 <code>+</code> 按钮。
+上方的 <code>+</code> 代表将项目中的所有更改添加到暂存区，相当于在项目目录下执行 <code>git add .</code>。
+下方的 <code>+</code> 代表将指定文件添加到暂存区，相当于执行 <code>git add main.cpp</code>。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-3.png" data-desc-position="bottom"><img alt="3" src="../../assets/lab0-3.png"></a></p>
+</li>
+<li>
+<p>点击上方的 <code>+</code>，<code>main.cpp</code> 的标记变为 <code>A</code>，意为 <code>Added（已暂存）</code>。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-4.png" data-desc-position="bottom"><img alt="4" src="../../assets/lab0-4.png"></a></p>
+</li>
+<li>
+<p>在文本框输入 commit message（可以是多行），点击提交，相当于执行 <code>git commit -m "Initial commit"</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-5.png" data-desc-position="bottom"><img alt="5" src="../../assets/lab0-5.png"></a></p>
+</li>
+<li>
+<p>修改 <code>main.cpp</code>。这时 <code>main.cpp</code> 的标记会变为 <code>M</code>，意为 <code>Modified（已修改）</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-6.png" data-desc-position="bottom"><img alt="6" src="../../assets/lab0-6.png"></a></p>
+</li>
+<li>
+<p>重复上述暂存、提交操作。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-7.png" data-desc-position="bottom"><img alt="7" src="../../assets/lab0-7.png"></a></p>
+</li>
+<li>
+<p>点击下方的 <code>Git Graph</code>，可以查看 Git 提交树。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-8.png" data-desc-position="bottom"><img alt="8" src="../../assets/lab0-8.png"></a></p>
+</li>
+<li>
+<p>在 <code>图表</code> 页面悬停，可以查看每次提交的提交信息与作者，且可以复制提交哈希值。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-9.png" data-desc-position="bottom"><img alt="9" src="../../assets/lab0-9.png"></a></p>
+</li>
+<li>
+<p>对于暂存区内不想要的更改，可以移动到暂存区内每个文件旁，点击 <code>-</code>，即可回退到未暂存的状态。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-10.png" data-desc-position="bottom"><img alt="10" src="../../assets/lab0-10.png"></a></p>
+</li>
+<li>
+<p>对于未暂存想要彻底放弃的更改，可以移动到暂存区内每个文件旁，点击放弃更改。此操作不可恢复。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-11.png" data-desc-position="bottom"><img alt="11" src="../../assets/lab0-11.png"></a></p>
+</li>
+</ol>
+</details>
+<details class="note" open="open">
+<summary>可视化操作的背后：基本 Git 提交指令</summary>
+<p>这些命令是 Git 可视化操作的最初形态。</p>
+<ul>
+<li>
+<p><code>git init</code></p>
+<p><code>git init</code> 将本地项目初始化为一个 Git 仓库。如果你打开项目文件夹，会发现多出了一个 <code>.git</code> 文件夹。</p>
+</li>
+<li>
+<p><code>git add</code> 与 <code>git restore</code></p>
+<p><code>git add</code> 将指定的改动添加到暂存区，例如：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 假设你处于 `/StudentGradeManagementSystem` 目录下</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># 将 src 目录下的 student.cpp 添加到暂存区</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>git<span class="w"> </span>add<span class="w"> </span>src/student.cpp
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># 将当前目录下（及其递归子目录）的所有改动添加到暂存区</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># 将整个仓库的所有改动添加到暂存区</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>git<span class="w"> </span>add<span class="w"> </span>-A
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># 将当前目录下的所有后缀为 .cpp 的文件改动添加到暂存区（git add 支持字符串通配符）</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>git<span class="w"> </span>add<span class="w"> </span>*.cpp
+</span></code></pre></div>
+<p>暂存区内的改动可以用 <code>git restore</code> 随时回退。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 将当前目录下（及其递归子目录）暂存区的所有改动取消暂存</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>restore<span class="w"> </span>.
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 将暂存区的单个改动回退取消暂存</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>git<span class="w"> </span>restore<span class="w"> </span>src/student.cpp
+</span></code></pre></div>
+</li>
+<li>
+<p><code>git commit</code></p>
+<p>将暂存区的内容提交到本地仓库。</p>
+<p><code>git commit</code> 一般有两种方式。</p>
+<ol>
+<li><code>git commit -m "your commit message"</code> 直接在命令行写 commit message。</li>
+<li><code>git commit</code> 执行后 Git 会打开默认编辑器，在这里可以写多行 commit message，适合对一次复杂的提交作详细描述。</li>
+</ol>
+<p>分支上的每一个 commit 都会被记录在本地的 <code>.git</code> 文件夹中并对应一个哈希值，因而随时可以恢复到过去的提交。</p>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Git 为什么要设计“暂存-提交”两个步骤？在实验报告中谈谈自己的思考。</p>
+</div>
+</details>
+<details class="note" open="open">
+<summary>Git 分支管理指令</summary>
+<p>此处会涉及一些和“分支管理”相关的 Git 操作，熟悉这些指令可以让你更好地管理你的代码分支。由于这些命令不便于日常可视化，使用时更多在终端操作。</p>
+<ul>
+<li>
+<p><code>git status</code></p>
+<p>经常性地在运行 Git 命令前运行 <code>git status</code> 是个好习惯，它可以告诉你，你当前在哪个分支下，有哪些修改还未被暂存，有哪些暂存区的文件还没被提交。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="o">(</span>use<span class="w"> </span><span class="s2">"git restore --staged &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span>new<span class="w"> </span>file:<span class="w">   </span>added-file
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Untracked<span class="w"> </span>files:
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span>untracked-file
+</span></code></pre></div>
+</li>
+<li>
+<p><code>git branch</code></p>
+<p>可以使用 <code>git branch &lt;branch-name&gt;</code> 来从当前分支创建一个新的分支。注意，这不会将当前的代码分支切换到新创建的分支。</p>
+<p>例如，在 <code>main</code> 分支下运行 <code>git branch dev</code> 会创建一个 <code>dev</code> 分支（你可以使用 <code>git status</code> 查看！）。但是当前仍然会在 <code>main</code> 分支。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>如果你想查看当前有哪些分支，可以使用 <code>git branch</code> 或者 <code>git branch -a</code>。查阅资料并在报告中回答，这两条命令的区别是什么？</p>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>dev
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>dev
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>*<span class="w"> </span>main
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-a
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>dev
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>*<span class="w"> </span>main
+</span></code></pre></div>
+</li>
+<li>
+<p><code>git switch</code></p>
+<p>可以使用 <code>git switch &lt;branch-name&gt;</code> 来切换到已经存在的分支。注意，你需要先提交你在当前分支上的所有文件，假如在当前分支上还有未 commit 的文件，那么这次 <code>git switch</code> 会失败。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>dev
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'dev'</span>
+</span></code></pre></div>
+<p>可以使用 <code>git switch -c &lt;branch-name&gt;</code> 从当前分支创建一个新的分支，并切换到这个分支。新分支会包含原分支的提交历史。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>dev
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span><span class="s1">'dev'</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><code>git merge</code></p>
+<p><code>git merge</code> 用来把另一个分支的提交历史合并到当前分支。</p>
+<p>假设当前在 main 分支，你想合并 feature 分支：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>merge<span class="w"> </span>feature
+</span></code></pre></div>
+<p>合并有两种常见的结果：</p>
+<ol>
+<li>
+<p>Fast-forward 合并。如果 main 没有新的提交，只落后于 feature：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>main:<span class="w">    </span>A---B
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">            </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>feature:<span class="w">       </span>C---D
+</span></code></pre></div>
+<p>执行 <code>git merge feature</code> 后 <code>main</code> 分支会直接“快进”到 <code>D</code>。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>main:<span class="w">    </span>A---B---C---D
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">            </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>feature:<span class="w">       </span>C---D
+</span></code></pre></div>
+</li>
+<li>
+<p>非 fast-forward 合并。如果两个分支各有提交：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>main:<span class="w">    </span>A---B---E
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">            </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>feature:<span class="w">       </span>C---D
+</span></code></pre></div>
+<p>执行 <code>git merge feature</code> 后 Git 会创建一个新的合并提交（merge commit）<code>F</code>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>main:<span class="w">    </span>A---B---E---F
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">            </span><span class="se">\ </span><span class="w">    </span>/
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>feature:<span class="w">       </span>C---D
+</span></code></pre></div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当两个分支修改了同一文件的同一位置，就会出现冲突（conflict），Git 无法自动合并。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>feature
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Auto-merging<span class="w"> </span>main.cpp
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>main.cpp
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class="p">;</span><span class="w"> </span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>commit<span class="w"> </span>the<span class="w"> </span>result.
+</span></code></pre></div>
+<p>这时需要你手动修改文件处理冲突并提交。</p>
+</div>
+</li>
+</ul>
+</details>
+<details class="example">
+<summary>另一些有趣的 Git 进阶指令</summary>
+<ul>
+<li><code>git commit --amend</code> 可以追加暂存的更改到上一次提交。</li>
+<li><code>git reset &lt;commit-id&gt;</code> 可以用于回退版本到指定提交，<code>git rebase</code> 可以用于合并几次提交并撰写新的提交信息。组合使用指令以整理当前分支的提交记录。</li>
+<li><code>git cherry-pick &lt;commit-id&gt;</code> 可以把任意提交追加到当前分支。此命令常用来从其他分支拿取想要的部分提交，也可以让最终提交的分支更干净。</li>
+<li><code>git log</code> 以 Vim 格式在终端浏览提交历史记录，用 <code>git log --pretty=oneline</code> 压缩行数。</li>
+<li><code>git checkout</code> 曾经是使用最频繁的 Git 分支管理指令。现在它的大部分功能已经被拆分到其他指令，如 <code>git branch</code>、 <code>git switch</code>、<code>git restore</code> 等等。</li>
+</ul>
+</details>
+<h2 id="github">GitHub</h2>
+<p>GitHub 是一个基于 Git 的代码托管平台，你可以将你的本地 Git 仓库上传为远程仓库，这样别人就可以拉取你的代码，与你进行协作。</p>
+<h3 id="_5">配置</h3>
+<ul>
+<li>
+<p>你需要注册一个 <a href="https://github.com/">GitHub</a> 账户。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注册 GitHub 的邮箱和你本地 <code>git config</code> 使用的邮箱最好一致，这样远程仓库的 commit 记录才能与你的 GitHub 账户对应上。当然，一个 GitHub 账户支持绑定多个邮箱，只要你 <code>git config</code> 中的邮箱包括在其中就没问题了。</p>
+</div>
+</li>
+<li>
+<p>在 GitHub 上配置 SSH 公钥</p>
+<ol>
+<li>复制 <code>cat ~/.ssh/id_rsa.pub</code> 或 <code>cat ~/.ssh/id_ed25519.pub</code> 输出的结果（即公钥）。</li>
+<li>打开 GitHub 并登录自己的账号。</li>
+<li>
+<p>点击右上角头像，进入 Settings ：</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-ssh-key1.png" data-desc-position="bottom"><img alt="1" src="../../assets/lab0-ssh-key1.png"></a></p>
+</li>
+<li>
+<p>进入页面后，在左侧选择 <code>SSH and GPG keys</code>, 在右侧点击 <code>New SSH Key</code>。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-ssh-key2.png" data-desc-position="bottom"><img alt="2" src="../../assets/lab0-ssh-key2.png"></a></p>
+</li>
+<li>
+<p>在框中粘贴入自己复制的公钥，点击 <code>Add SSH key</code> 即可。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SSH key 的生成参考<a href="/misc/ssh">这个文档</a></p>
+<p>如果你在服务器上实验，需要在服务器上生成密钥对；如果在自己电脑的虚拟机上实验，需要在 WSL 中生成；如果你以后希望在本机拉取/上传 GitHub 仓库，则需要在本机生成密钥对。</p>
+</div>
+</li>
+<li>
+<p>验证配置是否成功</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>user@linux:~$<span class="w"> </span>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Hi<span class="w"> </span>&lt;用户名&gt;!<span class="w"> </span>You<span class="err">'</span>ve<span class="w"> </span>successfully<span class="w"> </span>authenticated,<span class="w"> </span>but<span class="w"> </span>GitHub<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>provide<span class="w"> </span>shell<span class="w"> </span>access.
+</span></code></pre></div>
+<p>如果没有得到期望的输出，请检查密钥对配置，如果仍有问题，请联系助教。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="git-remote">Git Remote 基本操作</h3>
+<ul>
+<li>
+<p><code>git clone</code></p>
+<p>克隆远程仓库到本地。远程链接使用 HTTP 和 SSH 格式均可，其中 SSH 格式链接可通过 Watt Toolkit 加速。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>user@linux:~$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>&lt;remote<span class="w"> </span>URL&gt;
+</span></code></pre></div>
+</li>
+<li>
+<p><code>git pull</code></p>
+<p>拉取最新的代码。这个操作相当于 <code>git fetch</code>（将远程分支拉到本地） + <code>git merge</code>（将远程分支合并入本地分支）</p>
+</li>
+<li>
+<p><code>git push</code></p>
+<p>将本地仓库的修改推送到远程仓库。</p>
+</li>
+</ul>
+<details class="example">
+<summary>示例：修正课程网页的错误</summary>
+<p>如果你想修正我们课程网页上的错误，可以在 GitHub fork 我们的仓库，复制一份到你自己的仓库。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-fork.png" data-desc-position="bottom"><img alt="fork" src="../../assets/lab0-fork.png"></a></p>
+<p>然后点击 <code>Code</code>，再选择 <code>SSH</code>，复制这串 URL。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-github1.png" data-desc-position="bottom"><img alt="alt text" src="../../assets/lab0-github1.png"></a></p>
+<p>在终端运行 <code>git clone git@github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io.git</code>（你需要替换成你自己仓库的地址）</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>user@linux:~#<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io.git
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>正克隆到<span class="w"> </span><span class="s1">'ICS-26Fall-FDU.github.io'</span>...
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">215</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">215</span>/215<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">112</span>/112<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">94</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">195</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">74</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>接收对象中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">215</span>/215<span class="o">)</span>,<span class="w"> </span><span class="m">787</span>.02<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">66</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span>完成.
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>处理<span class="w"> </span>delta<span class="w"> </span>中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">94</span>/94<span class="o">)</span>,<span class="w"> </span>完成.
+</span></code></pre></div>
+<p>下一个 lab 发布时，我们的网页仓库会有更新，需要运行 <code>git pull</code></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>user@linux:~/ICS-26Fall-FDU.github.io#<span class="w"> </span>git<span class="w"> </span>pull
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">50</span>/50<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">12</span>/12<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">13</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">12</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>展开对象中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">29</span>/29<span class="o">)</span>,<span class="w"> </span><span class="m">24</span>.41<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">328</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span>完成.
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>来自<span class="w"> </span>github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span>47f244c..800df66<span class="w">  </span>main<span class="w">       </span>-&gt;<span class="w"> </span>origin/main
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span>b4433a5..5d19f33<span class="w">  </span>gh-pages<span class="w">   </span>-&gt;<span class="w"> </span>origin/gh-pages
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>更新<span class="w"> </span>47f244c..800df66
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>Fast-forward
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span>docs/misc/ssh.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">169</span><span class="w"> </span>+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">    </span>mkdocs.yml<span class="w">       </span><span class="p">|</span><span class="w">   </span><span class="m">3</span><span class="w"> </span>+-
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="m">2</span><span class="w"> </span>files<span class="w"> </span>changed,<span class="w"> </span><span class="m">171</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">1</span><span class="w"> </span>deletion<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>docs/misc/ssh.md
+</span></code></pre></div>
+<p>如果你在自己的本地仓库提交了 commit，你就可以执行 <code>git push</code>，然后在 GitHub 上向我们的仓库发起 Pull Request，此部分可能会给你的实验提供附加分。</p>
+</details>
+<h3 id="_6">作业提交流程：使用模板仓库</h3>
+<p>本学期的作业需要大家在 GitHub 使用初始模板仓库建立自己的仓库，然后在自己的仓库中提交。以下为步骤：</p>
+<ul>
+<li>在我们给出的模板仓库链接中，点击 <code>Use this template</code> 后选择 <code>Create a new repository</code>。</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-template.png" data-desc-position="bottom"><img alt="模板仓库" src="../../assets/lab0-template.png"></a></p>
+<ul>
+<li>随后的页面中，输入仓库名，然后点击 <code>Create repository</code>。</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-create.png" data-desc-position="bottom"><img alt="create" src="../../assets/lab0-create.png"></a></p>
+<ul>
+<li>接下来就可以用刚刚提到的克隆操作把仓库内容下载到本地了。</li>
+<li>完成实验后，在 E-Learning 提交你自己的仓库链接，如 <code>https://github.com/JurFal/TestLab</code> 。</li>
+</ul>
+<h2 id="_7">实验任务</h2>
+<ol>
+<li>
+<p>认真阅读文档，学习 Git 的基本用法，并在报告中回答文档中的问题。（15 分）</p>
+<details class="tip">
+<summary>需要回答的问题</summary>
+<ul>
+<li>你之前有过多人协同开发的经历吗？如果有，你们是使用什么方式分工协作的？</li>
+<li>思考一下，Git 为什么要设计“暂存-提交”两个步骤？</li>
+<li><code>git branch</code> 和 <code>git branch -a</code> 的区别是什么？查阅资料并回答。</li>
+</ul>
+</details>
+</li>
+<li>
+<p>使用我们的<a href="https://github.com/ICS-26Fall-FDU/GitLab">模板仓库</a>建立个人仓库，完成 <code>main.c</code> 文件中的 <code>TODO</code> 部分并进行一次 commit。（50 分）</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>只要填入任意字符串就算完成，当然你也可以随意发挥（程序的正确性不纳入计分，有修改即可）。</p>
+<p>如果你想要编译运行 <code>main.c</code>，执行</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>make
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>./main
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>make<span class="w"> </span>clean
+</span></code></pre></div>
+</div>
+</li>
+<li>
+<p>在下面的三个网页中任选其二进行阅读，简要概括其内容，并谈谈你对“为什么要学习 Git”这个问题的理解。（15 分）</p>
+<ul>
+<li><a href="https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html">Commit Message 规范</a></li>
+<li><a href="https://www.dafaycoding.com/article/git-gif-flow">Git Flow 分支控制</a></li>
+<li><a href="https://semver.org/lang/zh-CN/">语义化版本</a></li>
+</ul>
+</li>
+<li>
+<p>学习 Git 分支管理，新建 <code>feature</code> 分支，在该分支以及 <code>main</code> 分支上对 <code>main.c</code> 分别进行一次修改与提交（10 分）。</p>
+<p>随后将 <code>feature</code> 分支 merge 到 <code>main</code> 分支（即切换回 main 分支执行 <code>git merge feature</code>），并处理发生的合并冲突（10 分）。</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>在两个分支上的提交必须要满足：在 <code>main</code> 分支合并时会出现冲突。请你解决这个冲突，并在实验报告里截图表明你遇到并解决了冲突。</p>
+<p>请阅读 <code>git merge</code> 部分，思考如何修改 <code>main.c</code> 会出现冲突。</p>
+<p>如果你两次提交之后合并没有出现冲突，不必担心，你可以不用撤回之前的提交，而是继续尝试提交修改并 merge，直到出现冲突并解决。</p>
+</div>
+</li>
+<li>
+<p>在 <code>main</code> 分支提交一份实验报告（实验报告单独评分），格式要求为 <code>PDF</code> 或 <code>Markdown</code>。内容包括：</p>
+<ul>
+<li>文档中要求回答的问题</li>
+<li>你的实验步骤</li>
+<li>必要的截图</li>
+<li>你的建议（可选）</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里的“提交”是指在文件夹内添加一个 PDF 或 Markdown 文件，然后 <code>git add . &amp;&amp; git commit</code>。</p>
+<p>如果你是 Word 爱好者，请你将它导出为 PDF。</p>
+<p>你可以在自己电脑上任一位置用 Word 写实验报告并导出，然后把 PDF 文件拖拽复制到 VSCode 编辑器左侧的目录下。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-vscode.png" data-desc-position="bottom"><img alt="VSCode" src="../../assets/lab0-vscode.png"></a></p>
+</div>
+</li>
+</ol>
+<h2 id="_8">提交</h2>
+<p>提交方式：在本地仓库完成上述所有实验后，将资料和报告都上传到 main 分支，并提交到 GitHub。<strong>在 E-Learning 平台上，提交你的个人仓库链接。</strong></p>
+<p>截止时间：10 月 8 日 23:59。逾期将扣除部分分数。</p>
+<div class="admonition info">
+<p class="admonition-title">写在最后的话</p>
+<p>作为第一次作业，这个文档的字数过多，但实际的任务很少。如果你对 Git 感兴趣可以认真读完，甚至在网上寻找其他学习资源。</p>
+<p>如果你觉得内容过于冗长，只需对照实验任务针对性地学习重点。完成后续其它 Lab 最简单的流程就是根据模板仓库建仓库 -&gt; <code>git clone</code> -&gt; 写完所有代码 -&gt; <code>git add . &amp;&amp; git commit -m "xxx" &amp;&amp; git push</code> -&gt; 在 E-Learning 提交你的仓库链接。</p>
+</div>
+<h2 id="_9">学习资源</h2>
+<ul>
+<li><a href="https://git-scm.com/book/en/v2">Pro Git</a>  /  <a href="https://git-scm.com/book/zh/v2">Pro Git 中文版</a>，推荐阅读1-3章</li>
+<li><a href="https://learngitbranching.js.org/">学习 Git 的在线游戏</a>，挺好玩的</li>
+<li><a href="https://ohshitgit.com/">ohshitgit</a>，简短的介绍了如何从 Git 错误中恢复</li>
+<li><a href="https://eagain.net/articles/git-for-computer-scientists/">Git for Computer Scientists</a>，简短的介绍了 Git 的数据模型</li>
+<li><a href="https://jwiegley.github.io/git-from-the-bottom-up/">git-from-the-bottom-up</a>，详细的介绍了 Git 的实现细节</li>
+<li><a href="https://xosh.org/explain-git-in-simple-words/">explain-git-in-simple-words</a>，如其名</li>
+<li><a href="https://zhuanlan.zhihu.com/p/132573100">用动图展示 10 大 Git 命令</a>，一篇精美文章</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">本 Lab 负责助教</p>
+<ul>
+<li><a href="mailto:yichengzhou23@m.fudan.edu.cn">周弈成</a></li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">特别鸣谢</p>
+<ul>
+<li><a href="https://github.com/fduTristin">徐厚泽</a></li>
+<li><a href="https://github.com/Zecyel">朱程炀</a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月14日 06:29:05 UTC">2026年9月14日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月7日 08:54:37 UTC">2025年9月7日</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="贡献者">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"></path></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/JurFal" class="md-author" title="@JurFal">
+          
+          <img src="https://avatars.githubusercontent.com/u/112413958?v=4&amp;size=72" alt="JurFal">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&amp;size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/Zecyel" class="md-author" title="@Zecyel">
+          
+          <img src="https://avatars.githubusercontent.com/u/106328128?v=4&amp;size=72" alt="Zecyel">
+        </a>
+      
+        <a href="https://github.com/fduTristin" class="md-author" title="@fduTristin">
+          
+          <img src="https://avatars.githubusercontent.com/u/129137808?v=4&amp;size=72" alt="fduTristin">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+
+
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js" data-repo="ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" data-repo-id="R_kgDOUQ60Qg" data-category="Announcements" data-category-id="DIC_kwDOUQ60Qs4DFELA" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async="">
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
