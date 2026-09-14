@@ -8,5 +8,5 @@ title: 实验总览
 
 | 实验 | 负责助教 | 发布时间 | 截止时间 |
 |------|----------|----------| -------- |
-| [0: GitLab](https://ics-26fall-fdu.github.io/labs/lab0-git-lab/) | [周弈成](mailto:yichengzhou23@m.fudan.edu.cn) | Sep 13 | Oct 8, 23:59 |
+| [0: GitLab](./lab0-git-lab/) | [周弈成](mailto:yichengzhou23@m.fudan.edu.cn) | Sep 13 | Oct 8, 23:59 |
 | ... |
