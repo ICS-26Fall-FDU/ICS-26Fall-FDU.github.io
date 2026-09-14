@@ -1,0 +1,259 @@
+--- 
+title: ICS 实验入门手册 2026
+---
+
+# ICS 实验入门手册 2026
+
+## 前言：试试问 AI 吧！
+
+我们的课程文档对一部分技术概念不会涉及深入复杂的详细操作和解释，遇到卡住的操作，步骤中的异常，有困惑的概念，亦或是有想继续深入探索的知识时，试试去借助搜索引擎，或者询问各类网页端 AI 工具吧！遇到 AI 也实在解决不了的问题，可以在相关实验文档的评论区或是后续的课程群聊提出，会有乐于为大家解答的 TA 和同学出现～
+
+无论是询问 AI 还是向他人求助，**详细而准确地描述你遇到的问题**都有助于获得有效的解答。你可以提供的信息包括但不限于：
+
+    1. 你想干什么，你希望的结果是什么样子的。（这很重要！）
+    2. 你使用的系统、编译环境、CPU 型号或厂商。（如果需要的话）
+    3. 你使用的语言和代码。请不要拍屏或直接在 IDE 里截屏。正确的做法应该是，如果代码较短，使用 [Carbon](https://carbon.now.sh) 生成图片再发到群里；如果代码较长，请同时附上代码文件，以及标注你认为关键的行数。如果实在不想搞，也请在截图的时候把行号一起截进去，而且，把代码发完整！
+    4. 详细的报错信息，以及你执行了什么操作能够还原这个报错。不要问“我这份代码大概有 1% 的概率会崩溃，该怎么修改”，而是“这份代码在大多数情况下能正常运行，但是在我执行了 xxx 操作，然后再执行 xxx 操作的时候会崩溃”。
+    5. 你认为这个问题可能是怎么导致的，你认为可能有哪些方向可能能解决这个问题。（这很重要！）
+
+最后，提问时还应警惕“XY Problem”，你不应该在提问时过多代入自己的思考。比如，计算两数相除的循环节问题，提问者可能会想，好像书上看到过对计算精度要求高的时候应该使用高精度算法，我先导入一个 gmp 库，然后提问“如何使用高精度运算库 gmp 来计算两数相除的循环节”，这是错误的。你应该直接提问“如何计算两数相除的循环节”。
+
+此外，后续实验与项目中涉及大量代码编写，记住以下法则有助于写出清晰准确的代码：
+
+    1. 使用良好的代码风格和有意义的变量名（而不是 abcd）。你可以参照 [谷歌代码规范](https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/) 来修改你的代码，或者使用代码格式化工具。
+    2. 对于本课程，我们鼓励用 AI 生成代码，但是切记应自己通读代码，保证自己理解代码片段的逻辑和细节（我们可能会在后续实验中检验大家对自己代码的理解）。必要时，可以让模型继续重构不理解的代码片段以保证清晰。
+    3. AI 编码中有以下常见问题，请大家尽量规避：在代码中添加对不可能发生情况的异常处理；复杂化简单的代码逻辑；不复用已有函数而是重新生成；把能在过程中编写的单次调用的小功能拆成函数。（我们即将推出 AI Coding 导论文档～）
+
+## Linux 系统
+
+本学期的实验需要使用 Linux 系统。如果你的电脑不是 Linux 系统，则需要使用虚拟机安装 Linux 系统。
+
+手册中详细介绍 WSL 2 虚拟机方案，**建议 Windows 系统的同学选择。**
+
+部分实验基于 AMD64（又名 x86-64）架构设计。**如有使用 Mac M 系列芯片，或其它非 AMD64 指令集 CPU（如 RISC-V——~~不会真有人用吧~~）的同学，建议联系助教为你安排服务器进行实验**，也可尝试 UTM 或 QEMU，但性能可能略低。
+
+### WSL 2
+
+WSL 2 是 Microsoft 推出的虚拟机方案，仅支持 Windows 系统，使用体验极佳。对于 Windows 10 2004 以上版本或 Windows 11 系统，可以参考 [WSL 官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/install)安装 WSL 2。该文档中还包含其它一些有用的信息，推荐感兴趣的同学完整浏览，特别是跨系统文件访问和跨系统网络访问。（当然，完整浏览不是实验必要的）
+
+!!! tip
+
+    - 如果直接 wsl --install 失败，请参考文档中提供的手动安装步骤和常见问题。仍有疑问欢迎联系 AI 和助教。对于 C 盘可用容量堪忧的同学，可以参考[这篇知乎文章](https://zhuanlan.zhihu.com/p/621873601)来把 WSL 迁移到别的盘。
+    - 注：**用户名不要用大写，不要用中文！**（经热心同学踩坑后加上）
+    - WSL 已默认使用 WSL 2，其与 WSL 1 之间的差异见[官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/compare-versions)。
+
+**WSL 2 安装后，可直接使用 Windows 文件资源管理器访问并操作虚拟机中的文件，也可以用 VS Code 打开其中的文件夹。**在文件资源管理器的地址栏键入 `\\wsl.localhost` ，选择安装好的虚拟机版本，即可进入虚拟机根目录（也可以添加此位置到快速访问）。
+
+### Linux 命令行
+
+对于默认没有 Linux 原生图形界面的 WSL 2，虽然你可以自行寻找教程安装合适的图形界面应用，但我们还是推荐你以使用命令行交互为主，这是因为命令行在后续实验中是必须掌握的基础技能。命令行的基本用法可以参考 [MIT Missing Semester](https://missing-semester-cn.github.io/) 上的第一、二节入门 Linux 命令行使用。
+
+一般来说，各种命令都可以通过在后面加上 `--help` 的方式输出用法，如运行 `ls --help` 可输出 `ls` 命令的用法。
+如果你需要更加详细的说明，可以通过 `man` 查询命令对应的文档，如 `man tar`，也可以在 [GNU 网站](https://www.gnu.org/software/software.html)上找到相关软件的具体说明。
+另外推荐一个命令常用用法速查的命令行工具 `tldr` ，这是 [GitHub 仓库地址](https://github.com/tldr-pages/tldr)，可以自行安装。
+
+下面列出一些基本命令和操作：
+
+```shell
+# 查看当前目录
+user@linux:~$ pwd
+/home/user
+
+# 查看当前目录下的文件夹
+user@linux:~$ ls
+ICS2026  OS2026
+
+# 进入 ICS2026 目录
+user@linux:~$ cd ICS2026
+
+# 查看 ICS2026 目录下的文件
+user@linux:~/ICS2026$ ls
+manual.md  lab0.md
+
+# 查看文件内容
+user@linux:~/ICS2026$ cat manual.md
+This is the course manual.
+
+# 输出一行文字到屏幕
+user@linux:~/ICS2026$ echo "Hello Linux"
+Hello Linux
+
+# 将输出写入文件（覆盖写入）
+user@linux:~/ICS2026$ echo "new notes" > notes.txt
+user@linux:~/ICS2026$ cat notes.txt
+new notes
+
+# 将命令输出重定向到文件
+user@linux:~/ICS2026$ ls > filelist.txt
+user@linux:~/ICS2026$ cat filelist.txt
+lab0.md
+manual.md
+notes.txt
+filelist.txt
+
+# 使用管道：统计文件个数
+user@linux:~/ICS2026$ ls | wc -l
+4
+
+# 复制文件
+user@linux:~/ICS2026$ cp lab0.md lab0_copy.md
+user@linux:~/ICS2026$ ls
+filelist.txt  lab0.md  lab0_copy.md  manual.md  notes.txt
+
+# 移动（或重命名）文件
+user@linux:~/ICS2026$ mv lab0_copy.md lab1.md
+user@linux:~/ICS2026$ ls
+filelist.txt  lab0.md  lab1.md  manual.md  notes.txt
+
+# 新建目录
+user@linux:~/ICS2026$ mkdir experiments
+user@linux:~/ICS2026$ ls
+experiments/  filelist.txt  lab0.md  lab1.md  manual.md  notes.txt
+
+# 把文件移动到子目录
+user@linux:~/ICS2026$ mv notes.txt experiments/
+user@linux:~/ICS2026$ ls experiments
+notes.txt
+
+# 删除文件
+user@linux:~/ICS2026$ rm filelist.txt
+user@linux:~/ICS2026$ ls
+experiments/  lab0.md  lab1.md  manual.md
+
+# 删除空目录
+user@linux:~/ICS2026$ rmdir experiments
+rmdir: failed to remove 'experiments': Directory not empty
+
+# 先删除文件再删除目录
+user@linux:~/ICS2026$ rm experiments/notes.txt
+user@linux:~/ICS2026$ rmdir experiments
+user@linux:~/ICS2026$ ls
+lab0.md  lab1.md  manual.md
+
+# 返回上一级目录
+user@linux:~/ICS2026$ cd ..
+user@linux:~$ ls
+ICS2026  OS2026
+
+# 使用管理员权限执行命令（示例）
+user@linux:~$ sudo ls /root
+[sudo] password for user: 
+secret.txt
+```
+
+## 包管理器
+
+> 以 Ubuntu 系统的 apt 包管理器为例，其它发行版可以自行查找有关资料。
+
+包管理器全称是软件包管理器，顾名思义是用来管理软件包的软件。在大家熟悉的 Windows 系统中，通常下载软件就是去软件的官网上下载。而在 Linux 系统中，最常见的安装软件的方式是使用软件包管理器从“软件仓库”中下载。包管理器会负责一个软件的全生命周期，包括下载、安装、依赖关系、卸载、更新等等。
+
+Ubuntu 发行版中带有 apt 和 dpkg 包管理器，我们一般使用 apt，基本用法可以参考 [Ubuntu 包管理器文档](https://ubuntu.com/server/docs/package-management)中的 apt 一节。完整的官方文档可以运行 `man apt` 查阅。（使用前请先看下一节进行换源！）
+
+在后续课程中，如果遇到命令行提示说 `xxx not found`，可以尝试使用 apt 安装相应的软件包，如 `sudo apt install xxx`。
+
+!!! note
+
+    使用 apt 时一般都需要在前面加上 sudo。
+
+你也可以自行安装 aptitude 包管理器，官方文档中也有对其的介绍。该管理器用法与 apt 类似，且提供了图形化界面。
+
+### 换源（非常重要）
+
+apt 默认的软件源服务器在国外，访问速度非常慢，建议将其更换为科大镜像。
+
+!!! info
+
+    [FDUCSLG（复旦计算机爱好者协会）](https://github.com/FDUCSLG) 已经搭建了复旦自己的镜像站 [https://mirrors.fducslg.com/](https://mirrors.fducslg.com/)，需要在校园网访问。
+
+Ubuntu 的更换方法如下：
+
+```shell
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+sudo apt update
+```
+
+其中第一行是将原来的文件进行备份，这只是一个好习惯而已。
+上面几行的详细说明可以参考[这个链接](https://mirrors.ustc.edu.cn/help/ubuntu.html)，如果你使用其他发行版，也可以去这个链接中寻找相关说明。
+
+> 如需要在命令行下使用代理，可以使用环境变量，或者可以了解一下 proxychains 这个工具。
+
+## 常用软件
+
+### VS Code
+
+如果你使用的是 WSL 2，直接将 VS Code 装在本机上即可[使用本机上的 VS Code 编辑和运行虚拟机中的代码](https://code.visualstudio.com/docs/remote/wsl)。
+
+!!! tip
+
+    WSL 2 常用用法：
+
+    - `code some.txt` 即可用 Windows 上的 VS Code 打开文件。
+    - `code .` 即可用 Windows 上的 VS Code 打开当前文件夹。
+
+VS Code 会提示你安装常用插件，大家也可以自行在网上寻找好用的插件。关于 VS Code 安装与配置的问题，可参考 [VS Code 官方文档](https://code.visualstudio.com/docs)。
+
+如果你使用的是 VMWare，可以将 VS Code 安装在虚拟机里，也可以通过本机上的 VS Code: Remote - SSH 连接到虚拟机中进行开发。
+
+### VMWare Desktop Hypervisor
+
+VMWare 在 Windows/macOS 系统上的虚拟化软件 Workstation Pro 以及 Fusion Pro 于 2024 年 5 月 13 日起供个人免费使用，可在[官方网站](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion)下载。这两个虚拟化软件图形界面设计较为清晰，不需要额外教学，大家可以自行尝试。
+
+VMWare Desktop Hypervisor 系列使用的系统镜像可以从镜像站下载，如[科大镜像站的 Ubuntu 镜像链接](https://mirrors.ustc.edu.cn/ubuntu-releases/)。我们推荐使用 Ubuntu 22.04 LTS 发行版，从上面的链接进去的话，可以在 `22.04/ubuntu-22.04.4-desktop-amd64.iso` 找到对应的镜像文件。
+
+### Git
+
+Git 的使用将贯穿本学期的所有实验。第一次实验（Lab 0）会详细介绍 Git 的使用，感兴趣的同学可以提前了解一下。
+
+Git 的常用操作可以通过 [Git 学习网站](https://learngitbranching.js.org/?locale=zh_CN)学习，也可参考[视频](https://www.bilibili.com/video/BV1r3411F7kn)。完整的官方文档可以运行 `man git` 查阅。使用类 VS Code 开发环境的同学有福了，Git 插件提供了非常好用的图形化界面。
+
+此外，要将代码库上传到云端，你需要注册一个 [GitHub](https://github.com/) 或其它类似网站的账号<del>，或许你可以给我们的[课程网站仓库](https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io)一个 star</del>。一套完整使用 Git 的工作流程是：[链接](https://www.bilibili.com/video/BV19e4y1q7JJ)，大家之后在本课程和其他课程的组队任务可以试试这套流程。
+
+### SSH
+
+本课程中，使用 Mac 的同学需要使用 SSH 连接服务器，请参考[这个文档](/misc/ssh)。
+
+你可能还需要[使用 SSH 连接 GitHub](https://docs.github.com/cn/authentication/connecting-to-github-with-ssh/)。SSH 的完整文档可以通过 man ssh 查阅。
+
+### Vim
+
+Vim 的基本用法为运行 `vim something.txt` 打开文件，然后按 `i` 键编辑文件，此时可以直接打字，完成后按 `ESC` 键，输入 `:wq` 保存并退出，或输入 `:q!` 不保存直接退出。**一定要学会退出 Vim，血的教训（划掉）**
+
+由于 Vim 有一些学习难度，大家当然可以直接选择开箱即用的 VS Code ，但是如果你习惯了 Vim 的操作，用起来就非常爽快。
+
+Vim 的用法非常丰富，如有兴趣可以通过 Vim 自带的教程程序 `vimtutor` 学习（在安装 Vim 之后直接在命令行输入这个即可），也可以通过 [Vim 学习网站](https://vim-adventures.com/)学习，或者参考[这个保姆级入门视频](https://www.bilibili.com/video/BV13t4y1t7Wg)。
+
+> Copilot 官方提供了一个 [Vim 插件](https://github.com/github/copilot.vim)，可以让你在 Vim 中使用 Copilot。
+
+### Watt Toolkit
+
+在进行 ICS 课程的实验过程中，你可能会遇到访问 GitHub 速度缓慢或无法连接的问题。此时可以使用 Watt Toolkit（原名 Steam++）来加速访问 GitHub。
+
+!!! info
+
+    Watt Toolkit 是一款免费开源的多功能工具箱，不仅可以加速 GitHub，还支持 Steam、Google 翻译等其他平台的网络加速。
+
+#### 下载与安装 Watt Toolkit
+
+访问 [Watt Toolkit 官方网站](https://steampp.net/)，根据你的操作系统选择相应版本。下载完成后，运行安装程序。对于 Windows 用户，双击 .exe 安装程序下载安装包；对于 macOS 用户，双击 .dmg 安装程序，拖拽到应用文件夹。安装路径建议使用默认路径，或选择一个容易记住的位置，按照向导提示完成安装过程即可。
+
+#### 配置 GitHub 加速
+
+安装完成后，从开始菜单或桌面快捷方式启动 Watt Toolkit。
+
+配置网络加速：
+
+1. 在主界面左侧导航栏中，点击“网络加速”选项。
+2. 在“平台加速”选项卡中，找到并勾选“GitHub”，你也可以根据需要选择其他平台，如“Steam”、“公共 CDN”等。
+3. 点击右上角的“一键加速”按钮，软件会自动配置系统代理和 DNS 设置。
+
+!!! warning
+    首次使用时，对于 Windows 用户，系统可能会弹出防火墙或 UAC 权限提示，请点击“允许”以确保软件正常运行。对于 macOS 用户，系统可能会弹出权限提示，授予一系列权限后，若仍提示无法运行，应用会自动跳转至官网，按照教程，复制指令，修改用户名并在终端运行即可。
+
+#### 验证加速效果
+
+使用 Chrome、Firefox 或 Edge 等浏览器访问 [GitHub](https://github.com)，观察页面资源能否正常访问。如仍有网络访问问题或有其它问题，请联系助教团队。
+
+## 参考资料
+
+* ICS 实验入门手册 2025
