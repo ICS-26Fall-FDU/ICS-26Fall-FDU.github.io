@@ -8,7 +8,6 @@ title: "Lab0：GitLab"
 
 - 下载与安装 Git
 - 学习基本的 Git & GitHub 操作
-- 加入 GitHub Classroom
 
 ## 前言：浅谈版本控制（Version Control）
 
