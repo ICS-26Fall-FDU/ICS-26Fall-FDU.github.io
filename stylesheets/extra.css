@@ -1,3 +1,9 @@
 html {
   text-autospace: normal;
 }
+
+.md-typeset a.md-author img,
+.md-typeset a.md-author:focus img,
+.md-typeset a.md-author:hover img {
+  filter: none;
+}
