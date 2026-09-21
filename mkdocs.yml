@@ -44,9 +44,13 @@ plugins:
   - git-committers:
       repository: ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
       branch: main
+      exclude:
+        - team.md
   - glightbox
   - git-revision-date-localized:
       enable_creation_date: true
+      exclude:
+        - team.md
 
 markdown_extensions:
   - tables
