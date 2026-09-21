@@ -7,3 +7,34 @@ html {
 .md-typeset a.md-author:hover img {
   filter: none;
 }
+
+/* 团队页：助教头像网格 */
+.ta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.ta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ta-card img.ta-avatar {
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 50%;
+  box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.ta-card a:hover img.ta-avatar {
+  transform: scale(1.05);
+}
+
+.ta-card p {
+  margin: 0.6rem 0 0;
+}
