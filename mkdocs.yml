@@ -104,4 +104,5 @@ nav:
 #    - 测试: labs/test-lab.md
   - 杂项: 
     - 使用 SSH: misc/ssh.md
+    - Coding Agent 入门: misc/coding-agent.md
   - 团队: team.md
