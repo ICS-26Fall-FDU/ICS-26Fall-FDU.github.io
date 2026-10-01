@@ -1,0 +1,1540 @@
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ics-26fall-fdu.github.io/misc/coding-agent/">
+      
+      
+        <link rel="prev" href="../ssh/">
+      
+      
+        <link rel="next" href="../../team/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Coding Agent 入门 - 复旦大学 计算机系统基础（2026年秋季学期）</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.07%2011.25-.9.92C13.45%2012.89%2013%2013.5%2013%2015h-2v-.5c0-1.11.45-2.11%201.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2%202%200%200%200-2-2%202%202%200%200%200-2%202H8a4%204%200%200%201%204-4%204%204%200%200%201%204%204%203.2%203.2%200%200%201-.93%202.25M13%2019h-2v-2h2M12%202A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10c0-5.53-4.5-10-10-10%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#coding-agent" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="复旦大学 计算机系统基础（2026年秋季学期）" class="md-header__button md-logo" aria-label="复旦大学 计算机系统基础（2026年秋季学期）" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            复旦大学 计算机系统基础（2026年秋季学期）
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Coding Agent 入门
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到暗色模式" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到浅色模式" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ICS-26Fall-FDU.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/" class="md-tabs__link">
+          
+  
+  
+  实验
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ssh/" class="md-tabs__link">
+          
+  
+  
+  杂项
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../team/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  团队
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="复旦大学 计算机系统基础（2026年秋季学期）" class="md-nav__button md-logo" aria-label="复旦大学 计算机系统基础（2026年秋季学期）" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    复旦大学 计算机系统基础（2026年秋季学期）
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ICS-26Fall-FDU.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    实验
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab0-git-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab0：GitLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab1-data-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1：DataLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    杂项
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    杂项
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Agent 入门
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Agent 入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择模型和提供商
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选择模型和提供商">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按量计费
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        购买订阅
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择 Harness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置 Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用 Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作区
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维护项目知识
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP 和 Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计划模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一些提示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些提示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为自己的代码负责
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        想好再做
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重构看不懂的代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        及时调整方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    团队
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择模型和提供商
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选择模型和提供商">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按量计费
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        购买订阅
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择 Harness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置 Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用 Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作区
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维护项目知识
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP 和 Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计划模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一些提示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些提示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为自己的代码负责
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        想好再做
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重构看不懂的代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        及时调整方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/edit/main/docs/misc/coding-agent.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+    </a>
+  
+  
+
+
+<h1 id="coding-agent">Coding Agent 入门</h1>
+<p>Agent 是 LLM 及运行时框架（Harness）的结合体。</p>
+<p>出于实际需要，人们为不同的工作设计了专门的 Agent，其中专为编码任务设计的叫作 Coding Agent。</p>
+<p>由于 Coding Agent 是一个快速发展的概念，这篇文章不可避免地会有不少错漏。我们在这里暂时只介绍从 Harness、模型选择到 Agent 配置与使用的一些基本概念，至于具体使用需要大家查阅对应文档并动手尝试。</p>
+<div class="admonition question">
+<p class="admonition-title">为什么需要 Harness</p>
+<p>不少同学或许使用过像是 ChatGPT、DeepSeek 或是豆包这样的 LLM 聊天机器人来完成编码工作。大家只需要在网页或客户端的聊天框中输入文字或上传图片来描述自己的需求，把这些内容作为提示词发送给机器人，稍等片刻就能看到回复中写好的代码。</p>
+<p>虽然通常这已经比大家手写快得多了，不过似乎还是存在一些问题：</p>
+<ol>
+<li>需要手动从聊天窗口里把代码复制粘贴到自己本地的文件中，这有点麻烦。对于更大的包含多个文件和复杂结构的项目，这样手动复制几乎不太可能。</li>
+<li>当对话过长时，聊天机器人可能会遗忘重要的内容。更糟糕的是大多数时候这种遗忘是隐式的：界面上并不会提示我们模型会在什么时候开始遗忘，遗忘哪些内容。</li>
+</ol>
+<p>Harness 的存在在一定程度上解决了这些问题：</p>
+<p>它给 LLM 提供了同外部世界交互的<strong>工具</strong>，允许它在一定边界内采取行动（比如让它可以自己调用工具去查看代码文件，或是执行某个命令并获得反馈，但是不应该允许它删掉你的重要文件）。</p>
+<p>它同时负责管理 LLM 的<strong>上下文</strong>，决定哪些内容该保留、哪些被丢弃和压缩，通过把某些重要的内容常驻在会话当中，Harness 也能缓解重要的信息随着上下文增长被隐式遗忘的风险。</p>
+<p>最后，为了让 LLM 能够使用工具并看到结果，根据上下文做出 「下一步该怎么做才能完成任务」 的决策，Harness 还需要<strong>编排</strong> LLM 的<strong>控制循环</strong>使其真的能够端到端地思考和解决问题。</p>
+<p>这里的三点可以说是 Harness 最重要的部分：<strong>工具</strong>（Tool）、<strong>上下文</strong>（Context）和<strong>控制循环</strong>（Control Loop，有时也被称为编排）。</p>
+</div>
+<h2 id="_1">选择模型和提供商</h2>
+<p>模型的选择需要综合考虑使用场景、模型能力、价格、稳定性和数据隐私等因素。</p>
+<p>常见的性能指标包括：</p>
+<ul>
+<li>模型能力</li>
+<li>延迟 （Latency），在网络通畅的情况下主要取决于服务商的首 Token 时间（TTFT）</li>
+<li>吞吐量 （Throughput），常用每秒 Token 数（TPS）来衡量</li>
+</ul>
+<p>常见的价格影响因素包括：</p>
+<ul>
+<li>模型输入输出定价</li>
+<li>计费方式是按量付费还是订阅</li>
+<li>缓存命中率和缓存价格</li>
+</ul>
+<p>上述数据大多可以在 <a href="https://artificialanalysis.ai">Artificial Analysis</a> 网站上查看。</p>
+<p>除此之外，还有服务稳定性、数据留存规则等不同因素，大家有兴趣或有需要可以自行查阅。以下给大家介绍两种常见的方案。</p>
+<h3 id="_2">按量计费</h3>
+<p>几乎所有模型厂商都提供这种方案。权重不开放的模型通常只能由厂商自己或其授权的服务商提供。开放权重模型的提供商往往数量较多。
+如果想要比较某个模型按量计费方案下不同提供商的价格和性能，可以在 <a href="https://artificialanalysis.ai">Artificial Analysis</a> 或 <a href="https://openrouter.ai/">OpenRouter</a> 进入模型页面查看，其中后者还额外提供了数据留存的相关信息。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/openrouter.png" data-desc-position="bottom"><img alt="openrouter" src="../../assets/openrouter.png"></a>
+<br>
+<figcaption>DeepSeek V4.1 Flash 的部分提供商</figcaption>
+</figure>
+<p>对于提供订阅服务的提供商来说，用量较大时，用户按量计费的总花费通常远高于订阅套餐；Agent 场景的 token 消耗普遍较高，按量计费可能带来高昂开销。</p>
+<p>除了上述提供商，部分单位和个人也会搭建中转站来供客户按量计费使用海外前沿模型。由于许多中转站的上游使用批量创建的订阅账号池而非按量付费，它们的价格往往可以做到官方按量计费的 1/30 以下。但是大多数采用这种方案的中转站延迟和稳定性往往相对糟糕。</p>
+<div class="admonition warning">
+<p class="admonition-title">中转站的风险</p>
+<p>除了合规风险外，部分中转站还存在模型掺水和数据隐私等风险。模型掺水指的是中转站商家以次充好，私自用低价模型代替高价模型的做法。另外，中转站商家可以读取和留存用户的会话记录并转售。更糟糕的是很多中转站的上游可能是其他中转站，这会使数据泄露的风险进一步放大。</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">并行智算云 500 元代金券</p>
+<p>在新疆昌吉州政府大力支持下，复旦大学联合北京并行科技股份有限公司推出 AI 教育教学算力支持计划，面向全校 “AI 大课” 师生（包含 AI-BEST 课程、 AI+ 师生共创项目等）发放 500 元代金券，可在 <a href="https://gecp.ai.paratera.com/portal/x8B4vL6yZ3">此处</a> 使用 UIS 登录后领取并通过 「并行智算云」 调用大模型。</p>
+<p>截至 2026 年 9 月 27 日，这一平台已经可以提供 GLM 5.3 FlashX、DeepSeek V4.1 Flash、Kimi K3 等前沿开放权重模型。</p>
+</div>
+<h3 id="_3">购买订阅</h3>
+<p>不少大模型和云服务厂商提供订阅方案来让用户按月或按年订阅，并定期向用户发放使用配额。如果能充分利用这一配额，获得的使用量可能远超同等价格下的按量计费。</p>
+<p><a href="https://bigmodel.cn/glm-coding">GLM</a>、<a href="https://www.kimi.com/membership/pricing">Kimi</a>、<a href="https://platform.minimax.cn/subscribe/token-plan">MiniMax</a> 都有官方的订阅方案供订阅者使用自家模型。除此以外，一些云服务厂商，比如 <a href="https://www.volcengine.com/activity/codingplan">火山引擎</a> 和 <a href="https://www.aliyun.com/benefit/scene/tokenplan">阿里云</a> 也提供包括 DeepSeek 在内多种模型的订阅计划。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/zhipu-coding-plan.png" data-desc-position="bottom"><img alt="zhipu" src="../../assets/zhipu-coding-plan.png"></a>
+<br>
+<figcaption>智谱提供的 GLM 订阅方案</figcaption>
+</figure>
+<p>这一方案往往可以让大家用较低的价格使用前沿模型，同时 TTFT 更低，稳定性也不错。但大部分提供商的配额计算并不透明。</p>
+<p>一些提供商，比如 <a href="https://opencode.ai/go">OpenCode</a> 和 <a href="https://ollama.com/pricing">Ollama Cloud</a> 提供相对透明的配额方案：它们提供了以美元计价的每月额度。取决于你所使用的模型，获得的配额一般在订阅价格的 1 到 6 倍之间。</p>
+<p>受算力供给等因素影响，海外提供商的订阅套餐性价比往往更高，尤其是 OpenAI 和 Anthropic 的订阅套餐，在这些套餐中往往可以获得同等价格下比按量计费高出数十倍的前沿模型配额。但它们不向中国内地提供服务，也不接受中国内地的付款方式，并通过严格的风控策略来限制位于中国内地的用户使用其服务。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/claude.png" data-desc-position="bottom"><img alt="claude" src="../../assets/claude.png"></a>
+<br>
+<figcaption>TA 的 Claude 账号被 Anthropic 封禁</figcaption>
+</figure>
+<h2 id="harness">选择 Harness</h2>
+<p>常见的由模型厂商开发的通用/编码 Harness 包括：</p>
+<ul>
+<li>OpenAI 公司推出的 Codex（CLI 开源）</li>
+<li>Anthropic 公司推出的 Claude Code（闭源）</li>
+<li>月之暗面公司推出的 Kimi Code（开源）</li>
+<li>智谱华章公司推出的 ZCode（开源）</li>
+<li>深度求索公司推出的 DeepSeek Harness（开源）</li>
+<li>...</li>
+</ul>
+<p>常见的由第三方开发的 Harness 包括：</p>
+<ul>
+<li>Pi</li>
+<li>OpenCode</li>
+<li>...</li>
+</ul>
+<p>选择一个 Harness 的首要考虑是自己所要使用的 LLM。</p>
+<p>为了更贴合 Agent 这一使用场景的需要，如今 LLM 的后训练大量围绕 Agent 能力展开。尽管厂家通常会在训练中组合使用多种 Harness 以提升模型在不同 Harness 上的泛化性，但实际上，模型不可避免地会在某些 Harness 上表现更好，而在另一些 Harness 上表现更差。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/deepseek.jpeg" data-desc-position="bottom"><img alt="deepseek" src="../../assets/deepseek.jpeg" width="300"></a>
+<br>
+<figcaption>在 DSH 极简模式上表现更好的 DeepSeek V4 Pro 0813</figcaption>
+</figure>
+<p>由于许多厂商的商业策略是提供订阅套餐，将自家模型和 Harness 组合出售，厂商在训练时可能会优先保证模型在自家 Harness 上的表现。因此，模型厂商提供的第一方 Harness 通常会表现相对较好。除此以外，对开放权重模型来说，训练数据往往也覆盖了 Codex、Claude Code、OpenCode 等主流 Harness，因此模型在这些 Harness 上通常也有不错的表现。</p>
+<p>Harness 自身的安全性也很重要。除了 Vibe Coding 本身可能带来的安全风险，部分厂商也在自家的 Harness 中收集使用数据并将其作为对用户进行风险控制的手段。考虑到部分海外厂商会主动封禁来自中国内地用户的访问，这可能会给大家的使用带来麻烦。</p>
+<p>因为不同 Harness 的系统提示词和工具定义不同，前缀缓存的命中情况会有差异。具体差异需要大家在实际使用中体会和比较。</p>
+<h2 id="agent">配置 Agent</h2>
+<p>现在我们已经选好了使用的模型和 Harness，接下来要做的就是将我们选好的模型配置进 Harness 了。大多数 Harness 都允许使用者配置来自不同提供商的模型，不过配置流程会根据大家选用模型的不同而存在一些差异。</p>
+<p>如果大家使用的是模型厂商的官方 Harness 并已经购买了对应厂商的订阅套餐，那么配置会非常简单：只需在 Harness 里根据提示登录你购买订阅时使用的账号。</p>
+<p>一般来说，除了这种情况以外，大家需要手动在自己的 Harness 中配置模型。这首先需要在提供商的网站上获取 Base URL 和 API Key 两个字段。其中 Base URL 是商家提供模型服务的网络路径，API Key 是商家鉴权和计费的依据，也是我们调用服务的凭证。获取这二者通常需要大家阅读模型提供商的文档。</p>
+<p>以 DeepSeek 为例：</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/config.png" data-desc-position="bottom"><img alt="config" src="../../assets/config.png"></a>
+<br>
+<figcaption>DeepSeek 的文档</figcaption>
+</figure>
+<p>常见的大模型调用接口包括 OpenAI Chat Completions、OpenAI Responses 和 Anthropic Messages。OpenAI 和 Anthropic 这两家厂商使用的调用接口成为了事实上的行业标准。</p>
+<p>几乎所有 Harness 都支持这几种调用接口之一或全部：比如 Codex 支持 Responses API，Claude Code 支持 Messages API，OpenCode 三者都支持。</p>
+<p>自己的 Harness 具体支持哪些接口，需要查阅对应的 Harness 文档。</p>
+<p>除了 Base URL 和 API Key，提供商文档里通常还会给出模型 ID，比如图中的 <code>deepseek-flash</code> 和 <code>deepseek-v4-pro</code>。</p>
+<div class="admonition warning">
+<p class="admonition-title">不要泄露你的 API Key！</p>
+<p>API Key 是提供商用来鉴权和计费的依据，任何获知你 API Key 的人都可以把调用记在你的账上！
+如果你需要在代码中用 API Key 请求外部模型，请通过同目录中的 <code>.env</code> 文件调用，避免在代码中硬编码 API Key。
+对于 Git 仓库，在创建 <code>.env</code> 文件前，请先把 <code>.env</code> 配置到 <code>.gitignore</code> 以在 Git Commit 时忽略此文件，从而确保不会把 API Key 传到远端（当然你可以在仓库中保留不含真实 API Key 的 <code>.env.example</code> 来指引他人填写 <code>.env</code>）。</p>
+</div>
+<p>下一步是将 Base URL 和 API Key 填写进自己的 Harness，这通常需要大家阅读 Harness 或模型提供商的文档。</p>
+<p>比如 <a href="https://api-docs.deepseek.com/zh-cn/">DeepSeek 文档</a> 中就提及了 Codex、Claude Code、OpenCode 等 Harness 的配置。</p>
+<p>大家可能会发现使用像 DeepSeek 这样知名度较高的模型服务时不需要填写 Base URL，这是因为 Harness 的设计者为了用户体验把它们的 Base URL 内置到了程序当中。</p>
+<p>同样是出于使用体验考虑，很多 Harness 还内置或是自动获取模型 ID，使用者只需要从它的列表里选择一个模型就可以了。但如果你的 Harness 没有这个功能，你需要参照文档填写所想要使用的模型 ID。</p>
+<p>如果配置正确，通过输入框发送消息应当可以得到回复而不是报错。</p>
+<p>如果报错，通常是 Base URL、API Key 或模型 ID 配置有误，也有可能是账户中余额不足，可以对照提供商文档逐项检查。</p>
+<div class="admonition tip 使用 cc switch 交互式配置与切换 harness 的模型供应商">
+<p class="admonition-title">Tip</p>
+<p>设想你有很多个 API Key：你既想在 Codex 中体验来自某中转站的 GPT 系列模型，又想体验 DeepSeek 模型，并且可能会来回切换。若按照各供应商的官方文档配置，你需要在终端多次修改环境变量，操作比较不优雅。
+CC Switch 是一个拥有交互界面的 Harness 模型供应商配置工具，可以维护多个 Harness 下的不同模型供应商 API Key 信息并快捷地配置和切换，并且能方便地选择兼容的大模型调用接口格式。其已支持下列 Harness： Claude Code、Codex、Gemini CLI、Grok Build、OpenCode、OpenClaw、Hermes、Pi。对单个 Harness 启用某供应商 API Key 时，它会帮你调整相应环境变量。<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/cc-switch.png" data-desc-position="bottom"><img alt="某 TA 的 CC Switch 主界面" src="../../assets/cc-switch.png"></a></p>
+</div>
+<h2 id="agent_1">使用 Agent</h2>
+<h3 id="_4">工作区</h3>
+<p>在使用 Agent 进行编码时，我们通常会建立一个工作区并让 Agent 在其中工作。一个工作区通常包括项目的目录和完成项目需要参考的其他目录。一般来说，可以从项目的根目录开始建立工作区，再按需添加参考资料或其他相关项目的目录。</p>
+<p>工作区也可以位于远程机器上。比如 OpenCode 支持在远程机器上运行服务端，再从本地通过终端或 Web 界面连接，此时项目文件的读写和命令执行都发生在远程机器上，具体可以参考它的 <a href="https://opencode.ai/docs/cli/#attach">远程连接文档</a>。</p>
+<p>工作区的一个作用是管理 Agent 的操作边界。在大多数 Harness 的默认权限设置下，Agent 修改或读取工作区外目录的内容往往需要经过用户的许可，这可以降低部分由于 Agent 幻觉导致的风险。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/permission.png" data-desc-position="bottom"><img alt="permission" src="../../assets/permission.png"></a>
+<br>
+<figcaption> OpenCode 的权限请求 </figcaption>
+</figure>
+<p>很多 Harness 提供了自动批准 Agent 请求的功能，大家应当谨慎使用。</p>
+<h3 id="_5">维护项目知识</h3>
+<p>在 Agent 能够读写项目文件之后，我们还需要考虑一件事：它应该怎样了解这个项目？</p>
+<div class="admonition question">
+<p class="admonition-title">它不能去读代码吗？</p>
+<p>直接让 Agent 去读代码当然可行，并且在规模不那么大的代码仓库中是最高效的手段。但有些时候代码只能告诉 Agent 一个功能是如何实现的，而没法告诉它为什么要这样实现。比如，某段看似多余的代码可能是为了兼容旧版本的数据，某个测试只能在特定的机器上运行......这些项目特定的知识可能在之前的讨论中提到过，不过随着对话被压缩，或是换了会话、甚至另一种 Harness，它们未必还在 Agent 的上下文里。</p>
+</div>
+<p>在 Vibe Coding 的过程中大家有时会将将来仍然有用的知识保存在项目文件中，并随着项目的变化一起维护。</p>
+<p>一个常见的做法是在项目根目录放置 <a href="https://agents.md/">AGENTS.md</a>。这是一个写给 Agent 看的 Markdown 文件，可以记录构建和测试命令、修改代码时需要遵循的约定，以及其他项目文档的位置。支持这一约定的 Harness 会按自己的规则将文件内容加载到上下文中。</p>
+<p>一些 Harness 也支持用户级的指令文件，用来保存跨项目通用的个人偏好。比如 OpenCode 支持在<a href="https://opencode.ai/docs/rules/#global">用户配置目录中放置 <code>AGENTS.md</code></a>。把这类知识保存在仓库中，是为了让它们随项目一起维护，并与其他参与者共享。</p>
+<p><code>AGENTS.md</code> 应当尽可能保持简短，只放大多数任务都需要知道的信息。而相对较长的信息可以放在 <code>README.md</code> 或 <code>docs/</code> 中，再在 <code>AGENTS.md</code> 里说明什么时候应该阅读或修改它们。</p>
+<p>如果一类知识只在特定任务中才会用到，或者某套操作会反复执行，也可以把它们整理成下一节介绍的 <a href="https://agentskills.io/home">Skills</a>，让 Agent 按需读取说明、查阅资料或执行配套脚本。</p>
+<p>这些项目知识和代码同样需要维护。比较好的做法是让 Agent 在一次工作结束后更新过时的知识、补充缺少的说明，并在由你检查后将它们和代码一起提交。</p>
+<h3 id="mcp-skills">MCP 和 Skills</h3>
+<p>还记得我们一开始提到的 Harness 的三个核心部分吗？分别是工具、上下文和控制循环。大多数 Harness 的控制循环都遵循 ReAct（Reasoning + Acting，即「思考—行动」）范式，这一范式对普通用户来说一般没有修改的必要。为了让 Agent 完成不同的任务，人们会通过 MCP （模型上下文协议）和 Skills 从工具和上下文这两个方向扩大 Agent 的能力边界。</p>
+<p>那它们是怎么工作的呢？</p>
+<p>不知道大家有没有在 VS Code 中使用过 IntelliSense 这个功能：它的很多能力由语言服务器提供。语言服务器能够实时对代码进行静态分析。大家在编辑器里能快速跳转到定义或实现、改完一行马上看到错误提示而不用等待编译，靠的都是语言服务器。</p>
+<p>时至今日，Agent 在相对较大的代码库中还是容易编造不存在的方法或接口——要是能让它像我们一样看到语言服务器的诊断信息就好了。</p>
+<p>这需要我们对 Agent 做两件事情：</p>
+<ol>
+<li>给它一个工具：让它能够调用语言服务器做静态检查，并告诉它调用方法。</li>
+<li>给它一些知识：告知它对于我们的项目，在每次修改完代码后都要调用这个诊断工具进行静态检查。</li>
+</ol>
+<p>像「要是 AI 能实时看到语言服务器的诊断信息就好了」这样的需求还有很多，并且其中不少因人而异：比如为某个特定异构计算硬件开发软件的程序员可能会想要让 Agent 在编写代码时了解硬件的物理限制；某个分析师可能会想要让 Agent 调用工具来获取几家新闻媒体的最新消息......</p>
+<p>指望 Harness 开发者把为这些需求服务的工具和知识全部打包进去是不现实的，终端用户需要自己把这些工具和知识交给 Agent。</p>
+<p>MCP 和 Skills 就是为解决这类问题而产生的。其中 MCP 为 Agent 提供了用户可以自定义的工具（比如一个从某个新闻网站获取消息的工具），Harness 可以据此将工具名、参数格式和说明放入 Agent 的上下文供其调用。Skills 允许 Agent 在进行某件任务的时候按需读取 Skill 中与任务相关的知识（比如为某类项目配置语言服务器、运行诊断和处理常见报错的方法）。</p>
+<p>MCP 还可以用于从服务器获得资源，如果想要了解可以参看 <a href="https://modelcontextprotocol.io">MCP 的文档</a>。</p>
+<p>配置 MCP 和 Skills 时，我们还可以选择它们的作用范围。比如 OpenCode 可以将 MCP 写入<a href="https://opencode.ai/docs/config/">项目级或用户级配置</a>，Skills 也有对应的<a href="https://opencode.ai/docs/skills/#place-files">存放目录</a>：</p>
+<ul>
+<li><strong>项目级</strong>：供当前项目使用，适合项目专用的工具和操作方法。</li>
+<li><strong>用户级</strong>：供当前用户在同一 Harness 的多个项目中复用，适合经常使用的通用工具和知识，比如处理 PDF 或是制作 PPT 的 Skill。这样切换项目时就不必重新配置。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">金谷园饺子馆和麦当劳</p>
+<p>金谷园饺子馆是一家北京邮电大学海淀校区旁边的饺子馆。这家饺子馆在 GitHub 上提供了自己的 Skill —— <a href="https://github.com/JinGuYuan/jinguyuan-dumpling-skill">金谷园饺子馆 Skill</a> 和 <a href="https://mcp.jinguyuan.cloud/">MCP 服务器</a> 来提供排队查询、在线取号等服务，通过 Skill 还可以回答「生饺子怎么煮」「你家店在哪儿」这类的问题。</p>
+<p>打开金谷园饺子馆 Skill 的 <a href="https://github.com/JinGuYuan/jinguyuan-dumpling-skill">项目仓库</a>，看看这个 Skill 仓库的结构。</p>
+<p>Skill 通常是一个目录，入口文件名叫作 <code>SKILL.md</code>。目录中存放着记录领域特定知识的 Markdown 文件、资源或脚本。当知识规模较大时，通常入口文件只放索引、具体内容则分文件存放。在金谷园饺子馆的 Skill 中记载了通过它的脚本获取相关内容的方法和回复用户的方式。</p>
+<p>虽然上海暂时没有金谷园饺子馆，但大家熟悉的餐饮巨头麦当劳也推出了 <a href="https://github.com/M-China/mcd-mcp-server">MCP 服务器</a>。</p>
+<p>大家可以给自己的 Agent 发送：</p>
+<blockquote>
+<p>帮我在用户级配置中接入这个 MCP，让我在不同项目中都能使用：https://github.com/M-China/mcd-mcp-server</p>
+</blockquote>
+<p>来接入麦当劳 <del>并给自己点一份咸蛋黄鸡腿蛋月堡三件套。</del> </p>
+</div>
+<p>在较大的项目中，一个比较经济的做法是要求 Agent 将可复用的复杂操作总结成 Skill。只适用于当前项目的内容可以留在项目里，能用于多个项目的方法则可以整理成用户级的 Skill，之后在其他项目中复用。</p>
+<h3 id="_6">计划模式</h3>
+<p>编码时，我们总是祈祷 Agent 尽量不要偏离我们的想法，“先想好再行动”是一个很符合常识的思路。</p>
+<p>很多 Harness 提供了“计划模式”选项：如果你开启了“计划模式”，此轮次中，模型将不能改动代码，而只能阅读现有程序。在（可能出现的）询问你不少问题并调用工具了解仓库代码与知识后，Agent 会生成一个 Markdown 格式的详细编码计划向你展示并让你确认。你可以选择让它按照计划执行，或是输入新的提示词以调整并重新生成计划。计划模式最大的优势在于可以提前确认架构和部分细节，让程序员对即将出现的代码有初步的认识和控制。</p>
+<p>需要注意的是，计划是用自然语言描述的，Agent 并不能保证计划覆盖到生成代码的每一处细节，更不能保证按计划生成的代码是清晰的高质量代码。（甚至对于稍弱的模型，不能百分百保证计划中的功能完全被实施！）因而我们有必要重新审查生成的代码。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/plan-mode.png" data-desc-position="bottom"><img alt="某 TA 在某项目中见到一个满意的计划，但是呢？" src="../../assets/plan-mode.png"></a></p>
+<p><del>注：某 TA 在某项目中见到一个满意的计划，但是后面灰溜溜地跑去重构了（悲</del></p>
+<div class="admonition tip 小技巧">
+<p class="admonition-title">Tip</p>
+<p>通常来说，做计划时为了使 Agent 把握准确，需要使用更高的思考强度和更好的模型，实现具体代码时 Agent 不需要做计划时那么高的思考强度。</p>
+</div>
+<h3 id="_7">一些提示</h3>
+<h4 id="_8">为自己的代码负责</h4>
+<p>即使使用 Agent 生成代码，维护代码还是每个程序员的职责。Git 会记录每行代码的贡献者（或者叫做担责者），因而对于关键的贡献，编程者应尽可能理解代码的基本逻辑，做到能掌控和解释。</p>
+<h4 id="_9">想好再做</h4>
+<p>不经思考放手让 Agent 生成的代码设计常常不能满足需要，难逃重构的命运，会令人心痛地浪费我们的 Token 和时间。更理想的工作方式是先确定你要实现的功能怎么拆分成各个模块的组合，再决定每个模块的关键逻辑，把设计给 Agent 形成计划后写出代码，最后做微小的审查和修改。</p>
+<h4 id="_10">重构看不懂的代码</h4>
+<p>Agent 写出的代码有时可能混杂散布的逻辑和不必要的异常处理。当你觉得理解代码片段比较费力时，通常意味着需要重构。你可以先让 Agent 解释其逻辑，经过自己梳理后提示 Agent 重构。通常来说，Agent 按照给定的逻辑简化重构小代码片段的成本不高。</p>
+<h4 id="_11">及时调整方向</h4>
+<p>Agent 运行时，我们可以即时查看其工具调用、输出的思考以及代码修改等情况。当我们发现情况不对劲时，例如 Agent 开始随意大改之前的代码结构，或者在工具调用中卡死，我们可以即时停止其当前轮次。后续我们可以提供更细化要求的提示词，诸如不要修改某一部分、先验证原流程、用户在运行时修改了其他代码等等。此外，Codex 允许用户在 Agent 运行时附加任意消息，且不中断 Agent 的运行。</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月30日 00:17:48 UTC">2026年9月30日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月28日 15:10:22 UTC">2026年9月28日</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="贡献者">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"></path></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/ryannyui" class="md-author" title="@ryannyui">
+          
+          <img src="https://avatars.githubusercontent.com/u/282763419?v=4&amp;size=72" alt="ryannyui">
+        </a>
+      
+        <a href="https://github.com/JurFal" class="md-author" title="@JurFal">
+          
+          <img src="https://avatars.githubusercontent.com/u/112413958?v=4&amp;size=72" alt="JurFal">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+
+
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js" data-repo="ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" data-repo-id="R_kgDOUQ60Qg" data-category="Announcements" data-category-id="DIC_kwDOUQ60Qs4DFELA" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async="">
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
