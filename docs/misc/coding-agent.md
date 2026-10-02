@@ -6,6 +6,8 @@ Agent 是 LLM 及运行时框架（Harness）的结合体。
 
 由于 Coding Agent 是一个快速发展的概念，这篇文章不可避免地会有不少错漏。我们在这里暂时只介绍从 Harness、模型选择到 Agent 配置与使用的一些基本概念，至于具体使用需要大家查阅对应文档并动手尝试。
 
+今年， MIT 著名的 [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 中也涉及了智能体编程的相关内容，其中对 Coding Agent 的一些关键概念和使用者的心智模型做了很好的介绍，大家可以从 [这里](https://missing-semester-cn.github.io/2026/agentic-coding/) 阅读对应讲义的中文版。
+
 !!! question "为什么需要 Harness"
 
     不少同学或许使用过像是 ChatGPT、DeepSeek 或是豆包这样的 LLM 聊天机器人来完成编码工作。大家只需要在网页或客户端的聊天框中输入文字或上传图片来描述自己的需求，把这些内容作为提示词发送给机器人，稍等片刻就能看到回复中写好的代码。
