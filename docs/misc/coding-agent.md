@@ -4,9 +4,9 @@ Agent 是 LLM 及运行时框架（Harness）的结合体。
 
 出于实际需要，人们为不同的工作设计了专门的 Agent，其中专为编码任务设计的叫作 Coding Agent。
 
-由于 Coding Agent 是一个快速发展的概念，这篇文章不可避免地会有不少错漏。我们在这里暂时只介绍从 Harness、模型选择到 Agent 配置与使用的一些基本概念，至于具体使用需要大家查阅对应文档并动手尝试。
+由于 Coding Agent 是一个快速发展的概念，这篇文章不可避免地会有不少错漏。我们在这里暂时只介绍从 Harness、模型选择到 Agent 配置与使用的一些基本概念。至于 Agent 的具体使用，我们希望大家能够查阅对应文档并自己动手尝试。
 
-今年， MIT 著名的 [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 中也涉及了智能体编程的相关内容，其中对 Coding Agent 的一些关键概念和使用者的心智模型做了很好的介绍，大家可以从 [这里](https://missing-semester-cn.github.io/2026/agentic-coding/) 阅读对应讲义的中文版。
+今年， MIT 著名的 [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 中也涉及了智能体编程的相关内容，其中对 Coding Agent 的一些关键概念和使用者的心智模型做了很好的介绍。大家可以从 [这里](https://missing-semester-cn.github.io/2026/agentic-coding/) 阅读对应讲义的中文版。
 
 !!! question "为什么需要 Harness"
 
@@ -82,11 +82,11 @@ Agent 是 LLM 及运行时框架（Harness）的结合体。
   <figcaption>智谱提供的 GLM 订阅方案</figcaption>
 </figure>
 
-这一方案往往可以让大家用较低的价格使用前沿模型，同时 TTFT 更低，稳定性也不错。但大部分提供商的配额计算并不透明。
+这一方案往往可以让大家用较低的价格使用前沿模型，通常 TTFT 较低，稳定性也不错。但大部分提供商的配额计算并不透明。
 
 一些提供商，比如 [OpenCode](https://opencode.ai/go) 和 [Ollama Cloud](https://ollama.com/pricing) 提供相对透明的配额方案：它们提供了以美元计价的每月额度。取决于你所使用的模型，获得的配额一般在订阅价格的 1 到 6 倍之间。
 
-受算力供给等因素影响，海外提供商的订阅套餐性价比往往更高，尤其是 OpenAI 和 Anthropic 的订阅套餐，在这些套餐中往往可以获得同等价格下比按量计费高出数十倍的前沿模型配额。但它们不向中国内地提供服务，也不接受中国内地的付款方式，并通过严格的风控策略来限制位于中国内地的用户使用其服务。
+受算力供给等因素影响，海外提供商的订阅套餐性价比往往更高。尤其是 OpenAI 和 Anthropic 的订阅套餐：它们往往提供同等价格下比按量计费高出数十倍的前沿模型配额。但它们不向中国内地提供服务，也不接受中国内地的付款方式，并通过严格的风控策略来限制位于中国内地的用户使用其服务。
 
 <figure markdown="span">
   ![claude](../assets/claude.png)
@@ -123,7 +123,7 @@ Agent 是 LLM 及运行时框架（Harness）的结合体。
 
 Harness 自身的安全性也很重要。除了 Vibe Coding 本身可能带来的安全风险，部分厂商也在自家的 Harness 中收集使用数据并将其作为对用户进行风险控制的手段。考虑到部分海外厂商会主动封禁来自中国内地用户的访问，这可能会给大家的使用带来麻烦。
 
-因为不同 Harness 的系统提示词和工具定义不同，前缀缓存的命中情况会有差异。具体差异需要大家在实际使用中体会和比较。
+因为不同 Harness 的系统提示词和工具定义不同，前缀缓存的命中情况会有差异，这会导致实际使用的费用差异。具体情况可能需要大家有意识地观察对比。
 
 ## 配置 Agent
 
@@ -131,7 +131,7 @@ Harness 自身的安全性也很重要。除了 Vibe Coding 本身可能带来�
 
 如果大家使用的是模型厂商的官方 Harness 并已经购买了对应厂商的订阅套餐，那么配置会非常简单：只需在 Harness 里根据提示登录你购买订阅时使用的账号。
 
-一般来说，除了这种情况以外，大家需要手动在自己的 Harness 中配置模型。这首先需要在提供商的网站上获取 Base URL 和 API Key 两个字段。其中 Base URL 是商家提供模型服务的网络路径，API Key 是商家鉴权和计费的依据，也是我们调用服务的凭证。获取这二者通常需要大家阅读模型提供商的文档。
+一般来说，除了这种情况以外，大家需要手动在自己的 Harness 中配置模型。这首先需要在提供商的网站上获取 Base URL 和 API Key 两个字段，其中 Base URL 是商家提供模型服务的网络路径，API Key 是商家鉴权和计费的依据，也是我们调用服务的凭证。获取这二者通常需要大家阅读模型提供商的文档。
 
 以 DeepSeek 为例：
 
@@ -151,8 +151,12 @@ Harness 自身的安全性也很重要。除了 Vibe Coding 本身可能带来�
 !!! warning "不要泄露你的 API Key！"
 
     API Key 是提供商用来鉴权和计费的依据，任何获知你 API Key 的人都可以把调用记在你的账上！
-    如果你需要在代码中用 API Key 请求外部模型，请通过同目录中的 `.env` 文件调用，避免在代码中硬编码 API Key。
-    对于 Git 仓库，在创建 `.env` 文件前，请先把 `.env` 配置到 `.gitignore` 以在 Git Commit 时忽略此文件，从而确保不会把 API Key 传到远端（当然你可以在仓库中保留不含真实 API Key 的 `.env.example` 来指引他人填写 `.env`）。
+
+    如果你需要在代码中用 API Key 请求外部模型，常见的办法是将 API Key 注入环境变量而非硬编码至代码当中。为了实际使用方便，大家往往将环境变量记录在一个叫作 `.env` 的文件中，并在程序中导入。
+
+    对于 Git 仓库，在创建 `.env` 文件前，请先把 `.env` 配置到 `.gitignore` 以在 `git commit` 时忽略此文件，从而确保不会把 API Key 传到远端。
+
+    如果需要给使用者编写 `.env` 文件的提示，常见的办法是提供一个示例的 `.env` 文件，一般命名为 `.env.example`。
 
 下一步是将 Base URL 和 API Key 填写进自己的 Harness，这通常需要大家阅读 Harness 或模型提供商的文档。
 
@@ -164,12 +168,15 @@ Harness 自身的安全性也很重要。除了 Vibe Coding 本身可能带来�
 
 如果配置正确，通过输入框发送消息应当可以得到回复而不是报错。
 
-如果报错，通常是 Base URL、API Key 或模型 ID 配置有误，也有可能是账户中余额不足，可以对照提供商文档逐项检查。
+如果出现报错，报错信息中往往会包括注明错误类型的文字和错误编码。你需要使用搜索引擎或在提供商的文档中查找这些文字或是错误编码。
 
 !!! tip 使用 CC Switch 交互式配置与切换 Harness 的模型供应商
 
     设想你有很多个 API Key：你既想在 Codex 中体验来自某中转站的 GPT 系列模型，又想体验 DeepSeek 模型，并且可能会来回切换。若按照各供应商的官方文档配置，你需要在终端多次修改环境变量，操作比较不优雅。
-    CC Switch 是一个拥有交互界面的 Harness 模型供应商配置工具，可以维护多个 Harness 下的不同模型供应商 API Key 信息并快捷地配置和切换，并且能方便地选择兼容的大模型调用接口格式。其已支持下列 Harness： Claude Code、Codex、Gemini CLI、Grok Build、OpenCode、OpenClaw、Hermes、Pi。对单个 Harness 启用某供应商 API Key 时，它会帮你调整相应环境变量。![某 TA 的 CC Switch 主界面](../assets/cc-switch.png)
+
+    CC Switch 是一个拥有交互界面的 Harness 模型供应商配置工具，可以维护多个 Harness 下的不同模型供应商 API Key 信息并快捷地配置和切换，并且能方便地选择兼容的大模型调用接口格式。其已支持下列 Harness： Claude Code、Codex、Gemini CLI、Grok Build、OpenCode、OpenClaw、Hermes、Pi。对单个 Harness 启用某供应商 API Key 时，它会帮你调整相应环境变量。
+
+    ![某 TA 的 CC Switch 主界面](../assets/cc-switch.png)
 
 ## 使用 Agent
 
@@ -194,7 +201,9 @@ Harness 自身的安全性也很重要。除了 Vibe Coding 本身可能带来�
 
 !!! question "它不能去读代码吗？"
 
-    直接让 Agent 去读代码当然可行，并且在规模不那么大的代码仓库中是最高效的手段。但有些时候代码只能告诉 Agent 一个功能是如何实现的，而没法告诉它为什么要这样实现。比如，某段看似多余的代码可能是为了兼容旧版本的数据，某个测试只能在特定的机器上运行......这些项目特定的知识可能在之前的讨论中提到过，不过随着对话被压缩，或是换了会话、甚至另一种 Harness，它们未必还在 Agent 的上下文里。
+    直接让 Agent 去读代码当然可行，并且在规模不那么大的代码仓库中是最高效的手段。但有些时候代码只能告诉 Agent 一个功能是如何实现的，而没法告诉它为什么要这样实现。
+
+    比如，某段看似多余的代码可能是为了兼容旧版本的数据，某个测试只能在特定的机器上运行......这些项目特定的知识可能在之前的讨论中提到过，不过随着对话被压缩，或是换了会话、甚至另一种 Harness，它们未必还在 Agent 的上下文里。
 
 在 Vibe Coding 的过程中大家有时会将将来仍然有用的知识保存在项目文件中，并随着项目的变化一起维护。
 
@@ -231,7 +240,7 @@ MCP 和 Skills 就是为解决这类问题而产生的。其中 MCP 为 Agent �
 
 MCP 还可以用于从服务器获得资源，如果想要了解可以参看 [MCP 的文档](https://modelcontextprotocol.io)。
 
-配置 MCP 和 Skills 时，我们还可以选择它们的作用范围。比如 OpenCode 可以将 MCP 写入[项目级或用户级配置](https://opencode.ai/docs/config/)，Skills 也有对应的[存放目录](https://opencode.ai/docs/skills/#place-files)：
+配置 MCP 和 Skills 时，我们还可以选择它们的作用范围。比如 OpenCode 可以将 MCP 写入 [项目级或用户级配置](https://opencode.ai/docs/config/)，Skills 也有对应的 [存放目录](https://opencode.ai/docs/skills/#place-files)：
 
 - **项目级**：供当前项目使用，适合项目专用的工具和操作方法。
 - **用户级**：供当前用户在同一 Harness 的多个项目中复用，适合经常使用的通用工具和知识，比如处理 PDF 或是制作 PPT 的 Skill。这样切换项目时就不必重新配置。
@@ -250,7 +259,7 @@ MCP 还可以用于从服务器获得资源，如果想要了解可以参看 [MC
     
     > 帮我在用户级配置中接入这个 MCP，让我在不同项目中都能使用：https://github.com/M-China/mcd-mcp-server
   
-    来接入麦当劳 ~~并给自己点一份咸蛋黄鸡腿蛋月堡三件套。~~ 
+    来接入麦当劳 ~~并给自己点一份餐。~~ 
 
 在较大的项目中，一个比较经济的做法是要求 Agent 将可复用的复杂操作总结成 Skill。只适用于当前项目的内容可以留在项目里，能用于多个项目的方法则可以整理成用户级的 Skill，之后在其他项目中复用。
 
