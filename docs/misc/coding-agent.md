@@ -99,7 +99,7 @@ Agent 是 LLM 及运行时框架（Harness）的结合体。
 
 - OpenAI 公司推出的 Codex（CLI 开源）
 - Anthropic 公司推出的 Claude Code（闭源）
-- 月之暗面公司推出的 Kimi Code（开源）
+- 月之暗面公司推出的 Kimi Code（CLI 开源）
 - 智谱华章公司推出的 ZCode（开源）
 - 深度求索公司推出的 DeepSeek Harness（开源）
 - ...
