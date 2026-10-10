@@ -99,6 +99,7 @@ git add -f bomb
 | `bomb` | 下载的个人炸弹，正式关卡不提供源码 |
 | `defuser.c` | <span class="text-red">唯一需要编写的解法代码文件</span> |
 | `defuser.h` | 求解函数的接口声明 |
+| `input.txt`（自行生成，可选） | 调试时保存口令，供 GDB 用 `< input.txt` 重复读取；不随模板提供，不需要提交 |
 | `config.txt` | <span class="text-red">首次领取时填写学号</span>，领取后可清空或删除 |
 | `tutor/` | [tutor 教学](https://github.com/ICS-26Fall-FDU/BombLab/blob/main/tutor/README.md)，包含源码和参考解法 |
 | `teaching/` | [配套 C 小例子](https://github.com/ICS-26Fall-FDU/BombLab/blob/main/teaching/README.md)，用于练习六关涉及的知识点 |
