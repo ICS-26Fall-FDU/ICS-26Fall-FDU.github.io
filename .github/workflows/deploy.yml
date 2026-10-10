@@ -1,30 +1,54 @@
-name: Deploy
-on: 
-  push: 
-    branches: 
-      - main 
+name: Deploy preview
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
+  pages: read
+concurrency:
+  group: pages-preview
+  cancel-in-progress: true
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          persist-credentials: false
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884
         with:
-          enable-cache: true 
+          python-version: "3.13"
+          enable-cache: true
           cache-dependency-glob: uv.lock
-          cache-python: true 
+          cache-python: true
           save-cache: true
       - name: Sync dependencies
         run: uv sync --frozen
-      - name: Deploy
-        run: uv run mkdocs gh-deploy --force
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+      - name: Build preview
+        env:
+          MKDOCS_GIT_COMMITTERS_APIKEY: ${{ github.token }}
+        run: uv run mkdocs build --config-file mkdocs.preview.yml
+      - name: Upload site
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        with:
+          path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy preview
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346
