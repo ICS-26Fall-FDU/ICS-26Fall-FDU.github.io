@@ -1,6 +1,6 @@
 INHERIT: mkdocs.yml
 
-site_name: 复旦大学 计算机系统基础（2026年秋季学期）· 测试预览
+site_name: 复旦大学 计算机系统基础（2026年秋季学期）· 预览
 site_url: https://weijiansh1.github.io/ICS-26Fall-FDU.github.io/
 repo_name: weijiansh1/ICS-26Fall-FDU.github.io
 repo_url: https://github.com/weijiansh1/ICS-26Fall-FDU.github.io
@@ -15,7 +15,7 @@ plugins:
       separator: '[\s\u200b\-]'
   - git-committers:
       repository: weijiansh1/ICS-26Fall-FDU.github.io
-      branch: main
+      branch: preview
       exclude:
         - team.md
   - glightbox

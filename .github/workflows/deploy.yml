@@ -2,7 +2,7 @@ name: Deploy preview
 "on":
   push:
     branches:
-      - main
+      - preview
   workflow_dispatch:
 permissions:
   contents: read
@@ -12,6 +12,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
+    if: github.repository == 'weijiansh1/ICS-26Fall-FDU.github.io'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
