@@ -96,6 +96,8 @@ git add -f bomb
 
 `config.txt` 只用于领取。已有炸弹的编译、运行和测试不再需要学号配置，你可以清空学号或删除配置，不要求提交；`package.json` 也不需要提交。若不希望把配置中的学号提交到 GitHub，请在首次提交前处理，之后删除文件不会清除已有 Git 历史。
 
+这不代表匿名领取：个人炸弹的下载附件名和 `package.json` 中仍包含学号。
+
 请使用自己的炸弹。最终评分脚本会根据 E-Learning 提交者的学号，使用助教保存的对应 `bomb` 测试解法，不根据仓库中的配置或上传的二进制决定题目。
 
 ## 主要文件
@@ -114,6 +116,7 @@ git add -f bomb
 | `defuser_main.c`、`challenge.c`、`cli.c` 等 | 公共驱动程序，不需要修改 |
 | `public_test.py`、`tests/public.json` | 公开测试程序和 seed，包括正式六关和选做 Honor |
 | `.github/workflows/public-tests.yml` | GitHub Actions 公开自测工作流 |
+| `AGENTS.md` | AI 编程助手的辅助约定，不改变题目、评分或提交要求 |
 
 ## 实验内容
 
@@ -482,6 +485,8 @@ make test
 #### GitHub Actions 自测
 
 提交并 push 个人 `bomb` 和解法后，仓库中的 `BombLab public tests` 工作流会自动运行。它分别测试正式六关和选做 Honor，不读取 `config.txt`，不需要学号、Secrets 或登录令牌。
+
+课程模板仓库本身跳过这组解题任务；由模板创建的个人仓库会正常运行。刚创建仓库、还没有提交个人炸弹时，Actions 会提示 `Personal bomb is missing`，先领取并提交 `bomb`，再查看测试结果。
 
 在 GitHub 仓库的 Actions 页面打开本次运行，查看 `Phase 1 public tests` 至 `Phase 6 public tests`。某关失败不会取消其他关，点开任务日志可以查看失败的 seed 和错误类别。
 
