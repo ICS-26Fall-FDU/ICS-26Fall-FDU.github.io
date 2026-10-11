@@ -1,10 +1,6 @@
 ---
-title: "Lab2：BombLab（测试）"
+title: "Lab2：BombLab"
 ---
-
-!!! note "发布前测试"
-
-    本页面用于发布前测试，正式发布与具体截止时刻以课程公告为准。
 
 # Lab2: BombLab
 
