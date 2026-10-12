@@ -10,7 +10,7 @@ title: "Lab2：BombLab"
 
 本实验是 CSAPP 第三章配套实验。你需要用反汇编和 GDB 分析一个没有提供源码的程序，理解其中的函数调用、分支、循环、递归和指针操作，再用 C 语言写出对应的解法。
 
-每位同学领取自己的二进制炸弹 `bomb`，完成六个正式关卡，并提交 `defuser.c` 和实验报告。正式六关考点相同，但不同同学的常量、运算和数据布局可能不同。另有一个选做的 Honor。
+每位同学领取自己的二进制炸弹 `bomb`，完成六个常规关卡与另有一个 Honor 关卡，并提交 `defuser.c` 和实验报告。常规六关考点相同，但不同同学的常量、运算和数据布局可能不同。
 
 **故事背景：《这里还没有明天》**
 
@@ -106,7 +106,7 @@ git add -f bomb
 
 | 文件或目录 | 用途 |
 | --- | --- |
-| `bomb` | 下载的个人炸弹，正式关卡不提供源码 |
+| `bomb` | 下载的个人炸弹，不提供源码 |
 | `defuser.c` | <span class="text-red">唯一需要编写的解法代码文件</span> |
 | `defuser.h` | 求解函数的接口声明 |
 | `input.txt`（自行生成，可选） | 调试时保存口令，供 GDB 用 `< input.txt` 重复读取；不随模板提供，不需要提交 |
@@ -114,13 +114,13 @@ git add -f bomb
 | `tutor/` | [tutor 教学](https://github.com/ICS-26Fall-FDU/BombLab/blob/main/tutor/README.md)，包含源码和参考解法 |
 | `teaching/` | [配套 C 小例子](https://github.com/ICS-26Fall-FDU/BombLab/blob/main/teaching/README.md)，用于练习六关涉及的知识点 |
 | `defuser_main.c`、`challenge.c`、`cli.c` 等 | 公共驱动程序，不需要修改 |
-| `public_test.py`、`tests/public.json` | 公开测试程序和 seed，包括正式六关和选做 Honor |
+| `public_test.py`、`tests/public.json` | 公开测试程序和 seed，包括常规六关和 Honor |
 | `.github/workflows/public-tests.yml` | GitHub Actions 公开自测工作流 |
 | `AGENTS.md` | AI 编程助手的辅助约定，不改变题目、评分或提交要求 |
 
 ## 实验内容
 
-### 正式六关
+### 常规六关
 
 每关检查一行口令。正确时输出 `Phase N defused.`；错误时输出 `BOOM!!!` 并退出。爆炸不会扣分，也不会被记录，可以反复调试。
 
@@ -147,7 +147,7 @@ int solve_phase_1(uint64_t challenge, char *out, size_t cap);
 
 根据 challenge 算出口令，写入 `out`；字符串连同结尾的 `\0` 不能超过 `cap` 字节。成功时返回 0，尚未实现或发生错误时返回非零。
 
-正式六关的口令是一行用空格分隔的无符号十进制整数。`out` 中不要加换行，驱动程序会自动添加；调试信息写到 stderr，写到 stdout 会混入口令。
+常规六关的口令是一行用空格分隔的无符号十进制整数。`out` 中不要加换行，驱动程序会自动添加；调试信息写到 stderr，写到 stdout 会混入口令。
 
 模板中的 `defuser.c` 已经写好每关的框架：把算出的整数依次存入 `values`，把 `count` 改为整数个数，`write_answer` 会按上述格式写入 `out` 并检查截断。需要填写的位置都标有 `// TODO`；`count` 为 0 时视为尚未实现。
 
@@ -184,11 +184,11 @@ int solve_phase_1(uint64_t challenge, char *out, size_t cap);
     }
     ```
 
-    最后一行检查 `snprintf` 是否出错或被截断；正式关卡中这一步由模板里的 `write_answer` 完成。正式关卡也一样：要恢复出对任意 challenge 都成立的计算关系，而不是记下某一次运行时比较的值。
+    最后一行检查 `snprintf` 是否出错或被截断；常规关卡中这一步由模板里的 `write_answer` 完成。常规关卡也一样：要恢复出对任意 challenge 都成立的计算关系，而不是记下某一次运行时比较的值。
 
 注意汇编中的运算宽度。32 位无符号加、减、乘会按模 2³² 回绕；不要将它们恢复成无限精度计算，也不要依赖 C 的有符号溢出。
 
-解法只应完成计算。可以使用 `snprintf` 等向内存缓冲区写入结果的函数，但不要读写文件、访问网络、创建进程、调用外部程序或使用内联汇编。正式评分会检查禁用调用，并在隔离环境中编译和运行。
+解法只应完成计算。可以使用 `snprintf` 等向内存缓冲区写入结果的函数，但不要读写文件、访问网络、创建进程、调用外部程序或使用内联汇编。常规评分会检查禁用调用，并在隔离环境中编译和运行。
 
 ## 实验引导
 
@@ -278,7 +278,7 @@ $3 = 94
 - 停在 `cmp` 时，`edi` 中是程序算出的期望值 94，`$rbp-0x20` 处是输入的第一个整数，也就是占位值 0。
 - 在 GDB 中按推测的公式计算，同样得到 94，说明从汇编读出的计算关系是对的。占位输入与期望值不相等，这次运行会失败，但需要的信息已经拿到了。
 
-换一个 seed 再做一次，结果仍然一致，就可以把公式写进求解函数。正式关卡也按这个思路：先从导出的汇编中找出关键的计算和比较，再在线停在那里核对。命令的详细用法见下面各小节。
+换一个 seed 再做一次，结果仍然一致，就可以把公式写进求解函数。常规关卡也按这个思路：先从导出的汇编中找出关键的计算和比较，再在线停在那里核对。命令的详细用法见下面各小节。
 
 #### 启动与退出
 
@@ -396,7 +396,7 @@ display/i $pc
 
 ### tutor 教学
 
-`tutor/` 目录中是一个独立的教学关卡，提供源码和参考解法，不计分，也不需要填写学号或下载个人炸弹。它用上面的 GDB 命令完整演示一次“导出汇编 → 在线调试 → 写出求解函数”的过程，建议在开始正式关卡前做一遍。
+`tutor/` 目录中是一个独立的教学关卡，提供源码和参考解法，不计分，也不需要填写学号或下载个人炸弹。它用上面的 GDB 命令完整演示一次“导出汇编 → 在线调试 → 写出求解函数”的过程，建议在开始常规关卡前做一遍。
 
 在仓库根目录运行：
 
@@ -492,7 +492,7 @@ Public tests: 0/10
 
 这里的 `solver_error` 来自尚未实现的求解函数。完成本关解法后，重新运行测试；全部公开 seed 通过时会显示 `Public tests: 10/10`。
 
-一次测试全部正式六关：
+一次测试全部常规关卡：
 
 ```sh
 make test
@@ -510,13 +510,13 @@ make test
 
 #### GitHub Actions 自测
 
-提交并 push 个人 `bomb` 和解法后，仓库中的 `BombLab public tests` 工作流会自动运行。它分别测试正式六关和选做 Honor，不读取 `config.txt`，不需要学号、Secrets 或登录令牌。
+提交并 push 个人 `bomb` 和解法后，仓库中的 `BombLab public tests` 工作流会自动运行。它分别测试常规六关和 Honor 关，不读取 `config.txt`，不需要学号、Secrets 或登录令牌。
 
 课程模板仓库本身跳过这组解题任务；由模板创建的个人仓库会正常运行。刚创建仓库、还没有提交个人炸弹时，Actions 会提示 `Personal bomb is missing`，先领取并提交 `bomb`，再查看测试结果。
 
 在 GitHub 仓库的 Actions 页面打开本次运行，查看 `Phase 1 public tests` 至 `Phase 6 public tests`。某关失败不会取消其他关，点开任务日志可以查看失败的 seed 和错误类别。
 
-> **Honor 是选做题。** 没有实现 `solve_secret` 时，`Secret phase public tests (optional)` 显示 `not attempted` 并通过；实现后才逐个 seed 检查。这一项失败只表示 Honor 有问题，不代表正式六关没通过，也不会让正式六关扣分，请分别查看六个正式关卡的结果。
+> 没有实现 `solve_secret` 时，`Secret phase public tests (optional)` 显示 `not attempted` 并通过；实现后才逐个 seed 检查。这一项失败只表示 Honor 有问题，不代表常规六关没通过，也不会让常规六关扣分，请分别查看六个常规关卡的结果。
 
 Actions 只检查公开测试，不是最终成绩。助教会使用保存的个人炸弹重新编译解法，运行隐藏测试；报告按提交要求检查，不单独计分。
 
@@ -530,7 +530,7 @@ Actions 只检查公开测试，不是最终成绩。助教会使用保存的个
 int solve_secret(uint64_t challenge, uint64_t context, char *out, size_t cap);
 ```
 
-`challenge` 是 Honor 的 challenge，`context` 由前六行口令得到。`./defuser --secret` 会先调用六个正式关卡的求解函数计算 `context`，六关未完成时会直接报错。`solve_secret` 写出完整的第七行，不受正式六关整数格式的限制，但仍须是一行 ASCII 文本，不包含换行。
+`challenge` 是 Honor 的 challenge，`context` 由前六行口令得到。`./defuser --secret` 会先调用六个常规关卡的求解函数计算 `context`，六关未完成时会直接报错。`solve_secret` 写出完整的第七行，不受常规六关整数格式的限制，但仍须是一行 ASCII 文本，不包含换行。
 
 可以从 `secret_gate`、`secret_copy` 和 `secret_phase` 开始分析。入口和校验方式需要自己观察，不要求覆盖返回地址，也不需要 shellcode。
 
@@ -567,7 +567,7 @@ python3 public_test.py --secret
 
 只有输出 `Secret phase defused.` 才算 Honor 通过；公开测试全部通过时显示 `Secret public tests: 10/10 (optional)`。`make test` 在六关全部通过后也会自动做这项检查。
 
-公开测试和评分都要求同一个 seed 下的前六关正确。`prerequisite_` 开头的错误表示前六关在该 seed 下尚未通过，不是 Honor 答案本身的错误；评分时某个隐藏 seed 下任一正式关卡出错，该 seed 的 Honor 也不得分。
+公开测试和评分都要求同一个 seed 下的前六关正确。`prerequisite_` 开头的错误表示前六关在该 seed 下尚未通过，不是 Honor 答案本身的错误；评分时某个隐藏 seed 下任一常规关卡出错，该 seed 的 Honor 也不得分。
 
 ## 常见问题
 
@@ -608,7 +608,7 @@ make
 
 ### 修改配置能换题吗
 
-不能。配置只用于下载，正式评分按学号使用助教保存的对应炸弹。误领他人的炸弹时，请先保留自己的解法文件，删除错误的 `bomb`，用自己的学号重新领取。
+不能。配置只用于下载，常规评分按学号使用助教保存的对应炸弹。误领他人的炸弹时，请先保留自己的解法文件，删除错误的 `bomb`，用自己的学号重新领取。
 
 ### 其他问题
 
@@ -624,7 +624,7 @@ make
 
 | 文件 | 要求 |
 | --- | --- |
-| `defuser.c` | 正式关卡解法；Honor 解法也写在这个文件中 |
+| `defuser.c` | 关卡解法 |
 | `report.md` 或 `report.pdf` | 实验报告，任选一种格式，不提交 `.doc` 或 `.docx` |
 | `bomb` | 个人炸弹，用于 Actions 公开自测 |
 
@@ -677,13 +677,12 @@ git push -f origin final
 | 项目 | 分值 |
 | --- | ---: |
 | 提交格式：有 `defuser.c` 和报告、已推送 `final` 标签 | 2 |
-| 正式六关，每关 18 分 | 108 |
-| 实验报告（必交，不单独计分） | 0 |
-| 基础分合计 | 110 |
-| Honor（选做），额外加分 | +10 |
+| 常规六关，每关 18 分 | 108 |
+| Honor | 10 |
 | 含 Honor 的最高总分 | 120 |
+| 实验报告 | 抽查，单独评分 |
 
-每个正式关卡使用 128 个隐藏 challenge，按通过比例计分，例如通过一半测试得 9 分。Honor 使用 128 个隐藏 seed，同样按通过比例计分。公开测试不单独计分，只针对公开 seed 写答案表不能完成实验。
+每个常规关卡使用 128 个隐藏 challenge，按通过比例计分，例如通过一半测试得 9 分。Honor 使用 128 个隐藏 seed，同样按通过比例计分。公开测试不单独计分，只针对公开 seed 写答案表不能完成实验。
 
 实验报告的要求见上面的“内容要求”；未提交报告不能获得格式分。报告检查与抽查安排以课程通知为准。未完全通关时，可以记录已经确认的分析过程和遇到的问题。
 
