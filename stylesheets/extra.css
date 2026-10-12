@@ -38,3 +38,20 @@ html {
 .ta-card p {
   margin: 0.6rem 0 0;
 }
+
+.md-typeset .text-red {
+  color: #d32f2f;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .text-red {
+  color: #ef5350;
+}
+
+.md-typeset .text-bold {
+  font-weight: 700;
+}
+
+.md-typeset h4.bomblab-method {
+  font-size: 1.3em;
+  font-weight: 700;
+}
