@@ -1933,7 +1933,7 @@
 <p><strong>DDL：2026 年 10 月 30 日 23:59</strong></p>
 <h2 id="_1">实验简介</h2>
 <p>本实验是 CSAPP 第三章配套实验。你需要用反汇编和 GDB 分析一个没有提供源码的程序，理解其中的函数调用、分支、循环、递归和指针操作，再用 C 语言写出对应的解法。</p>
-<p>每位同学领取自己的二进制炸弹 <code>bomb</code>，完成六个正式关卡，并提交 <code>defuser.c</code> 和实验报告。正式六关考点相同，但不同同学的常量、运算和数据布局可能不同。另有一个选做的 Honor。</p>
+<p>每位同学领取自己的二进制炸弹 <code>bomb</code>，完成六个正式关卡和 Honor，并提交 <code>defuser.c</code> 和实验报告。正式六关考点相同，但不同同学的常量、运算和数据布局可能不同。Honor 也是必做题。</p>
 <p><strong>故事背景：《这里还没有明天》</strong></p>
 <p>一个普通的晚上，你和林夏在实验室接上了一台旧设备，却误入了一座陌生的数字城市。住在这里的，是 AI。</p>
 <p>街边的维护站亮着灯。你们走进去，终端上留着一条消息：</p>
@@ -1943,7 +1943,7 @@
 <p>—— sky</p>
 <p><strong>本实验提交的是解法程序，不是六个固定密码。</strong> 每关会给出一个数值 challenge，正确口令随它变化。你需要在 <code>defuser.c</code> 中实现从 challenge 算出口令的函数；助教会用未公开的输入检查解法。</p>
 </blockquote>
-<p>基础分为 110 分，Honor 最多额外加 10 分，最高总分为 120 分。具体截止时刻、迟交规则和报告检查安排以 E-Learning 的课程公告及本实验作业页面为准。</p>
+<p>本实验总分为 120 分：正式六关各 18 分，共 108 分；Honor 10 分；提交格式 2 分。Honor 计入总分，不再作为选做加分题。具体截止时刻、迟交规则和报告检查安排以 E-Learning 的课程公告及本实验作业页面为准。</p>
 <div class="admonition tip">
 <p class="admonition-title">前排提示</p>
 <p>本实验的工作量可能较大，建议尽早开始，不要把调试和报告留到截止前。可以在课程允许的范围内合理使用 AI 工具辅助理解汇编、排查错误和整理思路，但要自己验证结果，能解释提交的代码与分析过程，并在报告中说明使用情况。</p>
@@ -2028,7 +2028,7 @@
 </tr>
 <tr>
 <td><code>public_test.py</code>、<code>tests/public.json</code></td>
-<td>公开测试程序和 seed，包括正式六关和选做 Honor</td>
+<td>公开测试程序和 seed，包括正式六关和 Honor</td>
 </tr>
 <tr>
 <td><code>.github/workflows/public-tests.yml</code></td>
@@ -2546,17 +2546,17 @@
 <p>一次测试全部正式六关：</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>make<span class="w"> </span><span class="nb">test</span>
 </span></code></pre></div>
-<p>六关全部公开测试通过时显示 <code>Public tests: 60/60</code>，随后检查 Honor：还没有实现 <code>solve_secret</code> 时显示 <code>Secret phase: not attempted</code>，不算失败。</p>
+<p>六关全部公开测试通过时显示 <code>Public tests: 60/60</code>，随后检查 Honor。还没有实现 <code>solve_secret</code> 时，Honor 测试会显示 <code>FAIL (solver_error)</code>；需要完成 Honor 后，完整测试才能通过。</p>
 <p>公开测试通过后，再选一个没有用于调试、也不在公开列表中的 seed 检查，例如：</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>./defuser<span class="w"> </span>--seed<span class="w"> </span><span class="m">43</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>./bomb<span class="w"> </span>--seed<span class="w"> </span><span class="m">43</span>
 </span></code></pre></div>
 <p>一次运行正确不能证明所有输入都正确。还需要检查分支、循环边界和不同的数据起点。</p>
 <h4 id="github-actions">GitHub Actions 自测</h4>
-<p>提交并 push 个人 <code>bomb</code> 和解法后，仓库中的 <code>BombLab public tests</code> 工作流会自动运行。它分别测试正式六关和选做 Honor，不读取 <code>config.txt</code>，不需要学号、Secrets 或登录令牌。</p>
+<p>提交并 push 个人 <code>bomb</code> 和解法后，仓库中的 <code>BombLab public tests</code> 工作流会自动运行。它分别测试正式六关和 Honor，不读取 <code>config.txt</code>，不需要学号、Secrets 或登录令牌。</p>
 <p>课程模板仓库本身跳过这组解题任务；由模板创建的个人仓库会正常运行。刚创建仓库、还没有提交个人炸弹时，Actions 会提示 <code>Personal bomb is missing</code>，先领取并提交 <code>bomb</code>，再查看测试结果。</p>
 <p>在 GitHub 仓库的 Actions 页面打开本次运行，查看 <code>Phase 1 public tests</code> 至 <code>Phase 6 public tests</code>。某关失败不会取消其他关，点开任务日志可以查看失败的 seed 和错误类别。</p>
 <blockquote>
-<p><strong>Honor 是选做题。</strong> 没有实现 <code>solve_secret</code> 时，<code>Secret phase public tests (optional)</code> 显示 <code>not attempted</code> 并通过；实现后才逐个 seed 检查。这一项失败只表示 Honor 有问题，不代表正式六关没通过，也不会让正式六关扣分，请分别查看六个正式关卡的结果。</p>
+<p><strong>Honor 计入总分，占 10 分。</strong> <code>Honor public tests</code> 会逐个 seed 检查；没有实现 <code>solve_secret</code> 时，该任务会失败。Honor 失败不影响正式六关各自的得分，请分别查看各关的测试结果。</p>
 </blockquote>
 <p>Actions 只检查公开测试，不是最终成绩。助教会使用保存的个人炸弹重新编译解法，运行隐藏测试；报告按提交要求检查，不单独计分。</p>
 <h3 id="honor">Honor</h3>
@@ -2590,7 +2590,7 @@
 </span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="o">{</span><span class="w"> </span>./defuser<span class="w"> </span>--seed<span class="w"> </span><span class="m">42</span><span class="p">;</span><span class="w"> </span>./defuser<span class="w"> </span>--secret<span class="w"> </span>--seed<span class="w"> </span><span class="m">42</span><span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>./bomb<span class="w"> </span>--seed<span class="w"> </span><span class="m">42</span>
 </span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>python3<span class="w"> </span>public_test.py<span class="w"> </span>--secret
 </span></code></pre></div>
-<p>只有输出 <code>Secret phase defused.</code> 才算 Honor 通过；公开测试全部通过时显示 <code>Secret public tests: 10/10 (optional)</code>。<code>make test</code> 在六关全部通过后也会自动做这项检查。</p>
+<p>只有输出 <code>Secret phase defused.</code> 才算 Honor 通过；公开测试全部通过时显示 <code>Secret public tests: 10/10</code>。<code>make test</code> 在六关全部通过后也会自动做这项检查。</p>
 <p>公开测试和评分都要求同一个 seed 下的前六关正确。<code>prerequisite_</code> 开头的错误表示前六关在该 seed 下尚未通过，不是 Honor 答案本身的错误；评分时某个隐藏 seed 下任一正式关卡出错，该 seed 的 Honor 也不得分。</p>
 <h2 id="_26">常见问题</h2>
 <h3 id="make-bomb"><code>make bomb</code> 下载失败</h3>
@@ -2717,19 +2717,15 @@
 <td style="text-align: right;">108</td>
 </tr>
 <tr>
+<td>Honor（必做）</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
 <td>实验报告（必交，不单独计分）</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>基础分合计</td>
-<td style="text-align: right;">110</td>
-</tr>
-<tr>
-<td>Honor（选做），额外加分</td>
-<td style="text-align: right;">+10</td>
-</tr>
-<tr>
-<td>含 Honor 的最高总分</td>
+<td>总分</td>
 <td style="text-align: right;">120</td>
 </tr>
 </tbody>
@@ -2770,7 +2766,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月12日 09:51:13 UTC">2026年10月12日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月12日 12:08:10 UTC">2026年10月12日</span>
   </span>
 
     
@@ -2797,6 +2793,11 @@
 
     
     <nav>
+      
+        <a href="https://github.com/weijiansh1" class="md-author" title="@weijiansh1">
+          
+          <img src="https://avatars.githubusercontent.com/u/233959232?v=4&amp;size=72" alt="weijiansh1">
+        </a>
       
         <a href="https://github.com/JurFal" class="md-author" title="@JurFal">
           
