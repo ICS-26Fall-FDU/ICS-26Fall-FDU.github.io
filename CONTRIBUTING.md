@@ -10,6 +10,14 @@ To encourage you to contribute, we offer the following incentive:
 
 **Each student enrolled in AIE210006.01 or CS10005.02 can earn 3 bonus points toward their final course grade by making a qualifying contribution following these guidelines. We will notify students via comments when their contributions are approved for credit.**
 
+## AI Policy
+
+Using AI tools to help prepare your contribution is allowed, but please keep the following two rules in mind:
+
+1. **Understand and take responsibility for what you submit.** AI-generated documentation often suffers from redundancy: it tends to repeat introductions or overlap with content already covered elsewhere. Before submitting, carefully review and trim AI-generated content, and make sure you understand every part of it. You are responsible for the quality of what you contribute.
+
+2. **Write your Issues and PR descriptions yourself.** Do not use AI to generate the text of your Issue reports or PR descriptions. PRs and Issues whose descriptions suspected to be AI-generated will be closed without further review.
+
 ## Found a Bug?
 
 If you encounter a bug or notice something that could be improved, we'd love to hear about it!
