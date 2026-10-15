@@ -1352,12 +1352,19 @@
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># 将当前目录下的所有后缀为 .cpp 的文件改动添加到暂存区（git add 支持字符串通配符）</span>
 </span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>git<span class="w"> </span>add<span class="w"> </span>*.cpp
 </span></code></pre></div>
-<p>暂存区内的改动可以用 <code>git restore</code> 随时回退。</p>
+<p>暂存区内的改动可以用 <code>git restore --staged</code> 随时回退至非暂存状态。</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 将当前目录下（及其递归子目录）暂存区的所有改动取消暂存</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>restore<span class="w"> </span>.
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>restore<span class="w"> </span>--staged<span class="w"> </span>.
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 将暂存区的单个改动回退取消暂存</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>git<span class="w"> </span>restore<span class="w"> </span>src/student.cpp
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>git<span class="w"> </span>restore<span class="w"> </span>--staged<span class="w"> </span>src/student.cpp
+</span></code></pre></div>
+<p>此外，可以使用 <code>git restore</code> 放弃未提交的改动（较难恢复，谨慎操作）。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 放弃当前目录下（及其递归子目录）所有未提交改动</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>restore<span class="w"> </span>.
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 放弃单个文件的未提交改动</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>git<span class="w"> </span>restore<span class="w"> </span>src/student.cpp
 </span></code></pre></div>
 </li>
 <li>
@@ -1383,15 +1390,15 @@
 <li>
 <p><code>git status</code></p>
 <p>经常性地在运行 Git 命令前运行 <code>git status</code> 是个好习惯，它可以告诉你，你当前在哪个分支下，有哪些修改还未被暂存，有哪些暂存区的文件还没被提交。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>status
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="o">(</span>use<span class="w"> </span><span class="s2">"git restore --staged &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span>new<span class="w"> </span>file:<span class="w">   </span>added-file
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Untracked<span class="w"> </span>files:
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span>untracked-file
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">(</span>use<span class="w"> </span><span class="s2">"git restore --staged &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span>new<span class="w"> </span>file:<span class="w">   </span>added-file
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Untracked<span class="w"> </span>files:
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span>untracked-file
 </span></code></pre></div>
 </li>
 <li>
@@ -1402,67 +1409,67 @@
 <p class="admonition-title">Tip</p>
 <p>如果你想查看当前有哪些分支，可以使用 <code>git branch</code> 或者 <code>git branch -a</code>。查阅资料并在报告中回答，这两条命令的区别是什么？</p>
 </div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>dev
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>dev
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>*<span class="w"> </span>main
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-a
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>dev
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>*<span class="w"> </span>main
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>dev
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>dev
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>*<span class="w"> </span>main
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-a
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>dev
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>*<span class="w"> </span>main
 </span></code></pre></div>
 </li>
 <li>
 <p><code>git switch</code></p>
-<p>可以使用 <code>git switch &lt;branch-name&gt;</code> 来切换到已经存在的分支。注意，你需要先提交你在当前分支上的所有文件，假如在当前分支上还有未 commit 的文件，那么这次 <code>git switch</code> 会失败。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>dev
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'dev'</span>
+<p>可以使用 <code>git switch &lt;branch-name&gt;</code> 来切换到已经存在的分支。注意，假如在当前分支上有会与目标分支产生冲突的未提交文件（不论是否暂存），那么这次 <code>git switch</code> 会失败。在切换分支前，通常需要先提交你在当前分支上的所有文件。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>dev
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'dev'</span>
 </span></code></pre></div>
 <p>可以使用 <code>git switch -c &lt;branch-name&gt;</code> 从当前分支创建一个新的分支，并切换到这个分支。新分支会包含原分支的提交历史。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>dev
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span><span class="s1">'dev'</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>dev
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span><span class="s1">'dev'</span>
 </span></code></pre></div>
 </li>
 <li>
 <p><code>git merge</code></p>
 <p><code>git merge</code> 用来把另一个分支的提交历史合并到当前分支。</p>
 <p>假设当前在 main 分支，你想合并 feature 分支：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>merge<span class="w"> </span>feature
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git<span class="w"> </span>merge<span class="w"> </span>feature
 </span></code></pre></div>
 <p>合并有两种常见的结果：</p>
 <ol>
 <li>
 <p>Fast-forward 合并。如果 main 没有新的提交，只落后于 feature：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>main:<span class="w">    </span>A---B
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">            </span><span class="se">\</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>feature:<span class="w">       </span>C---D
-</span></code></pre></div>
-<p>执行 <code>git merge feature</code> 后 <code>main</code> 分支会直接“快进”到 <code>D</code>。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>main:<span class="w">    </span>A---B---C---D
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>main:<span class="w">    </span>A---B
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">            </span><span class="se">\</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>feature:<span class="w">       </span>C---D
+</span></code></pre></div>
+<p>执行 <code>git merge feature</code> 后 <code>main</code> 分支会直接“快进”到 <code>D</code>。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>main:<span class="w">    </span>A---B---C---D
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">            </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>feature:<span class="w">       </span>C---D
 </span></code></pre></div>
 </li>
 <li>
 <p>非 fast-forward 合并。如果两个分支各有提交：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>main:<span class="w">    </span>A---B---E
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">            </span><span class="se">\</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>feature:<span class="w">       </span>C---D
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>main:<span class="w">    </span>A---B---E
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">            </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>feature:<span class="w">       </span>C---D
 </span></code></pre></div>
 <p>执行 <code>git merge feature</code> 后 Git 会创建一个新的合并提交（merge commit）<code>F</code>：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>main:<span class="w">    </span>A---B---E---F
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">            </span><span class="se">\ </span><span class="w">    </span>/
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>feature:<span class="w">       </span>C---D
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>main:<span class="w">    </span>A---B---E---F
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">            </span><span class="se">\ </span><span class="w">    </span>/
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>feature:<span class="w">       </span>C---D
 </span></code></pre></div>
 </li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>当两个分支修改了同一文件的同一位置，就会出现冲突（conflict），Git 无法自动合并。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>feature
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Auto-merging<span class="w"> </span>main.cpp
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>main.cpp
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class="p">;</span><span class="w"> </span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>commit<span class="w"> </span>the<span class="w"> </span>result.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>user@linux:~/test-git$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>feature
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Auto-merging<span class="w"> </span>main.cpp
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>main.cpp
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class="p">;</span><span class="w"> </span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>commit<span class="w"> </span>the<span class="w"> </span>result.
 </span></code></pre></div>
 <p>这时需要你手动修改文件处理冲突并提交。</p>
 </div>
@@ -1513,8 +1520,8 @@
 </li>
 <li>
 <p>验证配置是否成功</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>user@linux:~$<span class="w"> </span>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Hi<span class="w"> </span>&lt;用户名&gt;!<span class="w"> </span>You<span class="err">'</span>ve<span class="w"> </span>successfully<span class="w"> </span>authenticated,<span class="w"> </span>but<span class="w"> </span>GitHub<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>provide<span class="w"> </span>shell<span class="w"> </span>access.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>user@linux:~$<span class="w"> </span>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Hi<span class="w"> </span>&lt;用户名&gt;!<span class="w"> </span>You<span class="err">'</span>ve<span class="w"> </span>successfully<span class="w"> </span>authenticated,<span class="w"> </span>but<span class="w"> </span>GitHub<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>provide<span class="w"> </span>shell<span class="w"> </span>access.
 </span></code></pre></div>
 <p>如果没有得到期望的输出，请检查密钥对配置，如果仍有问题，请联系助教。</p>
 </li>
@@ -1526,7 +1533,7 @@
 <li>
 <p><code>git clone</code></p>
 <p>克隆远程仓库到本地。远程链接使用 HTTP 和 SSH 格式均可，其中 SSH 格式链接可通过 Watt Toolkit 加速。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>user@linux:~$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>&lt;remote<span class="w"> </span>URL&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>user@linux:~$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>&lt;remote<span class="w"> </span>URL&gt;
 </span></code></pre></div>
 </li>
 <li>
@@ -1545,31 +1552,31 @@
 <p>然后点击 <code>Code</code>，再选择 <code>SSH</code>，复制这串 URL。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/lab0-github1.png" data-desc-position="bottom"><img alt="alt text" src="../../assets/lab0-github1.png"></a></p>
 <p>在终端运行 <code>git clone git@github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io.git</code>（你需要替换成你自己仓库的地址）</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>user@linux:~#<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io.git
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>正克隆到<span class="w"> </span><span class="s1">'ICS-26Fall-FDU.github.io'</span>...
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">215</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">215</span>/215<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">112</span>/112<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">94</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">195</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">74</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>接收对象中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">215</span>/215<span class="o">)</span>,<span class="w"> </span><span class="m">787</span>.02<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">66</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span>完成.
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>处理<span class="w"> </span>delta<span class="w"> </span>中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">94</span>/94<span class="o">)</span>,<span class="w"> </span>完成.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>user@linux:~#<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io.git
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>正克隆到<span class="w"> </span><span class="s1">'ICS-26Fall-FDU.github.io'</span>...
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">215</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">215</span>/215<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">112</span>/112<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">94</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">195</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">74</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>接收对象中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">215</span>/215<span class="o">)</span>,<span class="w"> </span><span class="m">787</span>.02<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">66</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span>完成.
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>处理<span class="w"> </span>delta<span class="w"> </span>中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">94</span>/94<span class="o">)</span>,<span class="w"> </span>完成.
 </span></code></pre></div>
 <p>下一个 lab 发布时，我们的网页仓库会有更新，需要运行 <code>git pull</code></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>user@linux:~/ICS-26Fall-FDU.github.io#<span class="w"> </span>git<span class="w"> </span>pull
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">50</span>/50<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">12</span>/12<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">13</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">12</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>展开对象中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">29</span>/29<span class="o">)</span>,<span class="w"> </span><span class="m">24</span>.41<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">328</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span>完成.
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>来自<span class="w"> </span>github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span>47f244c..800df66<span class="w">  </span>main<span class="w">       </span>-&gt;<span class="w"> </span>origin/main
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span>b4433a5..5d19f33<span class="w">  </span>gh-pages<span class="w">   </span>-&gt;<span class="w"> </span>origin/gh-pages
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>更新<span class="w"> </span>47f244c..800df66
-</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>Fast-forward
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span>docs/misc/ssh.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">169</span><span class="w"> </span>+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">    </span>mkdocs.yml<span class="w">       </span><span class="p">|</span><span class="w">   </span><span class="m">3</span><span class="w"> </span>+-
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="m">2</span><span class="w"> </span>files<span class="w"> </span>changed,<span class="w"> </span><span class="m">171</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">1</span><span class="w"> </span>deletion<span class="o">(</span>-<span class="o">)</span>
-</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>docs/misc/ssh.md
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>user@linux:~/ICS-26Fall-FDU.github.io#<span class="w"> </span>git<span class="w"> </span>pull
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">50</span>/50<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">12</span>/12<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">13</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">12</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>展开对象中:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">29</span>/29<span class="o">)</span>,<span class="w"> </span><span class="m">24</span>.41<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">328</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span>完成.
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>来自<span class="w"> </span>github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span>47f244c..800df66<span class="w">  </span>main<span class="w">       </span>-&gt;<span class="w"> </span>origin/main
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span>b4433a5..5d19f33<span class="w">  </span>gh-pages<span class="w">   </span>-&gt;<span class="w"> </span>origin/gh-pages
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>更新<span class="w"> </span>47f244c..800df66
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>Fast-forward
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span>docs/misc/ssh.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">169</span><span class="w"> </span>+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span>mkdocs.yml<span class="w">       </span><span class="p">|</span><span class="w">   </span><span class="m">3</span><span class="w"> </span>+-
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">    </span><span class="m">2</span><span class="w"> </span>files<span class="w"> </span>changed,<span class="w"> </span><span class="m">171</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">1</span><span class="w"> </span>deletion<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">    </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>docs/misc/ssh.md
 </span></code></pre></div>
 <p>如果你在自己的本地仓库提交了 commit，你就可以执行 <code>git push</code>，然后在 GitHub 上向我们的仓库发起 Pull Request，此部分可能会给你的实验提供附加分。</p>
 </details>
@@ -1606,9 +1613,9 @@
 <p class="admonition-title">Info</p>
 <p>只要填入任意字符串就算完成，当然你也可以随意发挥（程序的正确性不纳入计分，有修改即可）。</p>
 <p>如果你想要编译运行 <code>main.c</code>，执行</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>make
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>./main
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>make<span class="w"> </span>clean
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>make
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>./main
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>make<span class="w"> </span>clean
 </span></code></pre></div>
 </div>
 </li>
@@ -1700,7 +1707,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月14日 09:19:20 UTC">2026年9月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月15日 07:33:17 UTC">2026年10月15日</span>
   </span>
 
     
