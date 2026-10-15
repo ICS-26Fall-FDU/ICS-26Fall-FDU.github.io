@@ -201,13 +201,23 @@ Git 是一种分布式版本控制软件。
         git add *.cpp
         ```
 
-        暂存区内的改动可以用 `git restore` 随时回退。
+        暂存区内的改动可以用 `git restore --staged` 随时回退至非暂存状态。
 
         ```bash
         # 将当前目录下（及其递归子目录）暂存区的所有改动取消暂存
-        git restore .
+        git restore --staged .
 
         # 将暂存区的单个改动回退取消暂存
+        git restore --staged src/student.cpp
+        ```
+
+        此外，可以使用 `git restore` 放弃未提交的改动（较难恢复，谨慎操作）。
+
+        ```bash
+        # 放弃当前目录下（及其递归子目录）所有未提交改动
+        git restore .
+
+        # 放弃单个文件的未提交改动
         git restore src/student.cpp
         ```
 
@@ -268,7 +278,7 @@ Git 是一种分布式版本控制软件。
 
     - `git switch`
 
-        可以使用 `git switch <branch-name>` 来切换到已经存在的分支。注意，你需要先提交你在当前分支上的所有文件，假如在当前分支上还有未 commit 的文件，那么这次 `git switch` 会失败。
+        可以使用 `git switch <branch-name>` 来切换到已经存在的分支。注意，假如在当前分支上有会与目标分支产生冲突的未提交文件（不论是否暂存），那么这次 `git switch` 会失败。在切换分支前，通常需要先提交你在当前分支上的所有文件。
 
         ```bash
         user@linux:~/test-git$ git switch dev
