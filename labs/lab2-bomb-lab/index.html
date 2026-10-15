@@ -1982,7 +1982,6 @@
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>bomb
 </span></code></pre></div>
 <p><code>config.txt</code> 只用于领取。已有炸弹的编译、运行和测试不再需要学号配置，你可以清空学号或删除配置，不要求提交；<code>package.json</code> 也不需要提交。若不希望把配置中的学号提交到 GitHub，请在首次提交前处理，之后删除文件不会清除已有 Git 历史。</p>
-<p>这不代表匿名领取：个人炸弹的下载附件名和 <code>package.json</code> 中仍包含学号。</p>
 <p>请使用自己的炸弹。最终评分脚本会根据 E-Learning 提交者的学号，使用助教保存的对应 <code>bomb</code> 测试解法，不根据仓库中的配置或上传的二进制决定题目。</p>
 <h2 id="_6">主要文件</h2>
 <p>以下路径均相对于学生仓库根目录：</p>
@@ -2500,7 +2499,6 @@
 </span></code></pre></div>
 <p>程序显示本关的 challenge，然后等待输入一行口令。口令由若干个无符号十进制整数组成，炸弹不提示个数，需要从汇编中自己找出。<code>--phase 1</code> 表示只运行第 1 关；省略这个参数则依次运行六关。也可以把口令写进文件，用重定向输入，例如 <code>./bomb --seed 42 &lt; answers.txt</code>。</p>
 <p>seed 用来生成各关的 challenge。同一个 seed 和关卡对应同一个 challenge，适合反复调试；换 seed 可以检查另一组输入。分析时先固定 seed，不要每次运行都换。</p>
-<p>输出连接终端时会显示剧情和彩色进度，口令来自文件或管道时也一样。设置 <code>NO_COLOR=1</code> 可以关闭颜色，例如 <code>NO_COLOR=1 ./bomb --seed 42</code>。自动测试和输出重定向只保留测试信息；剧情不影响求解接口或评分。</p>
 <h4 id="_24">调试炸弹</h4>
 <div class="admonition tip">
 <p class="admonition-title">提示：口令格式</p>
@@ -2560,7 +2558,7 @@
 </blockquote>
 <p>Actions 只检查公开测试，不是最终成绩。助教会使用保存的个人炸弹重新编译解法，运行隐藏测试；报告按提交要求检查，不单独计分。</p>
 <h3 id="honor">Honor</h3>
-<p>一次运行全部六关（不带 <code>--phase</code>），并且口令来自管道或文件时，炸弹在六关通过后还会读取第七行；没有第七行时正常结束。在终端或 GDB 中手动输入六行，都不会进入 Honor。</p>
+<p>一次运行全部六关（不带 <code>--phase</code>），并且口令来自管道或文件时，炸弹在六关通过后还会读取 Honor 口令，通常是第七行。新版会跳过空行和只含空白字符的行；没有 Honor 口令时正常结束六关运行，但 Honor 仍未完成。在终端或 GDB 中手动输入六行，都不会进入 Honor。</p>
 <p>求解接口是 <code>defuser.h</code> 中的：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">solve_secret</span><span class="p">(</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">challenge</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">cap</span><span class="p">);</span>
 </span></code></pre></div>
@@ -2595,12 +2593,16 @@
 <h2 id="_26">常见问题</h2>
 <h3 id="make-bomb"><code>make bomb</code> 下载失败</h3>
 <p>下载程序会自动重试，并在普通下载入口连接失败时尝试 GitHub 官方 API。在线下载会校验 SHA-256，通过后才安装炸弹，不需要额外填写令牌。</p>
-<p>如果仍然失败，可以在浏览器中打开 <a href="https://github.com/ICS-26Fall-FDU/BombLab/releases/tag/bombs">炸弹下载页面</a>，下载自己的 <code>bomb-&lt;学号&gt;.tar.gz</code>，再导入：</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>python3<span class="w"> </span>fetch_bomb.py<span class="w"> </span>--file<span class="w"> </span>bomb-243xxxx0175.tar.gz
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>make
+<p>如果仍然失败，先运行以下命令获得自己的附件链接，不需要手动查找附件：</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>python3<span class="w"> </span>fetch_bomb.py<span class="w"> </span>--print-url
 </span></code></pre></div>
-<p>把文件名换成自己的附件路径，并确保配置中的学号正确。已有 <code>bomb</code> 时无需重新下载；只有丢失或删除炸弹后，才需要重新填写学号领取。</p>
-<p>如果助教发布了新版炸弹，想更新终端剧情或展示，请先备份自己的解法，在 <code>config.txt</code> 中重新填写学号，直接运行 <code>python3 fetch_bomb.py</code>。它只替换 <code>bomb</code> 和 <code>package.json</code>，不会覆盖 <code>defuser.c</code>；领取后可再次清空学号。已有 <code>bomb</code> 时，<code>make bomb</code> 不会主动更新。</p>
+<p>在浏览器中打开输出的链接，下载完成后导入：</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>python3<span class="w"> </span>fetch_bomb.py<span class="w"> </span>--file<span class="w"> </span><span class="s2">"下载的压缩包路径"</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>make
+</span></code></pre></div>
+<p>把引号中的内容换成下载文件的实际路径，并确保配置中的学号正确。已有 <code>bomb</code> 时无需重新下载；只有丢失或删除炸弹后，才需要重新填写学号领取。</p>
+<p>2026 年 10 月 12 日的修订只更正 <code>bomb --help</code>，并让 Honor 跳过空行及只含空白字符的行；题目参数、答案和评分规则不变。已领取的炸弹仍可继续使用，不要求重新领取或重做题目。</p>
+<p>重新领取时，请使用当前模板的 <code>fetch_bomb.py</code>；旧模板可从<a href="https://github.com/ICS-26Fall-FDU/BombLab/releases/latest">最新正式 Release</a> 下载同名脚本，只替换这个文件，不要覆盖解法或报告。在 <code>config.txt</code> 中重新填写自己的学号，运行 <code>python3 fetch_bomb.py</code>，或按上面的 <code>--file</code> 方法导入。程序只替换 <code>bomb</code> 和 <code>package.json</code>，不会覆盖 <code>defuser.c</code>；领取后可再次清空学号。如需更新 Actions 使用的炸弹，重新执行 <code>git add -f bomb</code> 并提交、push。已有 <code>bomb</code> 时，<code>make bomb</code> 不会主动更新。</p>
 <h3 id="_27">炸弹无法执行</h3>
 <p>先检查 <code>uname -sm</code> 是否为 <code>Linux x86_64</code>。如果出现 <code>Permission denied</code>，执行 <code>chmod +x bomb</code>；如果出现 <code>Exec format error</code> 或 <code>cannot execute binary file</code>，检查是否正在 Windows、macOS 或 ARM 环境中运行，换到符合要求的 Linux 环境。</p>
 <h3 id="_28">公开测试失败</h3>
@@ -2681,22 +2683,22 @@
 <h3 id="_33">上传仓库链接和代码</h3>
 <p><strong>先在 E-Learning 本实验作业页面提交自己的 GitHub 仓库链接。</strong> 确保仓库公开。</p>
 <p>然后在仓库根目录执行。以下使用 PDF 报告，Markdown 报告将 <code>report.pdf</code> 换成 <code>report.md</code>，并添加引用的图片目录：</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>bomb
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>git<span class="w"> </span>add<span class="w"> </span>defuser.c<span class="w"> </span>report.pdf
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"submit lab2"</span>
-</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>git<span class="w"> </span>tag<span class="w"> </span>final
-</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>git<span class="w"> </span>push
-</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>final
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>bomb
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>git<span class="w"> </span>add<span class="w"> </span>defuser.c<span class="w"> </span>report.pdf
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"submit lab2"</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>git<span class="w"> </span>tag<span class="w"> </span>final
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>git<span class="w"> </span>push
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>final
 </span></code></pre></div>
 <blockquote>
 <p><strong>普通的 <code>git push</code> 不会自动推送新标签。</strong> 最后一条命令不能省略。到 GitHub 的 Tags 页面检查 <code>final</code> 是否存在、是否指向本次提交；同时检查报告和最新 Actions 结果。</p>
 </blockquote>
 <p>截止前更新作业时，重新提交并移动 <code>final</code> 标签：</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>git<span class="w"> </span>add<span class="w"> </span>defuser.c<span class="w"> </span>report.pdf
-</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"update lab2"</span>
-</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>git<span class="w"> </span>tag<span class="w"> </span>-f<span class="w"> </span>final
-</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>git<span class="w"> </span>push
-</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>final
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>git<span class="w"> </span>add<span class="w"> </span>defuser.c<span class="w"> </span>report.pdf
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"update lab2"</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>git<span class="w"> </span>tag<span class="w"> </span>-f<span class="w"> </span>final
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>git<span class="w"> </span>push
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>final
 </span></code></pre></div>
 <p>使用 Markdown 报告时，同样替换文件名并提交新增图片。助教按截止时刻收集到的 <code>final</code> 提交评分，不是按你本地尚未 push 的内容评分。</p>
 <h3 id="_34">评分规则</h3>
@@ -2766,7 +2768,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月12日 12:08:10 UTC">2026年10月12日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月15日 02:46:12 UTC">2026年10月15日</span>
   </span>
 
     
