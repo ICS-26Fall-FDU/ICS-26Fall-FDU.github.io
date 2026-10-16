@@ -1,0 +1,53 @@
+name: 内容改进建议 / Content Suggestion
+description: 建议新增、补充或改进课程文档内容
+title: "[Suggestion] "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢建议！提交前请先**搜索现有 Issue 与文档**，确认没有重复。
+        Thanks! Please **search existing issues and docs** before submitting.
+
+        请用**你自己的语言**撰写描述，不要使用 AI 生成（见贡献指南的 AI Policy）。
+  - type: input
+    id: page
+    attributes:
+      label: 相关页面 / Related page
+      description: 建议改进的页面，或建议新增文档的拟放位置
+      placeholder: 例如 docs/labs/lab2-bomb-lab.md 或 docs/misc/（新增）
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 背景与问题 / Background
+      description: 你遇到了什么情况，或现有文档缺少了什么？请描述具体场景。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你的建议 / Proposal
+      description: 你希望新增或修改什么？请说明它与现有文档的区别，避免重复已有内容。
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 适用范围 / Scope
+      description: 该建议只针对某个实验，还是普遍适用于多门实验 / 多个平台？
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 提交前确认 / Confirmation
+      options:
+        - label: 我已搜索现有 Issue 与文档，确认内容没有重复。
+          required: true
+        - label: 本描述由我本人撰写，未使用 AI 生成。
+          required: true
+        - label: 如获认可，我愿意提交对应的 Pull Request。
+          required: false
