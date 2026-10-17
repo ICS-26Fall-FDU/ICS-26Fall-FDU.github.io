@@ -106,4 +106,5 @@ nav:
   - 杂项: 
     - 使用 SSH: misc/ssh.md
     - Coding Agent 入门: misc/coding-agent.md
+    - 实验新手常见问题: misc/beginner-troubleshooting.md
   - 团队: team.md
