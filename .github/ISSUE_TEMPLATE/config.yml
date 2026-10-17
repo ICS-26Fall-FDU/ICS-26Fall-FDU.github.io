@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 贡献指南与 AI 政策 / Contributing Guide & AI Policy
+    url: https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/blob/main/CONTRIBUTING.md
+    about: 提交前请先阅读贡献指南；Issue 与 PR 的描述必须由你本人撰写，不得使用 AI 生成。

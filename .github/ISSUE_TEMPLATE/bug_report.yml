@@ -1,0 +1,54 @@
+name: 文档错误反馈 / Documentation Bug
+description: 报告文档中错误、过时或会引起误解的内容
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈！提交前请先**搜索现有 Issue**，确认没有重复。
+        Thanks! Please **search existing issues** before submitting.
+
+        请用**你自己的语言**撰写描述，不要使用 AI 生成。
+  - type: input
+    id: page
+    attributes:
+      label: 问题所在页面 / Affected page
+      description: 页面标题或文件路径
+      placeholder: 例如 docs/labs/lab0-git-lab.md
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 问题描述 / What is wrong
+      description: 请指出文档中具体哪一处有问题，以及为什么它是错误的。
+      placeholder: 在……一节写道“……”，但实际应为……
+    validations:
+      required: true
+  - type: textarea
+    id: suggested
+    attributes:
+      label: 建议的正确内容 / Suggested correction
+      description: 你建议改成什么？若有官方文档或实测依据请一并附上。
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现方式 / How to reproduce
+      description: 如果适用，说明你如何发现该问题的（例如实际运行某条命令的结果）。
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 提交前确认 / Confirmation
+      options:
+        - label: 我已搜索现有 Issue，确认没有重复。
+          required: true
+        - label: 本描述由我本人撰写，未使用 AI 生成。
+          required: true
+        - label: 如获认可，我愿意提交对应的 Pull Request。
+          required: false
