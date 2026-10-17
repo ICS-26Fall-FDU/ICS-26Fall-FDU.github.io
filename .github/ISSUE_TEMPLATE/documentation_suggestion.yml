@@ -10,7 +10,7 @@ body:
         感谢建议！提交前请先**搜索现有 Issue 与文档**，确认没有重复。
         Thanks! Please **search existing issues and docs** before submitting.
 
-        请用**你自己的语言**撰写描述，不要使用 AI 生成（见贡献指南的 AI Policy）。
+        请用**你自己的语言**撰写描述，不要使用 AI 生成。
   - type: input
     id: page
     attributes:
@@ -37,7 +37,7 @@ body:
     id: scope
     attributes:
       label: 适用范围 / Scope
-      description: 该建议只针对某个实验，还是普遍适用于多门实验 / 多个平台？
+      description: 该建议只针对某个实验，还是普遍适用于多门实验？
     validations:
       required: false
   - type: checkboxes
