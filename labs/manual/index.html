@@ -1287,18 +1287,20 @@
 <h2 id="ai">前言：试试问 AI 吧！</h2>
 <p>我们的课程文档对一部分技术概念不会涉及深入复杂的详细操作和解释，遇到卡住的操作，步骤中的异常，有困惑的概念，亦或是有想继续深入探索的知识时，试试去借助搜索引擎，或者询问各类网页端 AI 工具吧！遇到 AI 也实在解决不了的问题，可以在相关实验文档的评论区或是后续的课程群聊提出，会有乐于为大家解答的 TA 和同学出现～</p>
 <p>无论是询问 AI 还是向他人求助，<strong>详细而准确地描述你遇到的问题</strong>都有助于获得有效的解答。你可以提供的信息包括但不限于：</p>
-<div class="language-text highlight"><pre><span></span><code>1. 你想干什么，你希望的结果是什么样子的。（这很重要！）
-2. 你使用的系统、编译环境、CPU 型号或厂商。（如果需要的话）
-3. 你使用的语言和代码。请不要拍屏或直接在 IDE 里截屏。正确的做法应该是，如果代码较短，使用 [Carbon](https://carbon.now.sh) 生成图片再发到群里；如果代码较长，请同时附上代码文件，以及标注你认为关键的行数。如果实在不想搞，也请在截图的时候把行号一起截进去，而且，把代码发完整！
-4. 详细的报错信息，以及你执行了什么操作能够还原这个报错。不要问“我这份代码大概有 1% 的概率会崩溃，该怎么修改”，而是“这份代码在大多数情况下能正常运行，但是在我执行了 xxx 操作，然后再执行 xxx 操作的时候会崩溃”。
-5. 你认为这个问题可能是怎么导致的，你认为可能有哪些方向可能能解决这个问题。（这很重要！）
-</code></pre></div>
+<ol>
+<li>你想干什么，你希望的结果是什么样子的。（这很重要！）</li>
+<li>你使用的系统、编译环境、CPU 型号或厂商。（如果需要的话）</li>
+<li>你使用的语言和代码。请不要拍屏或直接在 IDE 里截屏。正确的做法应该是，如果代码较短，使用 <a href="https://carbon.now.sh">Carbon</a> 生成图片再发到群里；如果代码较长，请同时附上代码文件，以及标注你认为关键的行数。如果实在不想搞，也请在截图的时候把行号一起截进去，而且，把代码发完整！</li>
+<li>详细的报错信息，以及你执行了什么操作能够还原这个报错。不要问“我这份代码大概有 1% 的概率会崩溃，该怎么修改”，而是“这份代码在大多数情况下能正常运行，但是在我执行了 xxx 操作，然后再执行 xxx 操作的时候会崩溃”。</li>
+<li>你认为这个问题可能是怎么导致的，你认为可能有哪些方向可能能解决这个问题。（这很重要！）</li>
+</ol>
 <p>最后，提问时还应警惕“XY Problem”，你不应该在提问时过多代入自己的思考。比如，计算两数相除的循环节问题，提问者可能会想，好像书上看到过对计算精度要求高的时候应该使用高精度算法，我先导入一个 gmp 库，然后提问“如何使用高精度运算库 gmp 来计算两数相除的循环节”，这是错误的。你应该直接提问“如何计算两数相除的循环节”。</p>
 <p>此外，后续实验与项目中涉及大量代码编写，记住以下法则有助于写出清晰准确的代码：</p>
-<div class="language-text highlight"><pre><span></span><code>1. 使用良好的代码风格和有意义的变量名（而不是 abcd）。你可以参照 [谷歌代码规范](https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/) 来修改你的代码，或者使用代码格式化工具。
-2. 对于本课程，我们鼓励用 AI 生成代码，但是切记应自己通读代码，保证自己理解代码片段的逻辑和细节（我们可能会在后续实验中检验大家对自己代码的理解）。必要时，可以让模型继续重构不理解的代码片段以保证清晰。
-3. AI 编码中有以下常见问题，请大家尽量规避：在代码中添加对不可能发生情况的异常处理；复杂化简单的代码逻辑；不复用已有函数而是重新生成；把能在过程中编写的单次调用的小功能拆成函数。（我们即将推出 AI Coding 导论文档～）
-</code></pre></div>
+<ol>
+<li>使用良好的代码风格和有意义的变量名（而不是 abcd）。你可以参照 <a href="https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/">谷歌代码规范</a> 来修改你的代码，或者使用代码格式化工具。</li>
+<li>对于本课程，我们鼓励用 AI 生成代码，但是切记应自己通读代码，保证自己理解代码片段的逻辑和细节（我们可能会在后续实验中检验大家对自己代码的理解）。必要时，可以让模型继续重构不理解的代码片段以保证清晰。</li>
+<li>AI 编码中有以下常见问题，请大家尽量规避：在代码中添加对不可能发生情况的异常处理；复杂化简单的代码逻辑；不复用已有函数而是重新生成；把能在过程中编写的单次调用的小功能拆成函数。（可进一步参考 <a href="../../misc/coding-agent/">Coding Agent 入门</a>～）</li>
+</ol>
 <h2 id="linux">Linux 系统</h2>
 <p>本学期的实验需要使用 Linux 系统。如果你的电脑不是 Linux 系统，则需要使用虚拟机安装 Linux 系统。</p>
 <p>手册中详细介绍 WSL 2 虚拟机方案，<strong>建议 Windows 系统的同学选择。</strong></p>
@@ -1423,10 +1425,15 @@
 <p class="admonition-title">Info</p>
 <p><a href="https://github.com/FDUCSLG">FDUCSLG（复旦计算机爱好者协会）</a> 已经搭建了复旦自己的镜像站 <a href="https://mirrors.fducslg.com/">https://mirrors.fducslg.com/</a>，需要在校园网访问。</p>
 </div>
-<p>Ubuntu 的更换方法如下：</p>
+<p>Ubuntu 22.04 及更早版本的更换方法如下：</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/apt/sources.list<span class="w"> </span>/etc/apt/sources.list.bak
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g'</span><span class="w"> </span>/etc/apt/sources.list
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span></code></pre></div>
+<p>Ubuntu 24.04 及更高版本（目前 <code>wsl --install</code> 默认安装的版本）将软件源配置迁移到了 <code>/etc/apt/sources.list.d/ubuntu.sources</code>，更换方法如下：</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/apt/sources.list.d/ubuntu.sources<span class="w"> </span>/etc/apt/sources.list.d/ubuntu.sources.bak
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g'</span><span class="w"> </span>/etc/apt/sources.list.d/ubuntu.sources
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </span></code></pre></div>
 <p>其中第一行是将原来的文件进行备份，这只是一个好习惯而已。
 上面几行的详细说明可以参考<a href="https://mirrors.ustc.edu.cn/help/ubuntu.html">这个链接</a>，如果你使用其他发行版，也可以去这个链接中寻找相关说明。</p>
@@ -1511,7 +1518,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月14日 07:01:57 UTC">2026年9月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月24日 14:52:47 UTC">2026年10月24日</span>
   </span>
 
     
@@ -1539,6 +1546,11 @@
     
     <nav>
       
+        <a href="https://github.com/realZillionX" class="md-author" title="@realZillionX">
+          
+          <img src="https://avatars.githubusercontent.com/u/222244174?v=4&amp;size=72" alt="realZillionX">
+        </a>
+      
         <a href="https://github.com/JurFal" class="md-author" title="@JurFal">
           
           <img src="https://avatars.githubusercontent.com/u/112413958?v=4&amp;size=72" alt="JurFal">
@@ -1554,12 +1566,13 @@
           <img src="https://avatars.githubusercontent.com/u/129137808?v=4&amp;size=72" alt="fduTristin">
         </a>
       
-        <a href="https://github.com/Zecyel" class="md-author" title="@Zecyel">
-          
-          <img src="https://avatars.githubusercontent.com/u/106328128?v=4&amp;size=72" alt="Zecyel">
-        </a>
       
       
+        
+          <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/blob/main/docs/labs/manual.md" class="md-author md-author--more">
+            +1
+          </a>
+        
       
     </nav>
   </span>
