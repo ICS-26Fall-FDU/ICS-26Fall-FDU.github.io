@@ -303,38 +303,46 @@ Git 是一种分布式版本控制软件。
         git merge feature
         ```
 
-        合并有两种常见的结果：
+        合并有两种常见的结果。下图中，实线箭头从父提交指向后续提交，虚线箭头表示分支指向的提交；`main（HEAD）` 表示 `HEAD` 指向 `main`，即当前检出的是 `main` 分支。
 
-        1. Fast-forward 合并。如果 main 没有新的提交，只落后于 feature：
+        1. Fast-forward（快进）合并。如果 `main` 指向的提交是 `feature` 指向的提交的祖先：
 
-            ```bash
-            main:    A---B
-                        \
-            feature:       C---D
+            ```mermaid
+            flowchart LR
+                A((A)) --> B((B)) --> C((C)) --> D((D))
+                main["main（HEAD）"] -.-> B
+                feature["feature"] -.-> D
             ```
 
-            执行 `git merge feature` 后 `main` 分支会直接“快进”到 `D`。
+            在默认允许快进的情况下，执行 `git merge feature` 后，`main` 的指针直接从 `B` 移动到 `D`，不会创建新的提交。此时两个分支都指向同一个 `D`。
 
-            ```bash
-            main:    A---B---C---D
-                        \
-            feature:       C---D
+            ```mermaid
+            flowchart LR
+                A((A)) --> B((B)) --> C((C)) --> D((D))
+                main["main（HEAD）"] -.-> D
+                feature["feature"] -.-> D
             ```
 
-        2. 非 fast-forward 合并。如果两个分支各有提交：
+        2. 非 fast-forward 合并。如果两个分支从共同祖先 `B` 开始，各自有了新的提交：
 
-            ```bash
-            main:    A---B---E
-                        \
-            feature:       C---D
+            ```mermaid
+            flowchart LR
+                A((A)) --> B((B))
+                B --> E((E))
+                B --> C((C)) --> D((D))
+                main["main（HEAD）"] -.-> E
+                feature["feature"] -.-> D
             ```
 
-            执行 `git merge feature` 后 Git 会创建一个新的合并提交（merge commit）`F`：
+            执行 `git merge feature` 并成功完成合并后，Git 会创建新的合并提交（merge commit）`F`，它的两个父提交分别是 `E` 和 `D`。`main` 移动到 `F`，`feature` 仍指向 `D`。
 
-            ```bash
-            main:    A---B---E---F
-                        \     /
-            feature:       C---D
+            ```mermaid
+            flowchart LR
+                A((A)) --> B((B))
+                B --> E((E)) --> F((F))
+                B --> C((C)) --> D((D)) --> F
+                main["main（HEAD）"] -.-> F
+                feature["feature"] -.-> D
             ```
 
         !!! note
@@ -411,7 +419,15 @@ GitHub 是一个基于 Git 的代码托管平台，你可以将你的本地 Git 
 
 - `git pull`
 
-    拉取最新的代码。这个操作相当于 `git fetch`（将远程分支拉到本地） + `git merge`（将远程分支合并入本地分支）
+    从远程仓库获取更新，并将指定远程分支的提交整合到当前分支。不指定远程和分支时，通常使用当前分支配置的上游分支，例如 `origin/main`。
+
+    `git pull` 首先执行 `git fetch`，获取远程提交并更新相应的远程跟踪分支（如 `origin/main`）；仅执行 `fetch` 不会修改当前本地分支或工作区。接下来如何整合，取决于命令行参数和 Git 配置：
+
+    - `git pull --no-rebase`：使用 merge 整合。允许快进时直接移动分支指针；分支已分叉时，通常创建合并提交。
+    - `git pull --rebase`：使用 rebase 整合，将本地独有的提交重新应用到获取的远程提交之上，通常会改变这些本地提交的哈希值。
+    - `git pull --ff-only`：只允许快进；如果本地与远程分支已经分叉，则拒绝整合，需要自行选择后续处理方式。
+
+    因此，不能将所有 `git pull` 都等同于 `git fetch` 加 `git merge`。本课程如果希望明确使用 merge 方式，可以执行 `git pull --no-rebase`。merge 和 rebase 都可能遇到冲突，需要解决后才能完成整合。
 
 - `git push`
 
