@@ -1,0 +1,1467 @@
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ics-26fall-fdu.github.io/labs/lab3-attack-lab/">
+      
+      
+        <link rel="prev" href="../lab2-bomb-lab/">
+      
+      
+        <link rel="next" href="../../misc/ssh/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lab3：AttackLab - 复旦大学 计算机系统基础（2026年秋季学期）</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.07%2011.25-.9.92C13.45%2012.89%2013%2013.5%2013%2015h-2v-.5c0-1.11.45-2.11%201.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2%202%200%200%200-2-2%202%202%200%200%200-2%202H8a4%204%200%200%201%204-4%204%204%200%200%201%204%204%203.2%203.2%200%200%201-.93%202.25M13%2019h-2v-2h2M12%202A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10c0-5.53-4.5-10-10-10%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab3-attacklab" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="复旦大学 计算机系统基础（2026年秋季学期）" class="md-header__button md-logo" aria-label="复旦大学 计算机系统基础（2026年秋季学期）" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            复旦大学 计算机系统基础（2026年秋季学期）
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab3：AttackLab
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到暗色模式" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到浅色模式" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ICS-26Fall-FDU.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  实验
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/ssh/" class="md-tabs__link">
+          
+  
+  
+  杂项
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../team/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  团队
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="复旦大学 计算机系统基础（2026年秋季学期）" class="md-nav__button md-logo" aria-label="复旦大学 计算机系统基础（2026年秋季学期）" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    复旦大学 计算机系统基础（2026年秋季学期）
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ICS-26Fall-FDU.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    实验
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab0-git-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab0：GitLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1-data-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1：DataLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2-bomb-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab2：BombLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3：AttackLab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3：AttackLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序的调用栈
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个危险的漏洞
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        更多利用方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        楚门的世界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        猫鼠游戏
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尾声
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    杂项
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    杂项
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/coding-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding Agent 入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/beginner-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验新手常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    团队
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序的调用栈
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个危险的漏洞
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        更多利用方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        楚门的世界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        猫鼠游戏
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尾声
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/ICS-26Fall-FDU/ICS-26Fall-FDU.github.io/edit/main/docs/labs/lab3-attack-lab.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+    </a>
+  
+  
+
+
+<h1 id="lab3-attacklab">Lab3: AttackLab</h1>
+<h2 id="_1">实验简介</h2>
+<p>本次实验将会帮助大家对程序运行时使用的内存空间和寄存器建立起基础的理解，并在此之上尝试做一些大家在程序设计课程中大概没有做过的事情——尝试从安全的视角审视程序。</p>
+<p>助教在设计本次实验的过程中借鉴了本课程历史实验、<a href="https://csapp.cs.cmu.edu/3e/attacklab.pdf">CSAPP Attack Lab</a> 和北京大学 2024 年秋 ICS 实验的设计，在此向它们的设计者表示感谢。</p>
+<p>由于实验内容可能比较多，建议大家早些时候开始。如果遇到困难，欢迎大家随时<a href="mailto:ryannyui06@gmail.com">联系我</a>，我会在保证公平的前提下尽可能帮助大家。</p>
+<div class="admonition info">
+<p class="admonition-title">提交方式和截止日期</p>
+<p>所有同学应当在 eLearning 课程中 「作业」 页面提交自己的实验仓库链接，并在作业截止时间之前将自己完成的部分上传至 eLearning 上提交的实验仓库当中。实验仓库应当在自截止时间起至少 24 小时内维持 Public 状态。</p>
+<p>实验报告以 PDF 格式放置于仓库根目录。</p>
+<p>请确保所有修改在作业截止时都已经存在于仓库的 <a href="https://docs.github.com/en/pull-requests/reference/branches#about-the-default-branch">Default Branch</a> 中。</p>
+</div>
+<h2 id="_2">程序的调用栈</h2>
+<p>大家在课堂上已经对程序的栈建立了很多了解，比如：</p>
+<ul>
+<li>程序的栈是一块内存区域。</li>
+<li>x86-64 指令集当中栈是由高地址向低地址生长的。</li>
+<li>栈中的元素叫作栈帧 (Stack Frame)。</li>
+<li>C 语言中每个普通函数在被调用时通常会创建一个自己的栈帧，在返回时释放掉自己的栈帧。</li>
+<li>栈帧中保存对应函数内声明的局部变量。</li>
+<li>CPU 中存在一对寄存器来存储和栈相关的内存地址。（它们的名字是什么？）</li>
+</ul>
+<p>为了防止和栈这种数据结构混淆，我们在实验接下来的部分中把程序的这一内存区域叫作 「调用栈」 (Call Stack)。</p>
+<p>这个名字很好地反映了这一内存空间是怎么产生的——函数调用。</p>
+<p>除此之外，它常见的名字还有 「执行栈」 、 「控制栈」 和 「运行时栈」 。</p>
+<p>由于实验中接下来的部分我们会一直和调用栈打交道，我们有必要再仔细看一看在真正的程序中调用栈长什么样。</p>
+<div class="admonition abstract">
+<p class="admonition-title">安装 GEF</p>
+<p>GEF (GDB Enhanced Features) 是一个 GDB 的插件，它在原生 GDB 的基础上提供了很多功能，其中之一是在暂停时输出非常详尽的汇编、栈帧、调用栈和寄存器信息，
+这能够大大改善大家的调试体验。</p>
+<p>请参照 <a href="https://hugsy.github.io/gef/">GEF 的文档</a> 来安装它。</p>
+</div>
+<p>在 <code>attack/</code> 目录中执行 <code>gdb ./dark-calc</code> 来开始用 GDB 调试我们的目标可执行文件。</p>
+<div class="admonition note">
+<p class="admonition-title">任务：观察栈帧 <code>input</code></p>
+<p>在 GDB 中执行下述命令来在 input 函数处下一个断点并开始运行：
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gef➤  b input
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Breakpoint 1 at 0x40197f
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>gef➤  r
+</span></code></pre></div><p></p>
+<p>GEF 打印出了很多信息，请大家根据不同部分的信息（每一部分的标题在最右侧顶部）在实验报告中依次回答下列问题：</p>
+<ol>
+<li>
+<p>看看 trace 部分，input 函数是谁调用的？</p>
+</li>
+<li>
+<p>看看 code:x86:64 部分，程序停下来的位置...似乎不是 input 函数的第一条指令。 停下来位置之前的三条指令<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>是在做什么？ $rbp 此刻指向的内存地址当中的值来自哪里？</p>
+</li>
+<li>
+<p>看看调用栈上 $rbp + 8 处，那里存的值是什么？（提示：运行 disas main 来查看它的汇编代码）</p>
+</li>
+<li>
+<p>刚刚我们在 input 函数中读到的汇编代码似乎不能解释 $rbp + 8 处值的存在，我们需要找到它的来源。请你在 input 的调用者中找到 input 被调用的位置，在这里之前下一个断点，重新运行程序，并使用 <code>si</code> 命令从那里逐指令执行到我们的 input 断点，观察信息，回答是哪一行汇编代码在 $rbp + 8 处存入了值。</p>
+</li>
+<li>
+<p>用同样的办法逐指令从 input 的 <code>leave</code> 指令之前处执行到 input 的调用者当中并观察每一步栈帧的变化，结合问题 2、问题 3 和 问题 4 回答 <code>call</code>、prologue、<code>leave</code> 和 <code>ret</code> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 的作用。</p>
+</li>
+</ol>
+</div>
+<p>现在我们已经了解了调用栈中的栈帧是如何建立的，以及函数间的控制流是怎么转移的。</p>
+<p>接下来，让我们用学到的知识做一些危险的事情吧桀桀桀...</p>
+<h2 id="_3">一个危险的漏洞</h2>
+<p>运行并探索一下 <code>attack</code> 目录下的 <code>dark-calc</code>。</p>
+<p>这是我们编写的一个计算器程序，它的 <code>void input()</code> 函数打印提示语指导用户输入一个表达式并将表达式字符串存入全局变量 <code>command_buf</code> 中，随后 <code>void eval()</code> 函数将 <code>echo $((</code> 和 <code>))</code> 拼接在我们刚刚输入的表达式两侧并调用 <code>stdlib.h</code> 中提供的 <code>system()</code> 执行这一字符串，最终在标准输出流打印表达式的结果。</p>
+<div class="admonition info">
+<p class="admonition-title"><code>echo $(())</code> 是什么？</p>
+<p>大家已经在较早时候发布的实验手册中了解到 <code>echo</code> 是一个 shell 命令，它可以将作为命令行参数传入的字符串打印到标准输出流。实验手册中还演示了将字符串输出到终端和利用重定向符号将字符串写入某个文件的方法。</p>
+<p><code>$((some_expression))</code> 是 <code>bash</code> <a href="https://www.gnu.org/software/bash/manual/html_node/Arithmetic-Expansion.html">算术扩展 (Arithmetic Expansion)</a> 的语法，它也是 POSIX 标准的一部分。它会将 <code>some_expression</code> 求值并将 <code>$((some_expression))</code> 整体替换为这个值。比如，<code>echo $(( 2 * 3 * 7 ))</code> 将会在标准输出流打印 <code>42</code>。</p>
+</div>
+<p>不幸的是，我们的代码中使用了一个过时且危险的函数，它的函数签名是 <code>char *gets(char *s)</code>。这个函数从标准输入流读取输入，存入 <code>s</code> 指向的内存空间，直到读入换行符或文件末尾，并将 <code>s</code> 作为返回值。</p>
+<p>在我们的代码中，传入 <code>gets()</code> 的参数是 <code>input()</code> 函数栈帧上分配的 <code>char</code> 数组 <code>expression</code>。这个数组的大小是固定的 <code>MAXLEN+1</code> 个 <code>char</code>，也就是 16 bytes。</p>
+<details class="question">
+<summary>想一想，这里的 <code>+1</code> 是什么意思？</summary>
+<p>大家在程序设计课上应当学过，C 语言的字符串本质上就是一个元素类型为 char 的数组。指向这个数组首个元素的指针为我们标记了这个字符串的起始地址，但...我们怎么知道这个字符串什么时候结束呢？</p>
+<p>C 语言的解决办法是在整个字符串有效字符的最后再加一个 <code>\0</code>，也就是一个每一位都为 0 的字节，这会使整个字符串的内容比它实际的「有用」内容多一个字节。</p>
+<p>其他一些相对现代的编程语言，比如 Python、Go、C++、Rust 等等往往将实际长度数据和字符串数据同时存储，并用类型系统管理，比如对象、结构体、或是胖指针等等...</p>
+</details>
+<p>大家或许已经可以从上面两句话中发现矛盾了：<code>expression</code> 只有 16 字节的空间，但是 <code>gets()</code> 会在读入换行符或文件末尾之前一直往后写呀写呀写呀写。</p>
+<p>那么当写入的内容大小超过 <code>expression</code> 中的空间时会怎么样呢？我们不妨来尝试一下。</p>
+<div class="admonition abstract">
+<p class="admonition-title">用不同长度的字符串输入测试 <code>dark-calc</code></p>
+<p>尝试在 <code>dark-calc</code> 中分别输入 20、32 个 ASCII 字符看看程序如何表现。（由于 <code>gets()</code> 还会额外写入一个 <code>\0</code>，所以写入数据的长度为 21 和 33 字节）如果报错了，看看报错是什么？</p>
+<p>使用 GDB 在 <code>input</code> 函数中调用的 <code>gets</code> 函数后下一个断点，再次尝试输入并观察栈帧，看看超量的数据被写到了哪里？</p>
+<p>在实验报告中回答上面两个问题。</p>
+</div>
+<p>这种漏洞叫作 <strong>缓冲区溢出 (Buffer Overflow)</strong> ，当发生在调用栈上时，它叫作 <strong>Stack-based Buffer Overflow</strong>。当程序没有对输入的数据进行长度检查时，攻击者可以通过构建超长的异常输入来篡改缓冲区高地址方向上的相邻数据。</p>
+<p>还记得 <code>ret</code> 这条指令在干什么吗？现在到我们利用这个机制的时候了。</p>
+<div class="admonition note">
+<p class="admonition-title">任务：利用缓冲区漏洞执行 <code>./malware</code></p>
+<p>回想“程序的调用栈”部分中函数如何返回的机制，给 <code>dark-calc</code> 构造一个特殊的输入 (Payload) 以<strong>利用栈溢出漏洞</strong>，篡改 <code>input</code> 函数的返回地址，控制程序执行同一目录下的 <code>malware</code>。</p>
+<p>由于部分数据可能无法通过键盘输入，你应当将你的实现写在 <code>payload.py</code> 当中并将输出重定向以作为 <code>dark-calc</code> 的输入。</p>
+<p>如果实现正确，你将会在 <code>dark-calc</code> 的输出中看到 <code>You have successfully detonated the bomb! Congratulations!</code>。</p>
+<p>在实验报告中描述你的攻击流程。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<ul>
+<li>
+<p>构造 payload 的示例：
+  </p><div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">'A'</span> <span class="o">*</span> <span class="mh">0x10</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\xd6\x05\x40\x00\x00\x00\x00\x00</span><span class="s1">'</span> <span class="c1"># 16 个 A 和一个地址： 0x4005d6</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></code></pre></div>
+  执行 <code>python payload.py</code>，payload 将会被输出到标准输出流中。<p></p>
+</li>
+<li>
+<p>管道操作符和重定向操作符可以帮助我们将 <code>python payload.py</code> 的输出重定向到 <code>dark-calc</code> 或某个文件。比如我们可以用 <code>python payload.py &gt; payload</code> 来将输出存入 payload 文件中，随后在 GDB 中使用 <code>run &lt; payload</code> 来输入。</p>
+</li>
+<li>
+<p>POSIX Shell 中使用 # 号来表示注释。从 # 开始到该行的末尾的所有内容都会被 Shell 忽略。</p>
+</li>
+<li>
+<p>换行符的 ASCII 码是 0x0a，因此你的 payload 中间位置中不应当包含 0x0a。</p>
+</li>
+<li>
+<p>这一任务似乎还有不利用栈溢出漏洞解决的办法...？（不过请确保你提交的 payload 利用了栈溢出漏洞）</p>
+</li>
+</ul>
+</div>
+</div>
+<h2 id="_4">更多利用方式</h2>
+<p>在上一个任务中，我们利用这个缓冲区漏洞劫持了程序的控制流：我们跳过了拼接缓冲区中字符串的部分而直接用 <code>system()</code> 执行了缓冲区当中的命令。但这种简单的劫持控制流方法其实具有很大的局限性：它依赖于传入 <code>system()</code> 的指针正好指向我们想要让它执行的内容。</p>
+<p>我们不妨换一个角度思考，与其依赖程序本身的代码来实现漏洞利用，有没有什么办法让程序更自由地执行一些我们想让它执行的指令呢？</p>
+<p>大家已经知道：我们写的 C 代码会由编译器编译成汇编代码，然后由汇编器将人类可读的汇编代码翻译为机器码，最后再由链接器打包成一个完整的可执行文件。在一个程序启动时，将要给 CPU 执行的所有指令会以机器码的形式被加载到内存当中。（当然，这句话只适用于 AOT 编译的程序。）</p>
+<pre class="mermaid"><code>flowchart LR
+    A["C 源代码&lt;br/&gt;main.c"] --&gt;|"编译器（gcc -S）"| B["汇编代码&lt;br/&gt;main.s"]
+    B --&gt;|"汇编器（gcc -c / as）"| C["目标文件（机器码）&lt;br/&gt;main.o"]
+    C --&gt;|"链接器（ld）"| D["可执行文件&lt;br/&gt;dark-calc"]
+    D --&gt;|"程序启动时加载"| E["内存中的机器码&lt;br/&gt;交由 CPU 执行"]</code></pre>
+<p>让我们用 GDB 来看一看这些机器码在内存中长什么样子。</p>
+<div class="admonition abstract">
+<p class="admonition-title">用 GDB 检查 main 函数的机器码</p>
+<p>在 input 函数入口处下一个断点并执行到那里。
+使用 <code>disas</code> 命令列出 main 函数的汇编代码，找到 main 函数第一行指令对应机器码的起始地址，并使用 <code>x</code> (examine) 命令检查那里附近高地址方向上的内存区域，看看内存当中这些机器码的存储方式。并在实验报告中回答下面的问题：</p>
+<ol>
+<li>前三行汇编对应的机器码分别是什么？</li>
+<li>这些机器码在内存中排列的方式是什么样的？请你用文字或画一个图来说明。需要指出这三行指令分别对应的内存区间是什么。你可以在第一行指令处下一个断点，然后逐条指令执行，同时观察 rip 寄存器的值。</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<ul>
+<li>如果你忘掉 <code>x</code> 的用法了，请看看 Lab2 的教学内容。 </li>
+<li>这个 <a href="https://defuse.ca/online-x86-assembler.htm">在线汇编器</a> 可以将 Intel 语法的汇编代码翻译成 x86-64 机器码，大家可以使用它和内存中的数据对照查看。</li>
+</ul>
+</div>
+</div>
+<p>既然我们已经清楚了内存中的机器码如何排布，那么我们有没有可能利用漏洞，在调用栈上塞入我们编写的机器码，将控制流转移到这里来执行呢？</p>
+<div class="admonition note">
+<p class="admonition-title">任务：栈空间执行</p>
+<p>在之前做填充字符实验的时候，大家已经注意到了我们这个漏洞创造出的可写内存空间是相对有限的。在这有限的内存空间中当中还需要给返回地址留出 8 字节的空间，因此留给我们写指令的空间更加少了...</p>
+<p>因此，我们的在这里编写的指令不能很复杂。常见的利用方式是在这里写一小段程序，然后把这里作为一个跳板，巧妙利用程序本身的代码或我们发现的其他漏洞来完成我们想要达到的目标。</p>
+<p>在 <code>dark-calc</code> 中有一个未使用的 <code>grade_eval</code> 函数。尝试在阅读代码后，通过 <code>payload_dark.py</code> 构建新的 payload，将寄存器 <code>rip</code> 指向栈上我们编写的机器码。通过调用 <code>grade_eval</code>，让程序的输出中包含 "Hope A will be your grade!"。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<ul>
+<li>回想 x86-64 函数调用约定中的参数传递寄存器。</li>
+<li>使用汇编器来将汇编转换为机器码。</li>
+</ul>
+</div>
+</div>
+<h2 id="_5">楚门的世界</h2>
+<p>刚刚我们的栈空间执行看起来很酷，但事实上这是我们故意营造出来的假象。不幸的是（或者说幸运的是），这样的攻击策略在现代计算机系统上会面临两个大问题。</p>
+<ol>
+<li>栈空间不可执行</li>
+<li>地址空间布局随机化（Address Space Layout Randomization, ASLR）</li>
+</ol>
+<p>这两个机制在之前的任务中被绕过了。</p>
+<p>我们先来看第一个问题：栈空间不可执行。</p>
+<p>在未来的操作系统课程上，大家会学习到现代计算机管理内存空间的方式。简而言之，程序执行时所访问的内存地址并不是插/焊在主板上的 DRAM 中对应的物理地址，而是在一个虚拟的地址空间当中。计算机系统通过一张表按特定粒度管理虚拟地址空间到物理地址空间的映射。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/paging-fragmentation.svg" data-desc-position="bottom"><img alt="paging-fragmentation.svg" src="../../assets/paging-fragmentation.svg"></a>
+<br>
+<figcaption>不同进程内存空间的映射</figcaption>
+</figure>
+<p>这一机制有很大优势，比如进程隔离、更高效的内存管理，以及对我们当前问题最关键的——<strong>权限控制</strong>。</p>
+<p>在这张映射表中，计算机不仅记录了“虚拟地址 A 对应物理地址 B”，还为每一块内存区域打上了权限标签：可读（<strong>R</strong>ead）、可写（<strong>W</strong>rite）、可执行（e<strong>X</strong>ecute）。每次 CPU 去内存里读写数据或者取指令时，硬件都会自动检查这些标签。一旦发现越权行为，硬件就会立刻拦截。</p>
+<p>在第一个任务中，大家填充的数据超过调用栈区域过多时出现的 Segmentation Fault，就是由这一机制引起的。</p>
+<p>在早期的计算机系统中，栈空间往往同时拥有“可写”和“可执行”的权限。但在现代计算机系统上，操作系统和编译器对于同时可写又可执行的内存是很谨慎的。比如内存中的代码段可读、可执行却不可写，而调用栈和堆可读可写却不可执行。即使操作系统提供了 API 让我们通过 <code>mmap</code> 去手动分配一块可写又可执行的内存为像是 JIT （或者我们的前两个任务）这样的需求服务，它也依然可以通过安全策略来限制这类内存的分配。</p>
+<p>第二个问题是 ASLR。在刚刚的任务中，我们使用 GDB 查看了我们在栈上缓冲区里编写机器码的对应地址，将这一地址硬编码到我们的 payload 当中，然后在再次执行时使用硬编码上一次执行时缓冲区地址的 payload 作为输入。但...要是栈的起始地址在每次执行时都不同呢？</p>
+<p>那么我们缓冲区的地址也会不同，刚刚编写的 payload 就会失效。</p>
+<p>这就是 ASLR 的思想，通过让地址空间的布局变得随机来加大攻击者找到要跳转到的目标地址的难度。</p>
+<p>助教编写了一个小程序 (<code>aslr.c</code>) 让大家来亲身体会一下 ASLR。</p>
+<div class="admonition abstract">
+<p class="admonition-title">ASLR</p>
+<p>阅读并使用 <code>cc -o aslr aslr.c</code> 编译 aslr.c。反复多次执行 <code>aslr</code> ，查看其打印出的变量地址。<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">位置无关代码</p>
+<p>ASLR 除了适用于栈空间、堆、动态链接库，还适用于代码段区域，但程序代码段的 ASLR 相对特殊。</p>
+<p>在栈上，我们之所以能够直接使用 ASLR，是因为我们对于栈上数据的寻址依赖于寄存器 <code>rbp</code>。比如 <code>input+28</code> 处：<code>lea rax,[rbp-0x10]</code>。无论栈的起始位置如何变化，这个局部变量和 <code>rbp</code> 的相对偏移是不变的 16 字节。</p>
+<p>而在代码段中，情况并不完全一样。部分程序的二进制文件代码段永远只会被加载到特定的基地址，不会发生变化。像这样的二进制可执行文件，我们把它叫作 Non-PIE binary. 其中 PIE 是 Position-Independent Executable 的缩写。</p>
+<p>像这样代码段不做随机偏移的程序在 x86 架构迈入 64 位时代之前是相当常见的。由于架构限制，在那时如果想要对代码段进行随机化偏移会产生相对较大的额外性能开销。</p>
+<p><a href="https://github.com/eliben">Eli Bendersky</a> 的两篇博客文章 <a href="https://eli.thegreenplace.net/2011/11/11/position-independent-code-pic-in-shared-libraries-on-x64">Position Independent Code (PIC) in shared libraries on x64</a> 和 <a href="https://eli.thegreenplace.net/2011/11/03/position-independent-code-pic-in-shared-libraries/">Position Independent Code (PIC) in shared libraries</a> 介绍了位置无关代码在 x86-64 前后的情况。</p>
+<p>考虑到实验难度，我们在本实验中提供的所有的二进制程序都不是 PIE。</p>
+</div>
+<p>随着栈不可执行和 ASLR 逐渐被主流操作系统内置，传统的栈空间执行落幕了。但在特定的程序上，我们依然有办法达到像是「栈空间执行」任务当中那样的效果！</p>
+<p>一个比较常见的思路是利用内存空间中那些地址永远不变，且所在内存区域可执行的数据片段来拼凑出我们的程序，比如 non-PIE 中的 <code>.text</code> 部分。
+这种编程方式叫作 <strong>ROP (Return-Oriented Programming)</strong>.</p>
+<p>顾名思义，编程者（也就是大家）需要在程序内存空间中找到以 <code>ret</code> (0xc3) 结尾的一段或几段数据 (gadgets)，通过 <code>ret</code> 将控制流从一处 gadget 跳转到另一处 gadget，最终达到编程的目的。</p>
+<p>比如说，假设 <code>.text</code> 段中存在如下指令：<code>mov eax, 0x00c3d0ff</code>，它的机器码是 <code>b8 ff d0 c3 00</code>。这一段数据中的 <code>ff d0 c3</code> 同时也可以是 <code>call *%rax; ret</code> 的机器码。假设我们需要调用 <code>rax</code> 当中存储的函数去执行命令，我们就可以将存在缓冲区溢出漏洞的那个函数的返回地址指向 <code>ff</code> 这一字节处，同时，在高地址方向上的接下来 8 字节写入下一段 gadget 的起始地址。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/rop.png" data-desc-position="bottom"><img alt="rop" src="../../assets/rop.png"></a>
+<br>
+<figcaption>ROP 的示例</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">任务：ROP</p>
+<p><code>dark-calc-nx</code> 是一个栈空间不可执行且栈空间位置随机的非 PIE 程序，你的任务是在 <code>payload_rop.py</code> 中使用 ROP 技术为其编写 payload，让程序的输出中包含 "Hope A will be your grade!"</p>
+<p>将你的攻击思路写在实验报告中。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<ol>
+<li>任务需要使用的 gadget(s) 在 <code>0x4019d0</code> 到 <code>0x401ae3</code> 之间。由于范围不大，你可以在 objdump 导出的文件中直接寻找。</li>
+<li>如果你发现使用立即数构造对应的参数存在困难，不妨利用栈来操作。</li>
+<li>取决于你系统的 glibc 实现，你构造的 ROP 链可能会因为栈不对齐崩溃在 <code>printf</code> 内部，你需要通过搜索引擎解决这一问题。</li>
+</ol>
+</div>
+</div>
+<h2 id="_6">猫鼠游戏</h2>
+<p>大家或许已经可以察觉到，计算机系统的安全性往往不依靠于某个单一的保护机制，而是作用于多个层级的不同机制独立作用又相辅相成的结果。为了让攻击者无法在栈上执行代码，安全工程师们在页表中加入了可执行权限位，而攻击者们又可以利用代码段的 gadget 来拼凑出自己想要的程序、为了让攻击者难以跳转到自己想要跳转的位置，安全工程师发明了 ASLR，而攻击者们又会去寻找其他可以泄露运行时绝对地址的漏洞，然后通过偏移计算出跳转的落点...</p>
+<p>随着当代计算机系统复杂性不断提高，能被攻击者发掘出的攻击面也不断扩大，然后安全工程师们针对出现的漏洞提出对应的安全机制，攻击者再发掘出其他的攻击方式...这是一场永远不会结束的猫鼠游戏。</p>
+<p>而对于缓冲区溢出漏洞这个历史久远而又利用空间巨大的漏洞，安全工程师们也有专门针对它的防御机制：<strong>Stack Protector</strong>。这一机制还有一个形象的别名：<strong>Canary</strong>。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/canary.jpg" data-desc-position="bottom"><img alt="canary" src="../../assets/canary.jpg"></a>
+<br>
+<figcaption>矿工与金丝雀</figcaption>
+</figure>
+<p>在 19 世纪末 20 世纪初，我们还没有发明电子一氧化碳检测仪。在那时，煤矿工人下井时常常会带一只金丝雀。金丝雀对一氧化碳、甲烷等气体比人敏感得多：如果它突然躁动、倒下，矿工就知道空气出了问题，必须立刻撤离。金丝雀没有过滤毒气的功能，也不能阻止矿工吸入毒气，但是它可以用自己的反应向要保护的对象提前发出警告。</p>
+<p>Stack Protector 的理念和金丝雀很像，编译器会在在局部缓冲区与保存的返回地址之间插入一个随机值 (Canary) 并在函数返回前进行校验。如果这个值发生变化，程序不会继续执行，而是调用 <code>__stack_chk_fail</code> 直接终止。</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/canary-stack.png" data-desc-position="bottom"><img alt="canary-stack" src="../../assets/canary-stack.png"></a>
+<br>
+<figcaption>栈上的金丝雀</figcaption>
+</figure>
+<p>然而，聪明的攻击者们发现在某些特定的程序上，Stack Protector 是可以借助函数自身的代码被绕过的：既然一步到位从缓冲区写到返回地址无法实现，那我们有没有其他的办法来曲线救国呢？</p>
+<div class="admonition note">
+<p class="admonition-title">任务：Canary</p>
+<p><code>dark-log</code> 是我们为这个任务准备的简化程序。它依然是一个栈空间不可执行且位置随机的非 PIE 程序，但在编译时开启了 Stack Protector。你的任务是在 <code>payload_canary.py</code> 中编写代码，绕过 Canary，让程序的输出中包含 "Hope A will be your grade!"</p>
+<p>将你的攻击思路写在实验报告中。</p>
+<p>为了进一步阻止这种利用方式，现代编译器会对栈上局部变量存储的数据位置进行重新排布，我们在这里通过一个结构体固定顺序才创造出了利用空间。想一想，应当如何重新排列这些局部变量，才能使上述攻击失效？为什么？</p>
+<p>将你的思考写在实验报告中。</p>
+</div>
+<h2 id="_7">尾声</h2>
+<p>再次感谢我们、CMU 和 PKU ICS 课程的老师和助教，Lab3 是他们的智慧经由我-<del>拙劣</del>-拼接的结果。也感谢大家在这个 Lab 上花的时间。</p>
+<p>在定稿之后，我尝试让 DeepSeek V4.1 Flash 1017 在 dsh 上自行完成了这个 Lab，共花费 13 分钟，0.5 元，其中大部分时间和 Token 都用在确保实验报告的严谨性上了，而几个 exploit 任务都是 one-shot。</p>
+<p>一开始看到这个结果的时候，我是很沮丧的。因为我觉得，LLM 代写是无解的：我考虑过在二进制中投毒、在实验报告中添加更多主观题、增加题目难度...但发现这些办法都不可能解决这个问题，只会增加大家和我们的负担。</p>
+<p>我后来想到 LLM 本身只可能会终结我们这种考察方式和评价体系。而对学习本身来说，它赋予了对此感兴趣的人前所未有的学习和自我提升的机会，也给予了对此并不那么感兴趣的人将时间花在自己感兴趣事情上的可能。从这个角度考虑，或许这是一件好事情。</p>
+<p>对于感兴趣的同学，我希望这个 Lab 可以帮助你对「程序是如何执行的」这件事情建立更深入的认识。如果你对此的兴趣还不足以支撑你独立完成它，我也衷心祝愿你能在这个充满变化和奇迹的时代实现自己想要实现的目标。</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>这三条指令叫作函数的 prologue。&nbsp;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p><code>leave</code> 和 <code>ret</code> 合称函数的 epilogue。&nbsp;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:3">
+<p>在 GDB 中执行时打印出相同的内存地址是正常的，因为 GDB 为调试方便默认会禁用 ASLR。&nbsp;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月26日 10:11:11 UTC">2026年10月26日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年10月26日 09:31:54 UTC">2026年10月26日</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="贡献者">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"></path></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/ryannyui" class="md-author" title="@ryannyui">
+          
+          <img src="https://avatars.githubusercontent.com/u/282763419?v=4&amp;size=72" alt="ryannyui">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+
+
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js" data-repo="ICS-26Fall-FDU/ICS-26Fall-FDU.github.io" data-repo-id="R_kgDOUQ60Qg" data-category="Announcements" data-category-id="DIC_kwDOUQ60Qs4DFELA" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async="">
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
