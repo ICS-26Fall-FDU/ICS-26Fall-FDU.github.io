@@ -10,6 +10,8 @@
 
 !!! info "提交方式和截止日期"
 
+    点击 [模板仓库](https://github.com/ICS-26Fall-FDU/AttackLab) 页面右上角 「Use this template」 来在自己的账号下使用 Lab 模板新建一个仓库。
+
     所有同学应当在 eLearning 课程中 「作业」 页面提交自己的实验仓库链接，并在作业截止时间之前将自己完成的部分上传至 eLearning 上提交的实验仓库当中。实验仓库应当在自截止时间起至少 24 小时内维持 Public 状态。
     
     实验报告以 PDF 格式放置于仓库根目录。
