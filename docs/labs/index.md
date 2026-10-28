@@ -10,6 +10,6 @@ title: 实验总览
 |------|----------|----------| -------- |
 | [0: GitLab](./lab0-git-lab/) | [周弈成](mailto:yichengzhou23@m.fudan.edu.cn) | Sep 13 | Sep 30, 23:59 |
 | [1: DataLab](./lab1-data-lab/) | [张林涛](mailto:lintaozhang25@m.fudan.edu.cn) | Sep 21 | Oct 9, 23:59 |
-| [2: BombLab](./lab2-bomb-lab) | [石伟建](https://github.com/weijiansh1) | Oct 12 | Oct 30, 23:59 |
+| [2: BombLab](./lab2-bomb-lab) | [石伟建](mailto:24307130175@m.fudan.edu.cn) | Oct 12 | Oct 30, 23:59 |
 | [3: AttackLab](./lab3-attack-lab.md) | [李睿洋](mailto:ryannyui06@gmail.com) | Oct 26 | Nov 27, 23:59 |
 | ... |
