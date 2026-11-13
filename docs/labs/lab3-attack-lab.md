@@ -223,7 +223,7 @@ flowchart LR
 
 !!! abstract "ASLR"
 
-    阅读并使用 `cc -o aslr aslr.c` 编译 aslr.c。反复多次执行 `aslr` ，查看其打印出的变量地址。[^3]
+    阅读并在 `src` 目录下使用 `cc -o aslr aslr.c` 编译 aslr.c。反复多次执行 `aslr` ，查看其打印出的变量地址。[^3]
 
     [^3]: 在 GDB 中执行时打印出相同的内存地址是正常的，因为 GDB 为调试方便默认会禁用 ASLR。
 
