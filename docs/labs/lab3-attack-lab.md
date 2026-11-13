@@ -41,7 +41,7 @@
 
 ??? tip "可选阅读：调用栈可视化演示"
 
-    可以先通过[调用栈可视化演示](https://mention25.github.io/Stack-Frame-Visualization/)中的独立 `main → foo → bar` 示例，逐步观察函数调用时寄存器、返回地址和栈帧的变化。页面支持单步、回退与关键步骤跳转，并提供同一示例的 GDB 验证方法。
+    可以先通过[调用栈可视化演示](https://mention25.github.io/Stack-Frame-Visualization/)中的独立 `main → foo → bar` 示例，逐步观察函数调用时寄存器、返回地址和栈帧的变化。页面支持输入 AT&T / Intel 汇编，以及单步、回退、播放和进度拖动。
 
     演示使用通用教学代码和示意地址，不包含本实验的目标程序。理解原理后，请继续使用 GDB/GEF 分析实验二进制；实验中的地址、栈布局和结论都应来自对实际程序的观察。
 
