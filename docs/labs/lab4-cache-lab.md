@@ -4,21 +4,22 @@
 
 ## 实验概述
 
-本实验配套 CS:APP 第 6 章，帮助大家理解高速缓存对程序性能的影响。实验分三部分，另有一道 Bonus：
+本实验配套 CS:APP 第 6 章，帮助大家理解高速缓存对程序性能的影响。**四个部分均为必做**。
 
 - **Part A**：用 C 写一个缓存模拟器 `csim.c`，读入 valgrind 生成的访存 trace，输出命中、缺失和替换次数。
 - **Part B**：优化矩阵转置 `trans.c`，让模拟缓存上的 miss 尽量少。
 - **Part C**：优化矩阵乘法 `mul.c`，让模拟缓存上的 miss 尽量少。
 - **Bonus**：给定一个参数未知的缓存，只能通过读写它来推断它的全部参数，写在 `solver.c` 中。
 
-| 部分 | 分数 |
+| 部分 | 自动评测分数 |
 |---|---:|
-| Part A | 27 |
-| Part B | 33 |
-| Part C | 20 |
+| Part A | 35 |
+| Part B | 40 |
+| Part C | 25 |
 | Bonus | 10 |
-| 实验报告 | 20 |
 | 合计 | 110 |
+
+实验报告单独计分。
 
 ## 实验环境
 
@@ -106,7 +107,7 @@ I 0400d7d4,8
 ./test-csim
 ```
 
-共 8 个测例，前 7 个各 3 分，最后一个 6 分，共 27 分。每个测例中 hits、misses、evictions 各占三分之一。
+共 8 个测例，前 7 个原始分各 3 分，最后一个原始分 6 分。每个测例中 hits、misses、evictions 各占三分之一。`test-csim` 给出满分 27 的原始分，`driver.py` 将原始分乘以 `35/27`，折算为 Part A 的得分。
 
 **hints**
 
@@ -150,9 +151,9 @@ void transpose_submit(int M, int N, int A[N][M], int B[M][N]);
 
 | 尺寸 | 分值 | 满分 | 零分 |
 |---|---:|---|---|
-| 32 × 32（`-M 32 -N 32`） | 10 | miss ≤ 300 | miss ≥ 600 |
-| 64 × 64（`-M 64 -N 64`） | 10 | miss ≤ 1300 | miss ≥ 2000 |
-| 61 × 67（`-M 61 -N 67`） | 13 | miss ≤ 2000 | miss ≥ 3000 |
+| 32 × 32（`-M 32 -N 32`） | 12 | miss ≤ 300 | miss ≥ 600 |
+| 64 × 64（`-M 64 -N 64`） | 12 | miss ≤ 1300 | miss ≥ 2000 |
+| 61 × 67（`-M 61 -N 67`） | 16 | miss ≤ 2000 | miss ≥ 3000 |
 
 两条线之间按 miss 数线性给分，每个尺寸的得分保留一位小数。函数结果不正确时该尺寸为 0 分。
 
@@ -225,7 +226,7 @@ $$
 ./test-mul -M 32 -N 32
 ```
 
-结果不正确时得 0 分。结果正确时，miss ≤ 3999 得 20 分，miss ≥ 35000 得 0 分。两条线之间按 `20 × (35000 − miss) / (35000 − 3999)` 线性给分。例如，20000 次 miss 约得 9.677 分。
+结果不正确时得 0 分。结果正确时，miss ≤ 3999 得 25 分，miss ≥ 35000 得 0 分。两条线之间按 `25 × (35000 − miss) / (35000 − 3999)` 线性给分。例如，20000 次 miss 约得 12.096 分。
 
 第 i 个注册函数的 trace 保存在 `trace.mi`。
 
@@ -284,7 +285,7 @@ void report(int b, int s, int E, int policy, int write_allocate);
 3. 全局变量和 `static` 变量可以用：每个缓存都在一个新进程里求解。
 4. 每个缓存只能调用一次 `report()`。
 5. 不能针对评分数据硬编码。正式评分的缓存由你的学号和一个只有助教持有的密钥生成，你在本地无法得到它们。
-6. 只提交 `solver.c`。
+6. 缓存逆向部分的实现写在 `solver.c` 中。
 
 `test-solver` 运行前会用 `nm` 检查 `solver.o`，违反第 2 条时整题为 0 分。
 
@@ -330,7 +331,7 @@ python3 driver.py -B                # 只跑 Bonus，按评分规则估计分数
 - **写分配**。清空后只需两次探测。想想哪一次访问能揭示写缺失是否调入了目标块。
 - **替换策略**。填满一组后，一次命中会改变下次应换出的块吗？试着设计访问序列，让 LRU 和 FIFO 在某次回读上给出不同结果。重复探测可以降低 RANDOM 偶然表现得像确定性策略的概率。也可以参考 Part A 模拟 LRU 和 FIFO，再把预测与实际探测结果比较。
 
-完成 Bonus 后，可以在报告中说明以下内容。
+报告中的 Bonus 可以进一步说明以下内容。
 
 - 你如何求出每一个参数，以及为什么在所有允许的取值下都正确；
 - 给出一串访问，说明 E = 4 时 LRU 与 FIFO 的结果在哪一步开始不同。
@@ -351,11 +352,14 @@ make clean && make
 python3 driver.py
 ```
 
-`driver.py` 依次运行 `test-csim`、`test-trans`（三种尺寸）、`test-mul` 和 `test-solver`。`Total points` 汇总 Part A、B、C 的自动评测分数，满分 80。Part C 和自动评测小计保留三位小数。Bonus 分数单独列出。加 `-B` 只跑 Bonus（不需要 valgrind）。
+`driver.py` 依次运行 `test-csim`、`test-trans`（三种尺寸）、`test-mul` 和 `test-solver`。`Total points` 汇总 Part A、B、C 和 Bonus 的自动评测分数，满分 110。总分保留三位小数。加 `-B` 只跑 Bonus（不需要 valgrind）。
 
 ## 提交
 
-每次 `make` 都会生成 `<用户名>-handin.tar`，包含 `csim.c`、`trans.c`、`mul.c` 和 `solver.c`。提交方式：TODO。
+1. 打开课程发放的 CacheLab 学生模板，在 GitHub 点击 **Use this template → Create a new repository**，在自己的账号下创建个人实验仓库，再克隆个人仓库。
+2. 完成实验后，确保你的仓库根目录有四份源码 `csim.c`、`trans.c`、`mul.c`、`solver.c` 和一份 PDF 实验报告。请在截止前将这些文件提交并推送到默认分支。
+3. 在截止前，到 eLearning 课程的「作业」页面提交自己的 CacheLab 仓库链接。打开该链接，确认 GitHub 默认分支上能看到最新代码，且报告可以打开。
+4. 从截止时间起，个人实验仓库应至少保持 **Public** 24 小时，供助教收取。
 
 ## 参考资料
 
