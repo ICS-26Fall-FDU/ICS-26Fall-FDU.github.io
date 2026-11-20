@@ -12,4 +12,5 @@ title: 实验总览
 | [1: DataLab](./lab1-data-lab/) | [张林涛](mailto:lintaozhang25@m.fudan.edu.cn) | Sep 21 | Oct 9, 23:59 |
 | [2: BombLab](./lab2-bomb-lab) | [石伟建](mailto:24307130175@m.fudan.edu.cn) | Oct 12 | Oct 30, 23:59 |
 | [3: AttackLab](./lab3-attack-lab.md) | [李睿洋](mailto:ryannyui06@gmail.com) | Oct 26 | Nov 27, 23:59 |
+| [4: CacheLab](./lab4-cache-lab.md) | [刘恩照](mailto:243000240135@m.fudan.edu.cn) | Nov 23 | Dec 11, 23:59 |
 | ... |
