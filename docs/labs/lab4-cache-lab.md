@@ -23,7 +23,11 @@
 
 ## 实验环境
 
-请在课程服务器上完成并测试。需要 `gcc`、`make`、`python3` 和 `valgrind`：
+使用 [CacheLab 学生模板](https://github.com/ICS-26Fall-FDU/CacheLab) 创建自己的仓库。
+
+需要 x86_64 linux 环境。可以课程服务器上完成并测试，对未申请服务器的同学，使用虚拟机也可以完成实验。
+
+需要 `gcc`、`make`、`python3` 和 `valgrind`：
 
 ```bash
 gcc --version && make --version && python3 --version && valgrind --version
